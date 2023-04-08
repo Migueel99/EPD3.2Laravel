@@ -15,6 +15,16 @@ return new class extends Migration
     {
         Schema::create('descuentos', function (Blueprint $table) {
             $table->id();
+
+            $table->string('codigo');
+            $table->double('porcentaje');
+            $table->unsignedBigInteger('id_producto');
+            $table->foreign('id_producto')
+            ->references('id')
+            ->on('productos')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

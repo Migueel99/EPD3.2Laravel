@@ -15,6 +15,16 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('id_carrito')->unique();
+            $table->foreign('id_carrito')
+            ->references('id')
+            ->on('carritos')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->boolean('estado');
+            $table->double('total');
+
             $table->timestamps();
         });
     }
