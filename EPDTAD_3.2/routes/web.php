@@ -45,3 +45,12 @@ Route::resource('pedido', PedidoController::class);
 Route::resource('descuento', DescuentoController::class);
 
 });
+    
+    Route::resource('user', UserController::class);
+    Route::resource('rol', RolController::class);
+    Route::resource('producto', ProductoController::class);
+    Route::resource('carrito', CarritoController::class);
+    Route::resource('producto_carrito', ProductoCarrito::class);
+    Route::resource('producto_pedido', ProductoPedido::class);
+    Route::resource('pedido', PedidoController::class);
+    Route::resource('descuento', DescuentoController::class);
