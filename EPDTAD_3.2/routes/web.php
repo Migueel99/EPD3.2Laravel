@@ -1,15 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\RolController;
-use App\Http\Controllers\ProductoController;
-use App\Http\Controllers\CarritoController;
-use App\Http\Controllers\ProductoCarritoController;
-use App\Http\Controllers\ProductoPedidoController;
-use App\Http\Controllers\PedidoController;
-use App\Http\Controllers\DescuentoController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -35,22 +26,12 @@ Route::get('/home', function () {
 })->middleware(['auth', 'verified']);
 
 Route::group(['middleware' => 'auth'], function () {
-Route::resource('user', UserController::class);
-Route::resource('rol', RolController::class);
-Route::resource('producto', ProductoController::class);
-Route::resource('carrito', CarritoController::class);
-Route::resource('producto_carrito', ProductoCarrito::class);
-Route::resource('producto_pedido', ProductoPedido::class);
-Route::resource('pedido', PedidoController::class);
-Route::resource('descuento', DescuentoController::class);
-
+    Route::resource('users', App\Http\Controllers\UserController::class);
+    Route::resource('rols', App\Http\Controllers\RolController::class);
+    Route::resource('productos', App\Http\Controllers\ProductoController::class);
+    Route::resource('carritos', App\Http\Controllers\CarritoController::class);
+    Route::resource('producto_carritos', App\Http\Controllers\ProductoCarrito::class);
+    Route::resource('producto_pedidos', App\Http\Controllers\ProductoPedido::class);
+    Route::resource('pedidos', App\Http\Controllers\PedidoController::class);
+    Route::resource('descuentos', App\Http\Controllers\DescuentoController::class);
 });
-    
-    Route::resource('user', UserController::class);
-    Route::resource('rol', RolController::class);
-    Route::resource('producto', ProductoController::class);
-    Route::resource('carrito', CarritoController::class);
-    Route::resource('producto_carrito', ProductoCarrito::class);
-    Route::resource('producto_pedido', ProductoPedido::class);
-    Route::resource('pedido', PedidoController::class);
-    Route::resource('descuento', DescuentoController::class);
