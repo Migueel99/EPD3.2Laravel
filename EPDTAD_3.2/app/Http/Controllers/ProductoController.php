@@ -16,6 +16,8 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+   
     public function index()
     {
         $productos = Producto::paginate();
@@ -24,6 +26,12 @@ class ProductoController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
 
+    public function mostrarProducto(){
+        $productos = Producto::all();
+
+        return view('inicio')->compact('productos');
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -43,9 +51,19 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Producto::$rules);
+        $producto =  new Producto();
+        $producto->nombre = $request->input('nombre');
+        $producto->descripcion = $request->input('descripcion');
+        $producto->precio = $request->input('precio');
+        if($request->hasFile("imagen")){
+            $file = $request->file("imagen");
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path()."/img/productos",$name);
+            $producto->imagen = $name;
 
-        $producto = Producto::create($request->all());
+        }
+        $producto->stock = $request->input('stock');
+        $producto->save();
 
         return redirect()->route('productos.index')
             ->with('success', 'Producto created successfully.');

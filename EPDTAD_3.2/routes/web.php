@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProductoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,21 +18,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+ 
+Route::resource('inicio', App\Http\Controllers\InicioController::class);
+
+Route::get('/test', function () {
+    return view('dashboard');
+});
+
 Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware('auth');
 
+
+
 Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware(['auth', 'verified']);
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', App\Http\Controllers\UserController::class);
     Route::resource('rols', App\Http\Controllers\RolController::class);
     Route::resource('productos', App\Http\Controllers\ProductoController::class);
     Route::resource('carritos', App\Http\Controllers\CarritoController::class);
-    Route::resource('producto_carritos', App\Http\Controllers\ProductoCarrito::class);
-    Route::resource('producto_pedidos', App\Http\Controllers\ProductoPedido::class);
+    Route::resource('producto_carritos', App\Http\Controllers\ProductoCarritoController::class);
+    Route::resource('producto_pedidos', App\Http\Controllers\ProductoPedidoController::class);
     Route::resource('pedidos', App\Http\Controllers\PedidoController::class);
-    Route::resource('descuentos', App\Http\Controllers\DescuentoController::class);
 });

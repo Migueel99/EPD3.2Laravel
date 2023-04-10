@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('imagen') }}
-            {{ Form::text('imagen', $producto->imagen, ['class' => 'form-control' . ($errors->has('imagen') ? ' is-invalid' : ''), 'placeholder' => 'Imagen']) }}
+            {{ Form::file('imagen', $producto->imagen, ['class' => 'form-control' . ($errors->has('imagen') ? ' is-invalid' : '')]) }}
             {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
