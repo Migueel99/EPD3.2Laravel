@@ -1,11 +1,7 @@
-@extends('layouts.app')
-
-@section('template_title')
-    {{ $user->name ?? "{{ __('Show') User" }}
-@endsection
+@extends('layouts.dashboard')
 
 @section('content')
-    <section class="content container-fluid">
+    <div class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">

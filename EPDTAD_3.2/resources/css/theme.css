@@ -39,6 +39,7 @@
   --bs-font-sans-serif: "Source Sans Pro", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --bs-font-monospace: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 254, 254, 0.15), rgba(255, 254, 254, 0));
+  --max: 10rem
 }
 
 *,
@@ -5321,7 +5322,17 @@ fieldset:disabled .btn {
 .card-img-bottom {
   width: 100%;
 }
+.card {
+  width: var(--max)
+  }
+  
 
+.card-img-top{
+  width: 100%;
+max-width: var(--max);
+height: calc(var(--max));
+object-fit: cover;
+}
 .card-img,
 .card-img-top {
   border-top-left-radius: calc(0.5rem - 1px);

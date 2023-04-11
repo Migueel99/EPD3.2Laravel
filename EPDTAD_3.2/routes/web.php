@@ -23,7 +23,7 @@ Route::resource('inicio', App\Http\Controllers\InicioController::class);
 
 Route::get('/test', function () {
     return view('dashboard');
-});
+})->name('test');
 
 Route::get('/home', function () {
     return view('auth.dashboard');
@@ -34,6 +34,10 @@ Route::get('/home', function () {
 Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware(['auth', 'verified']);
+
+Route::get('/users', function () {
+    return view('user.index');
+})->middleware(['auth', 'verified'])->name('users');
 
 
 Route::group(['middleware' => 'auth'], function () {
