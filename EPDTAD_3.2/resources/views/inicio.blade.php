@@ -20,16 +20,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
-    <link rel="manifest" href="assets/img/favicons/manifest.json">
     <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
     <link rel="stylesheet" 
     href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    @vite(['resources/css/theme.css'])
+    @vite(['resources/css/theme.css','resources/js/bootstrap.js'])
 
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
-    <link href="../css/theme.css" rel="stylesheet" />
 
 </head>
 
@@ -72,7 +70,7 @@
             <div class="container">
                 <div class="row flex-center">
                     <div class="col-md-4 col-lg-6 order-0 order-md-1 mt-8 mt-md-0"><a class="img-landing-banner"
-                            href="#!"><img class="img-fluid" src="assets/img/gallery/hero-header-1.webp"
+                            href="#!"><img class="img-fluid" src="{{ asset('img/hero-header-1.webp')}}"
                                 alt="hero-header" /></a></div>
                     <div class="col-md-7 col-lg-6 py-8 text-md-start text-center">
                         <h1 class="display-1 fs-md-5 fs-lg-6 fs-xl-8 text-light">Colecciona tus sueños</h1>
@@ -196,18 +194,7 @@
                 <div class="col-md-6 order-0">
                     <p class="text-200 text-center text-md-start">All rights Reserved &copy; Your Company, 2021</p>
                 </div>
-                <div class="col-md-6 order-1">
-                    <p class="text-200 text-center text-md-end"> Made with&nbsp;
-                        <svg class="bi bi-suit-heart-fill" xmlns="http://www.w3.org/2000/svg" width="15"
-                            height="15" fill="#FFB30E" viewBox="0 0 16 16">
-                            <path
-                                d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z">
-                            </path>
-                        </svg>&nbsp;by&nbsp;<a class="text-200 fw-bold" href="https://themewagon.com/"
-                            target="_blank">ThemeWagon
-                        </a>
-                    </p>
-                </div>
+
             </div>
             </div><!-- end of .container-->
 
@@ -227,13 +214,8 @@
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    <script src="vendors/@popperjs/popper.min.js"></script>
-    <script src="vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="vendors/is/is.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="vendors/fontawesome/all.min.js"></script>
-    <script src="assets/js/theme.js"></script>
-
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap"
         rel="stylesheet">
 </body>
