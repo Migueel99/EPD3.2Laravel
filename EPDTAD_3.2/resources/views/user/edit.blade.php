@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    {{ __('Update') }} User
+    Editar Usuario
 @endsection
 
 @section('content')
@@ -28,7 +28,7 @@
                     @includeif('partials.errors')
 
                     <div class="card card-default">
-                        
+
                         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                             <form method="POST" action="{{ route('users.update', $user->id) }}" role="form"
                                 enctype="multipart/form-data">

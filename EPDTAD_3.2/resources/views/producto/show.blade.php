@@ -1,17 +1,13 @@
-@extends('layouts.app')
-
-@section('template_title')
-    {{ $producto->name ?? "{{ __('Show') Producto" }}
-@endsection
+@extends('layouts.dashboard')
 
 @section('content')
-    <section class="content container-fluid">
+    <div class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Producto</span>
+                            <span class="card-title">Mostrar Coche</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('productos.index') }}"> {{ __('Back') }}</a>
@@ -19,7 +15,7 @@
                     </div>
 
                     <div class="card-body">
-                        
+
                         <div class="form-group">
                             <strong>Nombre:</strong>
                             {{ $producto->nombre }}

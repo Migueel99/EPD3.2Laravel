@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    {{ __('Create') }} User
+   Crear Usuario
 @endsection
 
 @section('content')
