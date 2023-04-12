@@ -22,9 +22,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
     <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-
-
-    @vite(['resources/css/theme.css', 'resources/js/bootstrap.js','resources/js/custom.js'])
+    @vite(['resources/css/theme.css', 'resources/js/bootstrap.js'])
 
     <!-- ===============================================-->
     <!--    Stylesheets-->
@@ -112,15 +110,12 @@
                     </div>
                     <div class="mx-auto col-8">
                         <div class="row">
+
                             @foreach ($productos as $producto)
-                                <div class="col-sm-6 col-md-5 col-xl mb-5 h-100">
+                                <div class="col-sm-6 col-md-3 col-xl mb-5 h-100">
                                     <div class="card card-span h-100 rounded-3">
-                                        <div class="entry-media">
-                                            <div class="entry-media"><a class="js-zoom-images" href="{{ asset('img/productos/' . $producto->imagen) }}"><img class="img-fluid" src="{{ asset('img/productos/' . $producto->imagen) }}" alt="Foto"/></a></div>
-                                                <img id="myImg"
-                                                    class="card-img-top"src="{{ asset('img/productos/' . $producto->imagen) }}">
-        
-                                        </div>
+                                        <img class="card-img-top "src="{{ asset('img/productos/' . $producto->imagen) }}"
+                                            onclick="mostrarPopup(this);">
                                         <div class="card-body ps-0">
                                             <h5 class="fw-bold text-1000 text-truncate mb-1">{{ $producto->nombre }}
                                             </h5>
@@ -138,11 +133,18 @@
                                         </div>
                                     @endif
 
+
                                 </div>
                             @endforeach
+                            @for ($i = count($productos) % 4; $i < 4; $i++)
+                                <div class="col-sm-6 col-md-3 col-xl mb-5 h-100">
+                                </div>
+                            @endfor
                         </div>
+
                     </div>
                 </div>
+            </div>
             </div>
             </div>
             </div>
@@ -218,7 +220,29 @@
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap"
         rel="stylesheet">
-    
+    <script>
+        function mostrarPopup(imagen) {
+            // Crear el popup
+            var popup = document.createElement("div");
+            popup.classList.add("popup");
+
+            // Crear la imagen
+            var imagenPopup = document.createElement("img");
+            imagenPopup.src = imagen.src;
+            imagenPopup.classList.add("imagen-popup");
+
+            // Agregar la imagen al popup
+            popup.appendChild(imagenPopup);
+
+            // Agregar el popup al cuerpo del documento
+            document.body.appendChild(popup);
+
+            // Agregar un evento click al popup para cerrarlo
+            popup.addEventListener("click", function() {
+                document.body.removeChild(popup);
+            });
+        }
+    </script>
 </body>
 
 </html>
