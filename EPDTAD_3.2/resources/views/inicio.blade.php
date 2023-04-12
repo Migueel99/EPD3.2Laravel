@@ -57,9 +57,13 @@
                     <button class="shadow-warning text-warning mx-4" style="border-radius:50%;border:0">
                         <i class="fas fa-shopping-cart"></i>
                     </button>
-                    <a href="{{ route('test') }}"><button class="shadow-warning text-warning" type="submit"
-                            style="border-radius:50%;border:0"> <i class="fas fa-user"></i></button>
-                    @endguest
+                    <a href=""
+                        onclick="event.preventDefault(); document.getElementById('profile-form').submit();"><button
+                            class="shadow-warning text-warning" type="submit" style="border-radius:50%;border:0"> <i
+                                class="fas fa-user"></i></button>
+
+                        <form id="profile-form" action="{{ route('users.show', ['user' => Auth::user()->id]) }}" method="GET" class="d-none">
+                        @endguest
                     </form>
 
 

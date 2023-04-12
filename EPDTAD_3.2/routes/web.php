@@ -15,11 +15,11 @@ use App\Http\Controllers\ProductoController;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
 
  
-Route::resource('inicio', App\Http\Controllers\InicioController::class);
+Route::resource('/', App\Http\Controllers\InicioController::class);
 
 Route::get('/test', function () {
     return view('dashboard');
@@ -37,7 +37,7 @@ Route::get('/home', function () {
 
 Route::get('/users', function () {
     return view('user.index');
-})->middleware(['auth', 'verified'])->name('users');
+})->name('users')->middleware(['auth', 'verified']);
 
 
 Route::group(['middleware' => 'auth'], function () {

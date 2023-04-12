@@ -1,35 +1,31 @@
-
 @extends('auth.template')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        @if(session('status'))
-        <div class="alert alert-success" role="alert">
-            {{session('status')}}
-        </div>
-        @endif
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Email Verification') }}</div>
+    <div class="container-fluid pb-5">
+        <div class="row justify-content-md-center">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <div class="card-wrapper col-12 col-md-6 mt-5">
+                <div class="brand text-center mb-3">
+                    <a class="navbar-brand d-inline-flex" href="index.html"><h1
+                        class="text-1000  fw-bold  text-gradient">MiniatureCars</h1></a>
+                </div>
+                <div class="card">
 
-                <div class="card-body">
-                    <p>You must verify your email address. Please, check your email for a verification link</p>
-                    <form method="POST" action="{{ route('verification.send') }}">
-                        @csrf
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" value="Resend">
-                                    {{ __('Resend Email') }}
-                                </button>
-
-                            </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Verify Your Email Address</h4>
+                        <div class="alert alert-success" role="alert">
+                            You must verify your email address. Please, check your email for a verification link
                         </div>
-                    </form>
+                        Before proceeding, please check your email for a verification link.
+                        If you did not receive the email, <a href="{{ route('verification.send') }}">click here to request another</a>.
+                       
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
