@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ProductoCarrito;
+use App\Models\ProductoCarrito;
 use Illuminate\Http\Request;
 
 /**

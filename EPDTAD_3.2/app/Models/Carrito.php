@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Carrito extends Model
 {
-    
+
     static $rules = [
 		'user_id' => 'required',
     ];
@@ -40,24 +40,24 @@ class Carrito extends Model
      */
     public function pedido()
     {
-        return $this->hasOne('App\Pedido', 'id_carrito', 'id');
+        return $this->hasOne('App\Models\Pedido', 'id_carrito', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function productoCarritos()
     {
-        return $this->hasMany('App\ProductoCarrito', 'id_carrito', 'id');
+        return $this->hasMany('App\Models\ProductoCarrito', 'id_carrito', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function user()
     {
-        return $this->hasOne('App\User', 'id', 'user_id');
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
-    
+
 
 }

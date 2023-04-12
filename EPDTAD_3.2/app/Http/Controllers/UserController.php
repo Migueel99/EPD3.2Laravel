@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /**
@@ -43,8 +43,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(User::$rules);
-
         $user = User::create($request->all());
 
         return redirect()->route('users.index')
@@ -86,8 +84,6 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        request()->validate(User::$rules);
-
         $user->update($request->all());
 
         return redirect()->route('users.index')

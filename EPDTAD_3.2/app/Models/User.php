@@ -43,4 +43,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function carritos()
+    {
+        return $this->hasMany('App\Models\Carrito', 'user_id', 'id');
+    }
 }

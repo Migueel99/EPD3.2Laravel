@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Producto;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 /**
@@ -17,7 +17,7 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-   
+
     public function index()
     {
         $productos = Producto::paginate();

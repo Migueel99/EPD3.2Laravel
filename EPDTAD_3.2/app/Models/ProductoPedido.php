@@ -1,29 +1,31 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ProductoCarrito
+ * Class ProductoPedido
  *
  * @property $id
  * @property $id_producto
- * @property $id_carrito
+ * @property $id_pedido
+ * @property $cantidad
  * @property $created_at
  * @property $updated_at
  *
- * @property Carrito $carrito
+ * @property Pedido $pedido
  * @property Producto $producto
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class ProductoCarrito extends Model
+class ProductoPedido extends Model
 {
-    
+
     static $rules = [
 		'id_producto' => 'required',
-		'id_carrito' => 'required',
+		'id_pedido' => 'required',
+		'cantidad' => 'required',
     ];
 
     protected $perPage = 20;
@@ -33,24 +35,24 @@ class ProductoCarrito extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_producto','id_carrito'];
+    protected $fillable = ['id_producto','id_pedido','cantidad'];
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function carrito()
+    public function pedido()
     {
-        return $this->hasOne('App\Carrito', 'id', 'id_carrito');
+        return $this->hasOne('App\Models\Pedido', 'id', 'id_pedido');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function producto()
     {
-        return $this->hasOne('App\Producto', 'id', 'id_producto');
+        return $this->hasOne('App\Models\Producto', 'id', 'id_producto');
     }
-    
+
 
 }

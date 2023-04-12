@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Pedido;
-use App\Producto;
+use App\Models\Pedido;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 /**
@@ -29,5 +29,5 @@ class InicioController
      *
      * @return \Illuminate\Http\Response
      */
-   
+
 }

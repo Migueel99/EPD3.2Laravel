@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Pedido extends Model
 {
-    
+
     static $rules = [
 		'id_carrito' => 'required',
 		'estado' => 'required',
@@ -43,16 +43,16 @@ class Pedido extends Model
      */
     public function carrito()
     {
-        return $this->hasOne('App\Carrito', 'id', 'id_carrito');
+        return $this->hasOne('App\Models\Carrito', 'id', 'id_carrito');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function productoPedidos()
     {
-        return $this->hasMany('App\ProductoPedido', 'id_pedido', 'id');
+        return $this->hasMany('App\Models\ProductoPedido', 'id_pedido', 'id');
     }
-    
+
 
 }
