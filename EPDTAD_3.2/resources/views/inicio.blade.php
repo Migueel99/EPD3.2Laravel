@@ -13,6 +13,7 @@
     <title>MiniatureCars</title>
 
 
+
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
@@ -22,6 +23,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
     <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
     @vite(['resources/css/theme.css', 'resources/js/bootstrap.js'])
 
     <!-- ===============================================-->
@@ -112,9 +114,7 @@
                     <div class="col-lg-7 mx-auto text-center mt-7 mb-5">
                         <h5 class="fw-bold fs-3 fs-lg-5 lh-sm">Miniaturas en venta</h5>
                     </div>
-                    @if (@Auth::user()->hasRole('admin'))
-                        <h2>Eres un administrador</h2>
-                    @endif
+
                     <div class="mx-auto col-8">
                         <div class="row">
 
