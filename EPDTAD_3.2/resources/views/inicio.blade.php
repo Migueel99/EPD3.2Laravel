@@ -24,6 +24,8 @@
     <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
+    <link rel="shortcut icon" href="{{ asset('favicon1.ico') }}" type="image/x-icon">  
+
     @vite(['resources/css/theme.css', 'resources/js/bootstrap.js'])
 
     <!-- ===============================================-->

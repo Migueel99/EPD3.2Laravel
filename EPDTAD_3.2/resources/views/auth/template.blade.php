@@ -14,6 +14,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <link rel="shortcut icon" href="{{ asset('favicon1.ico') }}" type="image/x-icon">  
+
     <!-- Styles -->
     @vite(['resources/js/app.js', 'resources/css/theme.css'])
 </head>

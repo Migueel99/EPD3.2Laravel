@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="./assets/js/init-alpine.js"></script>
 
+    <link rel="shortcut icon" href="{{ asset('favicon1.ico') }}" type="image/x-icon">  
+
     @vite(['resources/css/dashboard.css', 'resources//bootstrap.js'])
 
 </head>
