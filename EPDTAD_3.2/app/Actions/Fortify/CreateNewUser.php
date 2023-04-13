@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Spatie\Permission\Models\Role;
+use App\Models\Carrito;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -42,6 +43,9 @@ class CreateNewUser implements CreatesNewUsers
         ]);
         // Asignar el rol de cliente al usuario
         $user->assignRole('cliente');
+        $carrito = new Carrito();
+        $carrito->user_id = $user->id;
+        $carrito->save();
 
         return $user;
     }
