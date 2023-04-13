@@ -47,6 +47,12 @@ Route::get('/users', function () {
     return view('user.index');
 })->name('users')->middleware(['auth', 'verified']);
 
+Route::get('/cart', function () {
+    return view('cart');
+})->name('cart');
+
+Route::get('/cart/{id}', [App\Http\Controllers\CarritoController::class, 'carritoIdUsuario'])->name('cartIdUsuario');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', App\Http\Controllers\UserController::class);

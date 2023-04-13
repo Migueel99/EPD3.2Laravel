@@ -106,4 +106,17 @@ class CarritoController extends Controller
         return redirect()->route('carritos.index')
             ->with('success', 'Carrito deleted successfully');
     }
+
+     /**
+     * Get the products of the specific user cart.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  idUser $user
+     * @return \Illuminate\Http\Response
+     */
+    public function carritoIdUsuario($id){
+        $carrito = Carrito::where('user_id', $id)->first();
+        $productos = $carrito->productos;
+        return view('cart', compact('productos'));
+    }
 }
