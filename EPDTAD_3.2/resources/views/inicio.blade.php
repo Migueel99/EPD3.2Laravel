@@ -110,8 +110,11 @@
             <div class="container">
                 <div class="row h-100">
                     <div class="col-lg-7 mx-auto text-center mt-7 mb-5">
-                        <h5 class="fw-bold fs-3 fs-lg-5 lh-sm">Vehiculos en venta</h5>
+                        <h5 class="fw-bold fs-3 fs-lg-5 lh-sm">Miniaturas en venta</h5>
                     </div>
+                    @if (@Auth::user()->hasRole('admin'))
+                        <h2>Eres un administrador</h2>
+                    @endif
                     <div class="mx-auto col-8">
                         <div class="row">
 

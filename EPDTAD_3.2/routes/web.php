@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,11 +15,18 @@ use App\Http\Controllers\ProductoController;
 |
  */
 
+
+//ruta para el registro
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
+
+
 Route::get('/', function () {
     return view('inicio');
-});
+})->name('inicio');
 
- 
 Route::resource('/', App\Http\Controllers\InicioController::class);
 
 Route::get('/test', function () {
