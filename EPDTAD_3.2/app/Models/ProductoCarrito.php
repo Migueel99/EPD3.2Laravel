@@ -24,6 +24,7 @@ class ProductoCarrito extends Model
     static $rules = [
 		'id_producto' => 'required',
 		'id_carrito' => 'required',
+        'cantidad' => 'required',
     ];
 
     protected $perPage = 20;
@@ -33,7 +34,7 @@ class ProductoCarrito extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_producto','id_carrito'];
+    protected $fillable = ['id_producto','id_carrito','cantidad'];
 
 
     /**

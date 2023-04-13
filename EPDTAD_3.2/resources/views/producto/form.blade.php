@@ -17,8 +17,7 @@
             {!! $errors->first('precio', '<div class="invalid-feedback">:message</div>') !!}
         </label>
         <label class="block text-sm dark:text-gray-200 mt-2">
-            {{ Form::label('imagen') }}
-            {{ Form::file('imagen', ['class' => 'form-control' . ($errors->has('imagen') ? ' is-invalid' : '')]) }}
+            <input type="file" name="imagen">
             {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
         </label>
         <label class="block text-sm dark:text-gray-200">
