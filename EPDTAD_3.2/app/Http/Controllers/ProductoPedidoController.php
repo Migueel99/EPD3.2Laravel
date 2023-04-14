@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductoPedido;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 /**
  * Class ProductoPedidoController
  * @package App\Http\Controllers
@@ -44,11 +44,26 @@ class ProductoPedidoController extends Controller
     public function store(Request $request)
     {
         request()->validate(ProductoPedido::$rules);
-
+        /*
         $productoPedido = ProductoPedido::create($request->all());
 
         return redirect()->route('producto-pedidos.index')
             ->with('success', 'ProductoPedido created successfully.');
+        */
+        try{
+            DB::beginTransaction();
+            $productoPedido = ProductoPedido::create($request->all());
+            DB::afterCommit(function() use ($productoPedido){
+                $productoPedido->save();
+            });
+            DB::commit();
+            return redirect()->route('producto-pedidos.index')
+                ->with('success', 'ProductoPedido creado correctamente.');
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->route('producto-pedidos.index')
+                ->with('error', 'Error al crear el ProductoPedido.');
+        }
     }
 
     /**

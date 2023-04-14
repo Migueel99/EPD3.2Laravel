@@ -12,9 +12,9 @@
             {!! $errors->first('estado', '<div class="invalid-feedback">:message</div>') !!}
         </label>
         <label class="block text-sm dark:text-gray-200">
-            {{ Form::label('telefono') }}
-            {{ Form::text('telefono', $pedido->total, ['class' => 'block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input' . ($errors->has('two_factor_secret') ? ' is-invalid' : ''), 'placeholder' => 'Telefono']) }}
-            {!! $errors->first('telefono', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('total') }}
+            {{ Form::text('total', $pedido->total, ['class' => 'block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input' . ($errors->has('two_factor_secret') ? ' is-invalid' : ''), 'placeholder' => 'total']) }}
+            {!! $errors->first('total', '<div class="invalid-feedback">:message</div>') !!}
         </label>
 
 

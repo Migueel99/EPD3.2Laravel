@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Direccione;
+use App\Models\Direccione;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 /**
  * Class DireccioneController
  * @package App\Http\Controllers
@@ -44,11 +44,26 @@ class DireccioneController extends Controller
     public function store(Request $request)
     {
         request()->validate(Direccione::$rules);
-
+        /*
         $direccione = Direccione::create($request->all());
 
         return redirect()->route('direcciones.index')
             ->with('success', 'Direccione created successfully.');
+        */
+        try{
+            DB::beginTransaction();
+            $direccione = Direccione::create($request->all());
+            DB::afterCommit(function() use ($direccione){
+                $direccione->save();
+            });
+            DB::commit();
+            return redirect()->route('direcciones.index')
+                ->with('success', 'Direccione created successfully.');
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->route('direcciones.index')
+                ->with('success', 'Direccione created unsuccessfully.');
+        }
     }
 
     /**

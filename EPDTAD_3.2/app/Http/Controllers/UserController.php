@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class UserController
@@ -43,10 +44,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        /*
         $user = User::create($request->all());
 
         return redirect()->route('users.index')
             ->with('success', 'User created successfully.');
+        */
+        try{
+            DB::beginTransaction();
+            $user = User::create($request->all());
+            DB::afterCommit(function() use ($user){
+                $user->save();
+            });
+            DB::commit();
+            return redirect()->route('users.index')
+                ->with('success', 'Usuario creado correctamente.');
+        }
+        catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->route('users.index')
+                ->with('error', 'Error al crear el usuario.');
+        }
     }
 
     /**

@@ -60,4 +60,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('producto-carrito', App\Http\Controllers\ProductoCarritoController::class);
     Route::resource('producto-pedido', App\Http\Controllers\ProductoPedidoController::class);
     Route::resource('pedidos', App\Http\Controllers\PedidoController::class);
+    Route::resource('direcciones', App\Http\Controllers\DireccioneController::class);
 });

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 /**
  * Class ProductoController
  * @package App\Http\Controllers
@@ -51,6 +51,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        /*
         $producto =  new Producto();
         $producto->nombre = $request->input('nombre');
         $producto->descripcion = $request->input('descripcion');
@@ -67,6 +68,34 @@ class ProductoController extends Controller
 
         return redirect()->route('productos.index')
             ->with('success', 'Producto created successfully.');
+        */
+        try{
+            DB::beginTransaction();
+            $producto =  new Producto();
+            $producto->nombre = $request->input('nombre');
+            $producto->descripcion = $request->input('descripcion');
+            $producto->precio = $request->input('precio');
+            if($request->hasFile("imagen")){
+                $file = $request->file("imagen");
+                $name = time().$file->getClientOriginalName();
+                $file->move(public_path()."/img/productos",$name);
+                $producto->imagen = $name;
+
+            }
+            $producto->stock = $request->input('stock');
+            //$producto->save();
+            DB::afterCommit(function() use ($producto){
+                $producto->save();
+            });
+            DB::commit();
+            return redirect()->route('productos.index')
+                ->with('success', 'Producto creado correctamente.');
+        }
+        catch(\Exception $e){
+            DB::rollback();
+            return redirect()->route('productos.index')
+                ->with('error', 'Error al crear el producto');
+        }
     }
 
     /**
