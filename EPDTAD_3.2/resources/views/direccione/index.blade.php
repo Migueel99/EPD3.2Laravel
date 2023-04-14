@@ -34,10 +34,9 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-                                        
+
 										<th>Direccion</th>
-										<th>User Id</th>
+										<th>Nombre Usuario</th>
 
                                         <th></th>
                                     </tr>
@@ -45,10 +44,9 @@
                                 <tbody>
                                     @foreach ($direcciones as $direccione)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $direccione->direccion }}</td>
-											<td>{{ $direccione->user_id }}</td>
+											<td>{{ Auth::user()->name }}</td>
 
                                             <td>
                                                 <form action="{{ route('direcciones.destroy',$direccione->id) }}" method="POST">

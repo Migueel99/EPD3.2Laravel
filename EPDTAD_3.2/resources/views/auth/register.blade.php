@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Create new account</h4>
 
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -54,7 +54,10 @@
                                     </span>
                                 @enderror
                             </div>
-
+                          {{-- <div class="form-group">
+                                <label for="avatar">Avatar:</label>
+                                <input type="file" class="form-control-file" name="avatar" id="avatar">
+                              </div> --}} 
 
                             <div class="form-group">
                                 <label for="password">{{ __('Password') }}</label>

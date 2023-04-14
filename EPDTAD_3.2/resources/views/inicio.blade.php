@@ -133,6 +133,7 @@
 
                                     </form>
 
+
                                 </div>
                                 @elseif($producto->stock <= 0) <div class="d-grid gap-2"><button type="button" class="btn btn-lg btn-dark" disabled href="#!" role="button">Sin stock</button>
                             </div>

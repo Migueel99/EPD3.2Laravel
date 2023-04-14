@@ -2,13 +2,12 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Carrito;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Spatie\Permission\Models\Role;
-use App\Models\Carrito;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -31,16 +30,18 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
-              //añadir telefono
-              'telefono' => ['required', 'string', 'max:255'],
-        ])->validate();
+            //añadir telefono
+            'telefono' => ['required', 'string', 'max:255'],
+            ])->validate();
+
 
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
-            'telefono'=> $input['telefono'],
+            'telefono' => $input['telefono'],
             'password' => Hash::make($input['password']),
         ]);
+
         // Asignar el rol de cliente al usuario
         $user->assignRole('cliente');
         $carrito = new Carrito();

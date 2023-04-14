@@ -29,7 +29,7 @@ return new class extends Migration
             ->on('carritos')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-
+            $table->integer('cantidad');
             $table->timestamps();
         });
     }
