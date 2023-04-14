@@ -43,11 +43,12 @@ class ProductoCarritoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(ProductoCarrito::$rules);
+        $productoCarrito = new ProductoCarrito();
 
-        $productoCarrito = ProductoCarrito::create($request->all());
-
-        return redirect()->route('producto-carritos.index')
+        $productoCarrito->id_producto = $request->id_producto;
+        $productoCarrito->id_carrito = $request->id_carrito;
+        $productoCarrito->save();
+        return redirect()->route('/')
             ->with('success', 'ProductoCarrito created successfully.');
     }
 
@@ -105,5 +106,11 @@ class ProductoCarritoController extends Controller
 
         return redirect()->route('producto-carritos.index')
             ->with('success', 'ProductoCarrito deleted successfully');
+    }
+
+    public function obtenerProducto($id)
+    {
+        $productoCarrito = ProductoCarrito::find($id);
+        return $productoCarrito;
     }
 }

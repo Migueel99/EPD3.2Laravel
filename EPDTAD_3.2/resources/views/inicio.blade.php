@@ -56,7 +56,7 @@
 
                 <a href="" onclick="event.preventDefault(); document.getElementById('cart-form').submit();"><button class="shadow-warning text-warning" type="submit" style="border-radius:50%;border:0"> <i class="fas fa-shopping-cart"></i></button>
 
-                    <form id="cart-form" action="{{ route('cartIdUsuario', ['id' => Auth::user()->id]) }}" method="GET" class="d-none">
+                    <form id="cart-form" action="{{ route('cart') }}" method="GET" class="d-none">
                     </form>
                 </a>
                 <a href="" onclick="event.preventDefault(); document.getElementById('profile-form').submit();"><button class="shadow-warning text-warning" type="submit" style="border-radius:50%;border:0"> <i class="fas fa-user"></i></button>
@@ -125,7 +125,14 @@
                                     </div>
                                 </div>
                                 @if ($producto->stock > 0)
-                                <div class="d-grid gap-2"><button type="button" class="btn btn-lg btn-danger" href="#!" role="button">Añade al carrito</button>
+                                <div class="d-grid gap-2">
+                                    <form method="POST" action="{{ route('producto-carrito.store') }}" role="form" enctype="multipart/form-data">
+                                        @csrf {{Form::hidden('id_producto', $producto->id)}}
+                                        {{Form::hidden('id_carrito', Auth::user()->carritos->id)}}
+                                        {{Form::submit('Añadir al carrito', ['class' => 'btn btn-lg btn-danger'])}}
+
+                                    </form>
+
                                 </div>
                                 @elseif($producto->stock <= 0) <div class="d-grid gap-2"><button type="button" class="btn btn-lg btn-dark" disabled href="#!" role="button">Sin stock</button>
                             </div>

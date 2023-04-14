@@ -48,6 +48,6 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     public function carritos()
     {
-        return $this->hasMany('App\Models\Carrito', 'user_id', 'id');
+        return $this->hasOne('App\Models\Carrito', 'user_id', 'id');
     }
 }

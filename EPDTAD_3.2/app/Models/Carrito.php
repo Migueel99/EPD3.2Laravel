@@ -35,6 +35,7 @@ class Carrito extends Model
     protected $fillable = ['user_id'];
 
 
+    protected $hidden = ['id'];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -59,5 +60,12 @@ class Carrito extends Model
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 
+    public function obtenerPrecio(){
+        $precio = 0;
+        foreach ($this->productoCarritos as $productoCarrito){
+            $precio += $productoCarrito->producto->precio;
+        }
+        return $precio;
+    }
 
 }

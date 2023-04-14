@@ -43,7 +43,6 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Carrito::$rules);
 
         $carrito = Carrito::create($request->all());
 
@@ -107,16 +106,5 @@ class CarritoController extends Controller
             ->with('success', 'Carrito deleted successfully');
     }
 
-     /**
-     * Get the products of the specific user cart.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  idUser $user
-     * @return \Illuminate\Http\Response
-     */
-    public function carritoIdUsuario($id){
-        $carrito = Carrito::where('user_id', $id)->first();
-        $productos = $carrito->productos;
-        return view('cart', compact('productos'));
-    }
+
 }

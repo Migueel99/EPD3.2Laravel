@@ -16,13 +16,48 @@
                     </a>
                     <div class="card">
                         <div class="card-body">
+                            @foreach (Auth::user()->carritos->productoCarritos as $producto)
+                            <div class="row">
 
+                                <div class="col-3">
+                                    <img src="{{ asset('img/productos/' . $producto->producto->imagen) }}" alt="imagen" class="img-fluid">
+                                </div>
+                                <div class="col-3">
+                                    <h6 class="text-700">{{ $producto->producto->nombre }}</h6>
+                                </div>
+
+                                <div class="col-1">
+                                <button style="border:none; border-radius:50%">+</button>
+                                </div>
+                                <div class="col-1">
+                                    <p class="text-500">{{ $producto->cantidad = 1 }}</p>
+                                </div>
+                                <div class="col-1">
+                                    <button style="border:none; border-radius:50%">-</button>
+                                </div>
+
+                                <div class="col-2">
+                                    <p class="text-500">{{ $producto->producto->precio * $producto->cantidad }}</p>
+                                </div>
+
+
+
+                            </div>
+                            <hr>
+
+
+
+                            @endforeach
                         </div>
 
+                        <hr>
+                        <h2>Total: {{Auth::user()->carritos->obtenerPrecio()}}  €</h2>
                     </div>
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 

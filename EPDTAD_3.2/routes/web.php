@@ -25,7 +25,7 @@ Route::get('/register', function () {
 
 Route::get('/', function () {
     return view('inicio');
-})->name('inicio');
+})->name('/');
 
 Route::resource('/', App\Http\Controllers\InicioController::class);
 
@@ -51,7 +51,6 @@ Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
 
-Route::get('/cart/{id}', [App\Http\Controllers\CarritoController::class, 'carritoIdUsuario'])->name('cartIdUsuario');
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -59,7 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('rols', App\Http\Controllers\RolController::class);
     Route::resource('productos', App\Http\Controllers\ProductoController::class);
     Route::resource('carritos', App\Http\Controllers\CarritoController::class);
-    Route::resource('producto_carritos', App\Http\Controllers\ProductoCarritoController::class);
-    Route::resource('producto_pedidos', App\Http\Controllers\ProductoPedidoController::class);
+    Route::resource('producto-carrito', App\Http\Controllers\ProductoCarritoController::class);
+    Route::resource('producto-pedido', App\Http\Controllers\ProductoPedidoController::class);
     Route::resource('pedidos', App\Http\Controllers\PedidoController::class);
 });
