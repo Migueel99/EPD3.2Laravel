@@ -88,11 +88,11 @@ class ProductoCarritoController extends Controller
      */
     public function update(Request $request, ProductoCarrito $productoCarrito)
     {
-        request()->validate(ProductoCarrito::$rules);
+        $productoCarrito->cantidad = $request->cantidad;
 
-        $productoCarrito->update($request->all());
+        $productoCarrito->update();
 
-        return redirect()->route('inicio')
+        return redirect()->route('cart')
             ->with('success', 'ProductoCarrito updated successfully');
     }
 

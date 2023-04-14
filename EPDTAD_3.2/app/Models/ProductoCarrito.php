@@ -36,7 +36,7 @@ class ProductoCarrito extends Model
      */
     protected $fillable = ['id_producto','id_carrito','cantidad'];
 
-
+    protected $hidden =['id'];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

@@ -17,83 +17,80 @@
                     <div class="card">
                         <div class="card-body">
                             @if (Auth::user()->carritos->productoCarritos->count() > 0)
-                            @foreach (Auth::user()->carritos->productoCarritos as $producto)
-                            <div class="row">
+                                @foreach (Auth::user()->carritos->productoCarritos as $producto)
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <img src="{{ asset('img/productos/' . $producto->producto->imagen) }}"
+                                                alt="imagen" class="img-fluid">
+                                        </div>
+                                        <div class="col-3">
+                                            <h6 class="text-700">{{ $producto->producto->nombre }}</h6>
+                                        </div>
+                                        @if ($producto->cantidad >= $producto->producto->stock)
+                                            <div class="col-1">
+                                                <button disabled style="border:none; border-radius:50%">+</button>
+                                            </div>
+                                        @else
+                                            <div class="col-1">
+                                                <a href=""
+                                                    onclick="event.preventDefault(); document.getElementById('sumar-form').submit();">
+                                                    <button style="border:none; border-radius:50%">+</button>
+                                                </a>
+                                            </div>
+                                            <form id="sumar-form" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form"
+                                                enctype="multipart/form-data">
+                                                {{ method_field('PATCH') }}
+                                                @csrf
+    
+                                                    {{ Form::hidden('cantidad', $producto->cantidad + 1) }}
+                                                </form>
+                                        @endif
+                                        <div class="col-1">
+                                            <p class="text-500">{{ $producto->cantidad }}</p>
+                                        </div>
 
-                                <div class="col-3">
-                                    <img src="{{ asset('img/productos/' . $producto->producto->imagen) }}" alt="imagen" class="img-fluid">
-                                </div>
-                                <div class="col-3">
-                                    <h6 class="text-700">{{ $producto->producto->nombre }}</h6>
-                                </div>
-                                @if($producto->cantidad > $producto->producto->stock)
+                                        <div class="col-1">
 
-                                <div class="col-1">
-                                    <button disabled style="border:none; border-radius:50%">+</button>
-                                </div>
-                                @else
-                                <div class="col-1">
-                                    <a href="" onclick="event.preventDefault(); document.getElementById('sumar-form').submit();">
-                                        <button style="border:none; border-radius:50%">+</button>
-                                    </a>
-                                </div>
-                                <form id="sumar-form" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form" enctype="multipart/form-data">
-                                    @method('PATCH')
-
-                                    {{Form::hidden('id_producto', $producto->id)}}
-                                    {{Form::hidden('id_carrito', Auth::user()->carritos->id)}}
-                                    {{Form::hidden('cantidad', $producto->cantidad + 1)}}
-                                </form>
-
-                                @endif
-                                <div class="col-1">
-                                    <p class="text-500">{{ $producto->cantidad = 1 }}</p>
-                                </div>
-
-                                <div class="col-1">
-
-                                    <a href="" onclick="event.preventDefault(); document.getElementById('restar-form').submit();">
-                                        <button style="border:none; border-radius:50%">-</button>
-                                    </a>
-                                </div>
-
-
-                                @if ($producto->cantidad > 1)
-                                <form id="restar-form" style="display:none" method="POST" action="{{ route('producto-carrito.update',$producto->id) }}" role="form" enctype="multipart/form-data">
-                                    {{Form::hidden('id_producto', $producto->id)}}
-                                    {{Form::hidden('id_carrito', Auth::user()->carritos->id)}}
-                                    {{Form::hidden('cantidad', $producto->cantidad - 1)}}
-                                </form>
-
-                                @else
+                                            <a href=""
+                                                onclick="event.preventDefault(); document.getElementById('restar-form').submit();">
+                                                <button style="border:none; border-radius:50%">-</button>
+                                            </a>
+                                        </div>
 
 
+                                        @if ($producto->cantidad > 1)
+                                        <form id="restar-form" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form"
+                                            enctype="multipart/form-data">
+                                            {{ method_field('PATCH') }}
+                                            @csrf
 
+                                                {{ Form::hidden('cantidad', $producto->cantidad - 1) }}
+                                            </form>
+                                        @else
+                                            <form id="restar-form" style="display:none"
+                                                action="{{ route('producto-carrito.destroy', $producto->id) }}"
+                                                method="POST">
 
-                                <form id="restar-form" style="display:none" action="{{ route('producto-carrito.destroy',$producto->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        @endif
 
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                                @endif
-
-                                <div class="col-2">
-                                    <p class="text-500">{{ $producto->producto->precio * $producto->cantidad }}</p>
-                                </div>
-
-
-
-                            </div>
-                            <hr>
+                                        <div class="col-2">
+                                            <p class="text-500">{{ $producto->producto->precio * $producto->cantidad }}
+                                            </p>
+                                        </div>
 
 
 
-                            @endforeach
+                                    </div>
+                                    <hr>
+                                @endforeach
                         </div>
 
                         <hr>
-                        <h2>Total: {{Auth::user()->carritos->obtenerPrecio()}} €</h2>
-                        @else
+                        <h2>Total: {{ Auth::user()->carritos->obtenerPrecio() }} €</h2>
+                    @else
                         <h2>No hay productos en el carrito</h2>
                         @endif
                     </div>
