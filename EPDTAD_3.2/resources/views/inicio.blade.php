@@ -71,7 +71,7 @@
                             class="shadow-warning text-warning" type="submit" style="border-radius:50%;border:0"> <i
                                 class="fas fa-user"></i></button>
 
-                        <form id="profile-form" action="{{ route('users.show', ['user' => Auth::user()->id]) }}"
+                        <form id="profile-form" action="{{ route('perfil') }}"
                             method="GET" class="d-none">
                         @endguest
                     </form>

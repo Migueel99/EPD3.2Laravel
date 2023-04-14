@@ -42,6 +42,12 @@ Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware(['auth', 'verified']);
 
+
+Route::get('/perfil', function () {
+    return view('perfil');
+})name->('perfil')->middleware(['auth']);
+
+
 Route::get('/users', function () {
     return view('user.index');
 })->name('users')->middleware(['auth', 'verified']);
