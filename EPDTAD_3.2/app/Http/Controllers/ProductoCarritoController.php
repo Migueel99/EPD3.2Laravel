@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductoCarrito;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ProductoCarritoController
@@ -43,13 +44,32 @@ class ProductoCarritoController extends Controller
      */
     public function store(Request $request)
     {
+        /*
         $productoCarrito = new ProductoCarrito();
-
         $productoCarrito->id_producto = $request->id_producto;
         $productoCarrito->id_carrito = $request->id_carrito;
+        $productoCarrito->cantidad = $request->cantidad;
         $productoCarrito->save();
-        return redirect()->route('/')
+        return redirect()->route('inicio')
             ->with('success', 'ProductoCarrito created successfully.');
+        */
+        try{
+            DB::beginTransaction();
+            $productoCarrito = new ProductoCarrito();
+            $productoCarrito->id_producto = $request->id_producto;
+            $productoCarrito->id_carrito = $request->id_carrito;
+            DB::afterCommit(function() use ($productoCarrito){
+                $productoCarrito->save();
+            });
+            DB::commit();
+            return redirect()->route('producto-carrito.index')
+                ->with('success', 'ProductoCarrito created successfully.');
+        }
+        catch(\Exception $e){
+            DB::rollback();
+            return redirect()->route('producto-carrito.index')
+                ->with('error', 'Error al crear el productoCarrito.');
+        }
     }
 
     /**
@@ -91,7 +111,7 @@ class ProductoCarritoController extends Controller
 
         $productoCarrito->update($request->all());
 
-        return redirect()->route('producto-carritos.index')
+        return redirect()->route('inicio')
             ->with('success', 'ProductoCarrito updated successfully');
     }
 
@@ -104,8 +124,7 @@ class ProductoCarritoController extends Controller
     {
         $productoCarrito = ProductoCarrito::find($id)->delete();
 
-        return redirect()->route('producto-carritos.index')
-            ->with('success', 'ProductoCarrito deleted successfully');
+        return redirect()->route('inicio');
     }
 
     public function obtenerProducto($id)

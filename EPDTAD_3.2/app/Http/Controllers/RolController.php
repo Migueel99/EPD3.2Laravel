@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rol;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class RolController
@@ -43,12 +44,29 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
+        
         request()->validate(Rol::$rules);
-
+        /*
         $rol = Rol::create($request->all());
 
         return redirect()->route('rols.index')
             ->with('success', 'Rol created successfully.');
+        */
+        try{
+            DB::beginTransaction();
+            $rol = Rol::create($request->all());
+            DB::afterCommit(function() use ($rol){
+                $rol->save();
+            });
+            DB::commit();
+            return redirect()->route('rols.index')
+                ->with('success', 'Rol created successfully.');
+        }
+        catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->route('rols.index')
+                ->with('error', 'Rol created unsuccessfully.');
+        }
     }
 
     /**

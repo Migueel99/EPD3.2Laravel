@@ -22,6 +22,7 @@ return new class extends Migration
             ->on('productos')
             ->onDelete('cascade')
             ->onUpdate('cascade');
+            $table->integer('cantidad');
 
             $table->unsignedBigInteger('id_carrito');
             $table->foreign('id_carrito')

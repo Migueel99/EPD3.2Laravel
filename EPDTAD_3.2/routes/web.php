@@ -23,11 +23,10 @@ Route::get('/register', function () {
 
 
 
-Route::get('/', function () {
+Route::get('/', [App\Http\Controllers\InicioController::class, 'index'] ,function () {
     return view('inicio');
-})->name('/');
+})->name('inicio');
 
-Route::resource('/', App\Http\Controllers\InicioController::class);
 
 Route::get('/test', function () {
     return view('dashboard');
@@ -61,4 +60,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('producto-carrito', App\Http\Controllers\ProductoCarritoController::class);
     Route::resource('producto-pedido', App\Http\Controllers\ProductoPedidoController::class);
     Route::resource('pedidos', App\Http\Controllers\PedidoController::class);
+    Route::resource('direcciones', App\Http\Controllers\DireccioneController::class);
 });
