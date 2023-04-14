@@ -155,7 +155,7 @@
                                                             @csrf
 
                                                             {{ Form::hidden('cantidad',Auth::user()->carritos->productoCarritos->where('id_producto', $producto->id)->first()->cantidad + 1) }}
-                                                            {{ Form::submit('Añadir al carrito', ['class' => 'btn btn-lg btn-danger']) }}
+                                                            {{ Form::submit('Añadir al carrito', ['class' => 'btn btn-danger']) }}
 
                                                         </form>
                                                     @else
