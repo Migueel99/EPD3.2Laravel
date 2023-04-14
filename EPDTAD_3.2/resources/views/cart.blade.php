@@ -33,11 +33,11 @@
                                         @else
                                             <div class="col-1">
                                                 <a href=""
-                                                    onclick="event.preventDefault(); document.getElementById('sumar-form').submit();">
+                                                    onclick="event.preventDefault(); document.getElementById('{{'sumar-form-'.$producto->id}}').submit();">
                                                     <button style="border:none; border-radius:50%">+</button>
                                                 </a>
                                             </div>
-                                            <form id="sumar-form" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form"
+                                            <form id="{{'sumar-form-'.$producto->id}}" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form"
                                                 enctype="multipart/form-data">
                                                 {{ method_field('PATCH') }}
                                                 @csrf
@@ -52,14 +52,14 @@
                                         <div class="col-1">
 
                                             <a href=""
-                                                onclick="event.preventDefault(); document.getElementById('restar-form').submit();">
+                                                onclick="event.preventDefault(); document.getElementById('{{'restar-form-'.$producto->id}}').submit();">
                                                 <button style="border:none; border-radius:50%">-</button>
                                             </a>
                                         </div>
 
 
                                         @if ($producto->cantidad > 1)
-                                        <form id="restar-form" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form"
+                                        <form id="{{'restar-form-'.$producto->id}}" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form"
                                             enctype="multipart/form-data">
                                             {{ method_field('PATCH') }}
                                             @csrf
@@ -67,7 +67,7 @@
                                                 {{ Form::hidden('cantidad', $producto->cantidad - 1) }}
                                             </form>
                                         @else
-                                            <form id="restar-form" style="display:none"
+                                            <form id="{{'restar-form-'.$producto->id}}" style="display:none"
                                                 action="{{ route('producto-carrito.destroy', $producto->id) }}"
                                                 method="POST">
 

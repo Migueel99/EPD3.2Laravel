@@ -58,16 +58,18 @@ class ProductoCarritoController extends Controller
             $productoCarrito = new ProductoCarrito();
             $productoCarrito->id_producto = $request->id_producto;
             $productoCarrito->id_carrito = $request->id_carrito;
+            $productoCarrito->cantidad = $request->cantidad;
+
             DB::afterCommit(function() use ($productoCarrito){
                 $productoCarrito->save();
             });
             DB::commit();
-            return redirect()->route('producto-carrito.index')
+            return redirect()->route('inicio')
                 ->with('success', 'ProductoCarrito created successfully.');
         }
         catch(\Exception $e){
             DB::rollback();
-            return redirect()->route('producto-carrito.index')
+            return redirect()->route('inicio')
                 ->with('error', 'Error al crear el productoCarrito.');
         }
     }

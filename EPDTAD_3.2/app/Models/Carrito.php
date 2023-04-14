@@ -63,7 +63,7 @@ class Carrito extends Model
     public function obtenerPrecio(){
         $precio = 0;
         foreach ($this->productoCarritos as $productoCarrito){
-            $precio += $productoCarrito->producto->precio;
+            $precio += $productoCarrito->producto->precio * $productoCarrito->cantidad;
         }
         return $precio;
     }
