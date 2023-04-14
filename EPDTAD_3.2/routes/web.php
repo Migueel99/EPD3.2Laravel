@@ -46,6 +46,7 @@ Route::get('/home', function () {
 Route::get('/perfil', [App\Http\Controllers\DireccioneController::class, 'perfil'], function () {
     return view('perfil');
 })->name('perfil')->middleware(['auth']);
+<<<<<<< HEAD
 
 
 Route::get('/pagar', [App\Http\Controllers\UserController::class, 'checkout'], function () {
@@ -55,6 +56,8 @@ Route::get('/pagar', [App\Http\Controllers\UserController::class, 'checkout'], f
 Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout')->middleware(['auth']);
+=======
+>>>>>>> main
 
 
 Route::get('/users', function () {

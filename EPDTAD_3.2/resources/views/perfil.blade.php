@@ -17,7 +17,11 @@
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-4">
                             <div class="d-flex text-black">
+<<<<<<< HEAD
 
+=======
+                                
+>>>>>>> main
                                 <div class="flex-grow-1 ms-3">
                                     <h5 class="mb-1">Perfil de {{ Auth::user()->name }}</h5>
                                     <p class="mb-2 pb-1" style="color: #2b2a2a;">Email: {{ Auth::user()->email }}</p>
@@ -38,8 +42,11 @@
                                                 <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
                                             </div>
 
+<<<<<<< HEAD
                                         </form>
                                     </div>
+=======
+>>>>>>> main
                                     <div>
                                         <a href="{{ route('logout') }} " onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <button class="btn btn-primary mx-2 px-auto">Logout</button>
@@ -58,6 +65,7 @@
         </div>
     </div>
     </div>
+<<<<<<< HEAD
     <script>
         function mostrarFormulario() {
             var formulario = document.getElementById("formulario");
@@ -67,6 +75,8 @@
         }
     </script>
 
+=======
+>>>>>>> main
 </body>
 
 </html>
