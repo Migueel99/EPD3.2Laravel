@@ -123,5 +123,5 @@ class CarritoController extends Controller
             ->with('success', 'Carrito deleted successfully');
     }
 
-
+test
 }
