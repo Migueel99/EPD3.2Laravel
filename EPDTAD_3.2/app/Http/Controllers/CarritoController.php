@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carrito;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 /**
  * Class CarritoController
  * @package App\Http\Controllers
@@ -43,11 +43,28 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
-
+        /*
         $carrito = Carrito::create($request->all());
 
         return redirect()->route('carritos.index')
             ->with('success', 'Carrito created successfully.');
+        */
+        
+        try{
+            DB::beginTransaction();
+            $carrito = Carrito::create($request->all());
+            DB::afterCommit(function() use ($carrito){
+                $carrito->save();
+            });
+            DB::commit();
+            return redirect()->route('carritos.index')
+                ->with('success', 'Carrito created successfully.');
+        }
+        catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->route('carritos.index')
+                ->with('error', 'Carrito created unsuccessfully.');
+        }
     }
 
     /**
