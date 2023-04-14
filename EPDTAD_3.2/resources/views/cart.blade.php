@@ -90,6 +90,11 @@
 
                         <hr>
                         <h2>Total: {{ Auth::user()->carritos->obtenerPrecio() }} €</h2>
+
+                        <hr>
+                        <div>
+                            <a href="{{ route('checkout') }}" class="btn btn-primary">Realizar pedido</a>
+                        </div>
                     @else
                         <h2>No hay productos en el carrito</h2>
                         @endif

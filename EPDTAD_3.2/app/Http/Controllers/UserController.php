@@ -5,6 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Pedido;
+use App\Models\ProductoPedido;
+use Illuminate\Support\Facades\Auth;
+use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Mail;
+
+
+
+
 
 /**
  * Class UserController
@@ -50,17 +59,16 @@ class UserController extends Controller
         return redirect()->route('users.index')
             ->with('success', 'User created successfully.');
         */
-        try{
+        try {
             DB::beginTransaction();
             $user = User::create($request->all());
-            DB::afterCommit(function() use ($user){
+            DB::afterCommit(function () use ($user) {
                 $user->save();
             });
             DB::commit();
             return redirect()->route('users.index')
                 ->with('success', 'Usuario creado correctamente.');
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->route('users.index')
                 ->with('error', 'Error al crear el usuario.');
@@ -122,4 +130,34 @@ class UserController extends Controller
             ->with('success', 'User deleted successfully');
     }
 
+    public function checkout()
+    {
+        $pedido = new Pedido();
+        $pedido->estado = 'En proceso';
+        $pedido->direccion = Auth::user()->direcciones->first()->direccion;
+        $pedido->user_id = Auth::user()->id;
+        $pedido->total = 0;
+        $pedido->save();
+        $carrito = Auth::user()->carritos->first();
+        $productos = $carrito->productoCarritos;
+        $total = 0;
+        foreach ($productos as $producto) {
+            $pp = new ProductoPedido();
+            $p = $producto->producto;
+            $p->stock = $p->stock - $producto->cantidad;
+            $pp->id_producto = $producto->id;
+            $pp->id_pedido = $pedido->id;
+            $pp->cantidad = $producto->cantidad;
+            $pp->save();
+            $p->update();
+            $total += $producto->precio * $producto->cantidad;
+        }
+        $pedido->total = $total;
+        $pedido->update();
+        Mail::to(Auth::user()->email)->send(new OrderConfirmation);
+
+        return redirect()->route('inicio')
+            ->with('success', 'Pedido realizado correctamente');
+       
+    }
 }

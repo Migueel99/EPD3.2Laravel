@@ -16,13 +16,14 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('id_carrito')->unique();
-            $table->foreign('id_carrito')
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
             ->references('id')
-            ->on('carritos')
+            ->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->boolean('estado');
+            $table->text('direccion');
+            $table->text('estado');
             $table->double('total');
 
             $table->timestamps();

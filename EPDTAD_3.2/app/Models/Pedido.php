@@ -23,8 +23,9 @@ class Pedido extends Model
 {
 
     static $rules = [
-		'id_carrito' => 'required',
+		'user_id' => 'required',
 		'estado' => 'required',
+        'direccion' => 'required',
 		'total' => 'required',
     ];
 
@@ -35,16 +36,18 @@ class Pedido extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_carrito','estado','total'];
+    protected $fillable = ['user_id','estado','direccion','total','direccion'];
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function carrito()
+    public function user()
     {
-        return $this->hasOne('App\Models\Carrito', 'id', 'id_carrito');
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
+
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

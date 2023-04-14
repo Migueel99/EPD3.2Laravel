@@ -57,7 +57,7 @@ class DireccioneController extends Controller
                 $direccione->save();
             });
             DB::commit();
-            return redirect()->route('direcciones.index')
+            return redirect()->route('perfil')
                 ->with('success', 'Direccione created successfully.');
         }catch(\Exception $e){
             DB::rollBack();
@@ -120,5 +120,10 @@ class DireccioneController extends Controller
 
         return redirect()->route('direcciones.index')
             ->with('success', 'Direccione deleted successfully');
+    }
+
+    public function perfil(){
+        $direccione = new Direccione();
+        return view('perfil', compact('direccione'));
     }
 }

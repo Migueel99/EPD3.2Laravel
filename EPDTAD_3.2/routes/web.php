@@ -43,9 +43,18 @@ Route::get('/home', function () {
 })->middleware(['auth', 'verified']);
 
 
-Route::get('/perfil', function () {
+Route::get('/perfil', [App\Http\Controllers\DireccioneController::class, 'perfil'], function () {
     return view('perfil');
-})name->('perfil')->middleware(['auth']);
+})->name('perfil')->middleware(['auth']);
+
+
+Route::get('/pagar', [App\Http\Controllers\UserController::class, 'checkout'], function () {
+    return view('inicio');
+})->name('pagar')->middleware(['auth']);
+
+Route::get('/checkout', function () {
+    return view('checkout');
+})->name('checkout')->middleware(['auth']);
 
 
 Route::get('/users', function () {

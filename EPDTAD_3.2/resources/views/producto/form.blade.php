@@ -1,9 +1,6 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        <form method="POST" action="{{ route('productos.update', $producto->id) }}" role="form"
-            enctype="multipart/form-data">
-            {{ method_field('PATCH') }}
-            @csrf
+           
         <label class="block text-sm dark:text-gray-200">
             {{ Form::label('nombre') }}
             {{ Form::text('nombre', $producto->nombre, ['class' => 'block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
@@ -35,7 +32,6 @@
         <button type="submit"
             class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">{{ __('Enviar') }}</button>
     </div>
-</form>
-<a href="{{ route('perfil') }}"><button class="btn btn-danger btn-sm mt-4">Volver</button></a>
+
 
 </div>
