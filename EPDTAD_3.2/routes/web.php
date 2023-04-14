@@ -23,11 +23,10 @@ Route::get('/register', function () {
 
 
 
-Route::get('/', function () {
+Route::get('/', [App\Http\Controllers\InicioController::class, 'index'] ,function () {
     return view('inicio');
-})->name('/');
+})->name('inicio');
 
-Route::resource('/', App\Http\Controllers\InicioController::class);
 
 Route::get('/test', function () {
     return view('dashboard');

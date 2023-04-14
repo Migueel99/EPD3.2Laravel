@@ -126,15 +126,37 @@
                                 </div>
                                 @if ($producto->stock > 0)
                                 <div class="d-grid gap-2">
+                                    @guest
+                                    <div class="d-grid gap-2"><button type="button" class="btn btn-lg btn-dark" disabled href="#!" role="button">Inicia sesión</button></div>
+                                    @else
+                                    <p>c: {{Auth::user()->carritos->productoCarritos}}<p>
+                                    <p>id: {{$producto->id}}<p>
+                                        <p>{{Auth::user()->carritos->productoCarritos->where('id_producto', $producto->id)->cantidad}}<p>
+                                    @if(Auth::user()->carritos->productoCarritos->contains($producto->id))
+
                                     <form method="POST" action="{{ route('producto-carrito.store') }}" role="form" enctype="multipart/form-data">
                                         @csrf {{Form::hidden('id_producto', $producto->id)}}
                                         {{Form::hidden('id_carrito', Auth::user()->carritos->id)}}
+                                        {{Form::hidden('cantidad', Auth::user()->carritos->productoCarritos->where('id_producto', $producto->id)->first()->pivot->cantidad + 1)}}
+                                        hola
+                                        {{Form::submit('Añadir al carrito', ['class' => 'btn btn-lg btn-danger'])}}
+                                    </form>
+
+                                    @else
+                                    <form method="POST" action="{{ route('producto-carrito.store') }}" role="form" enctype="multipart/form-data">
+                                        @csrf {{Form::hidden('id_producto', $producto->id)}}
+                                        {{Form::hidden('id_carrito', Auth::user()->carritos->id)}}
+                                        {{Form::hidden('cantidad', 1)}}
+                                        hola2
                                         {{Form::submit('Añadir al carrito', ['class' => 'btn btn-lg btn-danger'])}}
 
                                     </form>
+                                    @endif
+                                    @endguest
 
                                 </div>
                                 @elseif($producto->stock <= 0) <div class="d-grid gap-2"><button type="button" class="btn btn-lg btn-dark" disabled href="#!" role="button">Sin stock</button>
+
                             </div>
                             @endif
 
