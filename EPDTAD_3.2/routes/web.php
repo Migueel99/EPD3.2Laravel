@@ -45,7 +45,7 @@ Route::get('/home', function () {
 
 Route::get('/perfil', function () {
     return view('perfil');
-})name->('perfil')->middleware(['auth']);
+})->name('perfil')->middleware(['auth']);
 
 
 Route::get('/users', function () {

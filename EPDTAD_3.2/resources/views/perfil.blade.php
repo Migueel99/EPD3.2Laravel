@@ -17,21 +17,21 @@
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-4">
                             <div class="d-flex text-black">
-                                <div class="flex-shrink-0">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                                        alt="Generic placeholder image" class="img-fluid"
-                                        style="width: 180px; border-radius: 10px;">
-                                </div>
+                                
                                 <div class="flex-grow-1 ms-3">
                                     <h5 class="mb-1">Perfil de {{ Auth::user()->name }}</h5>
                                     <p class="mb-2 pb-1" style="color: #2b2a2a;">Email: {{ Auth::user()->email }}</p>
                                     <p class="mb-2 pb-1" style="color: #2b2a2a;">Telf:{{ Auth::user()->telefono }}</p>
 
-                                    <div class="d-flex pt-1">
-                                        <button type="button" class="btn btn-secondary me-1 flex-grow-1" disabled>Editar</button>
-                                        <a href="{{ route('/') }}"><button type="button" class="btn btn-primary flex-grow-1" >Volver</button></a>
-                                      </div>
-                                  </div>
+                                    <div>
+                                        <a href="{{ route('logout') }} " onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <button class="btn btn-primary mx-2 px-auto">Logout</button>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </a>
+                                        <a href="{{ route('inicio') }}"><button type="button" class="btn btn-primary mx-2 px-auto">Volver</button></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -39,6 +39,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
