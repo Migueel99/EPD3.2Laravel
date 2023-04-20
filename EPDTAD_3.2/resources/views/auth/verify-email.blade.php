@@ -10,7 +10,7 @@
             @endif
             <div class="card-wrapper col-12 col-md-6 mt-5">
                 <div class="brand text-center mb-3">
-                    <a class="navbar-brand d-inline-flex" href="index.html"><h1
+                    <a class="navbar-brand d-inline-flex" href="{{route('inicio')}}"><h1
                         class="text-1000  fw-bold  text-gradient">MiniatureCars</h1></a>
                 </div>
                 <div class="card">
@@ -22,7 +22,7 @@
                         </div>
                         Before proceeding, please check your email for a verification link.
                         If you did not receive the email, <a href="{{ route('verification.send') }}">click here to request another</a>.
-                       
+
                     </div>
                 </div>
             </div>
