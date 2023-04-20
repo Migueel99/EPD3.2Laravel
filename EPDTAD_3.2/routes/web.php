@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,18 +13,14 @@ use App\Http\Controllers\ProductoController;
 |
  */
 
-
 //ruta para el registro
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-
-
-Route::get('/', [App\Http\Controllers\InicioController::class, 'index'] ,function () {
+Route::get('/', [App\Http\Controllers\InicioController::class, 'index'], function () {
     return view('inicio');
 })->name('inicio');
-
 
 Route::get('/test', function () {
     return view('dashboard');
@@ -36,19 +30,13 @@ Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware('auth');
 
-
-
 Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware(['auth', 'verified']);
 
-
 Route::get('/perfil', [App\Http\Controllers\DireccioneController::class, 'perfil'], function () {
     return view('perfil');
 })->name('perfil')->middleware(['auth']);
-<<<<<<< HEAD
-
-
 Route::get('/pagar', [App\Http\Controllers\UserController::class, 'checkout'], function () {
     return view('inicio');
 })->name('pagar')->middleware(['auth']);
@@ -56,9 +44,6 @@ Route::get('/pagar', [App\Http\Controllers\UserController::class, 'checkout'], f
 Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout')->middleware(['auth']);
-=======
->>>>>>> main
-
 
 Route::get('/users', function () {
     return view('user.index');
@@ -67,8 +52,6 @@ Route::get('/users', function () {
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
-
-
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', App\Http\Controllers\UserController::class);
@@ -79,4 +62,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('producto-pedido', App\Http\Controllers\ProductoPedidoController::class);
     Route::resource('pedidos', App\Http\Controllers\PedidoController::class);
     Route::resource('direcciones', App\Http\Controllers\DireccioneController::class);
-});
+
+}
+);

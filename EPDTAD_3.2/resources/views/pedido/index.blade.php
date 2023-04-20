@@ -60,7 +60,6 @@
                                     @foreach ($pedidos as $pedido)
                                         <tr class="text-gray-700 dark:text-gray-400">
                                             <td class="px-4 py-3">{{ $pedido->id }}</td>
-                                            <td class="px-4 py-3">{{ $pedido->carrito->id }}</td>
                                             <td class="px-4 py-3">{{ $pedido->estado }}</td>
                                             <td class="px-4 py-3">{{ $pedido->total }}</td>
                                             <td class="px-4 py-3">
