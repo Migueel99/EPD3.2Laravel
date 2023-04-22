@@ -283,33 +283,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <br>
-                        <h5 class="lh-lg fw-bold text-500">
-                            <p style="color: white;">Enlaces de interés</p>
-                        </h5>
-                        <p style="color: white;"><a href="" class="text-reset">Productos</a></p>
-                        <p style="color: white;"><a href="" class="text-reset">Categorias</a></p>
-                        <p style="color: white;"><a href="" class="text-reset">Politcas de privacidad</a>
-                        </p>
-                        <p style="color: white;"><a href="#!" class="text-reset"
-                                onclick="alert('Si necesita ayuda, por favor, pongase en contacto a traves de MiniatureCars@gmail.com');">Ayuda</a>
-                        </p>
-                    </div>
-                    <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 ">
-                        <br>
-                        <h5 class="lh-lg fw-bold text-500">
-                            <p style="color: white;">Contacto</p>
-                        </h5>
-                        <p style="color: white;"><i class="fas fa-home me-3 text-reset"></i> Sevilla, Sev 41005, SP
-                        </p>
-                        <p style="color: white;">
-                            <i class="fas fa-envelope me-3 text-reset"></i>
-                            MiniatureCars@gmail.com
-                        </p>
-                        <p style="color: white;"><i class="fas fa-phone me-3 text-reset"></i> + 34 123 456 789</p>
-                        <p style="color: white;"><i class="fas fa-print me-3 text-reset"></i> + 34 123 456 789</p>
-                    </div>
                 </div>
             </div>
             <hr class="border border-800" />
