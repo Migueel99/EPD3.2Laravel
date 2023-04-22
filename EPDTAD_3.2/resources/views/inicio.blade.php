@@ -264,7 +264,7 @@
                                 <h5 class="lh-lg fw-bold text-500"><p style="color: white;">Enlaces de interés</p></h5>
                                 <p style="color: white;"><a href="" class="text-reset">Productos</a></p>
                                 <p style="color: white;"><a href="" class="text-reset">Categorias</a></p>
-                                <p style="color: white;"><a href="descargas/Terminos y condiciones MiniatureCars.pdf" download="Terminos y condiciones MiniatureCars.pdf" class="text-reset">Términos y condiciones</a>
+                                <p style="color: white;"><a href="img\descargas\CondicionesMiniatureCars.pdf" download="CondicionesMiniatureCars.pdf" class="text-reset">Términos y condiciones</a>
                                 </p>
                                 <p style="color: white;"><a href="#!" class="text-reset"
                                         onclick="alert('Si necesita ayuda, por favor, pongase en contacto a traves de MiniatureCars@gmail.com');">Ayuda</a>
