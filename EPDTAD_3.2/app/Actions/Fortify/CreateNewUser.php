@@ -41,6 +41,7 @@ class CreateNewUser implements CreatesNewUsers
             'telefono' => $input['telefono'],
             'password' => Hash::make($input['password']),
         ]);
+        
 
         // Asignar el rol de cliente al usuario
         $user->assignRole('cliente');

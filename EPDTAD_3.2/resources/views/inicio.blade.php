@@ -43,7 +43,7 @@
     <main class="main" id="top">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
             data-navbar-on-scroll="data-navbar-on-scroll">
-            <div class="container"><a class="navbar-brand d-inline-flex" href="{{route('inicio')}}"><span
+            <div class="container"><a class="navbar-brand d-inline-flex" href="{{ route('inicio') }}"><span
                         class="text-1000 fs-3 fw-bold ms-2 text-gradient">MiniatureCars</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -71,8 +71,7 @@
                             class="shadow-warning text-warning" type="submit" style="border-radius:50%;border:0"> <i
                                 class="fas fa-user"></i></button>
 
-                        <form id="profile-form" action="{{ route('perfil') }}"
-                            method="GET" class="d-none">
+                        <form id="profile-form" action="{{ route('perfil') }}" method="GET" class="d-none">
                         @endguest
                     </form>
 
@@ -122,83 +121,94 @@
                     <div class="col-lg-7 mx-auto text-center mt-7 mb-5">
                         <h5 class="fw-bold fs-3 fs-lg-5 lh-sm">Miniaturas en venta</h5>
                     </div>
-
-                    <div class="mx-auto col-8">
-                        <div class="row">
-
-                            @foreach ($productos as $producto)
-                                <div class="col-sm-6 col-md-3 col-xl mb-5 h-100">
-                                    <div class="card card-span h-100 rounded-3">
-                                        <img class="card-img-top "
-                                            src="{{ asset('img/productos/' . $producto->imagen) }}"
-                                            onclick="mostrarPopup(this);">
-                                        <div class="card-body ps-0">
-                                            <h5 class="fw-bold text-1000 text-truncate mb-1">{{ $producto->nombre }}
-                                            </h5>
-                                            <div><span class="text-primary">{{ $producto->descripcion }}</span></div>
-                                            <span class="text-1000 fw-bold">{{ $producto->precio }} €</span>
+                    <div class="row">
+                        @foreach ($productos as $producto)
+                        <div class="col-lg-4 col-md-12 mb-4">
+                            <div class="card">
+                                <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                                    data-mdb-ripple-color="light">
+                                    <img src="{{ asset('img/productos/' . $producto->imagen) }}"
+                                        class="w-100" height="200"  onclick="mostrarPopup(this);"/>
+                                    <a href="#!">
+                                        <div class="mask">
+                                            <div class="d-flex justify-content-start align-items-end h-100">
+                                                <h5><span class="badge bg-primary ms-2">New</span></h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                    @if ($producto->stock > 0)
-                                        <div class="d-grid gap-2">
-                                            @guest
-                                                <div class="d-grid gap-2"><button type="button"
-                                                        class="btn btn-lg btn-dark" disabled href="#!"
-                                                        role="button">Inicia sesión</button></div>
+                                        <div class="hover-overlay">
+                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <a href="" class="text-reset">
+                                        <h5 class="card-title mb-3">{{ $producto->nombre }}</h5>
+                                    </a>
+                                    <a href="" class="text-reset">
+                                        <p>{{ $producto->descripcion }}</p>
+                                    </a>
+                                    <h4 class="mb-3">{{ $producto->precio }} €</h4>
+                                </div>
+                                @if ($producto->stock > 0)
+                                <div class="d-grid gap-2">
+                                    @guest
+                                        <div class="d-grid gap-2"><button type="button"
+                                                class="btn btn-lg btn-dark" disabled href="#!"
+                                                role="button">Inicia sesión</button></div>
+                                    @else
+                                        @if (Auth::user()->carritos->productoCarritos->count() > 0)
+                                            @if (Auth::user()->carritos->productoCarritos->contains('id_producto', $producto->id))
+                                                <form method="POST"
+                                                    action="{{ route('producto-carrito.update',Auth::user()->carritos->productoCarritos->where('id_producto', $producto->id)->first()) }}"
+                                                    role="form" enctype="multipart/form-data">
+                                                    {{ method_field('PATCH') }}
+                                                    @csrf
+
+                                                    {{ Form::hidden('cantidad',Auth::user()->carritos->productoCarritos->where('id_producto', $producto->id)->first()->cantidad + 1) }}
+                                                    {{ Form::submit('Añadir al carrito', ['class' => 'btn btn-danger']) }}
+
+                                                </form>
                                             @else
-                                                @if (Auth::user()->carritos->productoCarritos->count() > 0)
-                                                    @if (Auth::user()->carritos->productoCarritos->contains('id_producto', $producto->id))
-                                                        <form method="POST"
-                                                            action="{{ route('producto-carrito.update',Auth::user()->carritos->productoCarritos->where('id_producto', $producto->id)->first()) }}"
-                                                            role="form" enctype="multipart/form-data">
-                                                            {{ method_field('PATCH') }}
-                                                            @csrf
+                                                <form method="POST"
+                                                    action="{{ route('producto-carrito.store') }}" role="form"
+                                                    enctype="multipart/form-data">
+                                                    @csrf {{ Form::hidden('id_producto', $producto->id) }}
+                                                    {{ Form::hidden('id_carrito', Auth::user()->carritos->id) }}
+                                                    {{ Form::hidden('cantidad', 1) }}
+                                                    {{ Form::submit('Añadir al carrito', ['class' => 'btn btn-danger']) }}
 
-                                                            {{ Form::hidden('cantidad',Auth::user()->carritos->productoCarritos->where('id_producto', $producto->id)->first()->cantidad + 1) }}
-                                                            {{ Form::submit('Añadir al carrito', ['class' => 'btn btn-danger']) }}
+                                                </form>
+                                            @endif
+                                        @else
+                                            <form method="POST" action="{{ route('producto-carrito.store') }}"
+                                                role="form" enctype="multipart/form-data">
+                                                @csrf {{ Form::hidden('id_producto', $producto->id) }}
+                                                {{ Form::hidden('id_carrito', Auth::user()->carritos->id) }}
+                                                {{ Form::hidden('cantidad', 1) }}
+                                                {{ Form::submit('Añadir al carrito', ['class' => 'btn btn-danger']) }}
 
-                                                        </form>
-                                                    @else
-                                                        <form method="POST"
-                                                            action="{{ route('producto-carrito.store') }}" role="form"
-                                                            enctype="multipart/form-data">
-                                                            @csrf {{ Form::hidden('id_producto', $producto->id) }}
-                                                            {{ Form::hidden('id_carrito', Auth::user()->carritos->id) }}
-                                                            {{ Form::hidden('cantidad', 1) }}
-                                                            {{ Form::submit('Añadir al carrito', ['class' => 'btn btn-danger']) }}
-
-                                                        </form>
-                                                    @endif
-                                                @else
-                                                    <form method="POST" action="{{ route('producto-carrito.store') }}"
-                                                        role="form" enctype="multipart/form-data">
-                                                        @csrf {{ Form::hidden('id_producto', $producto->id) }}
-                                                        {{ Form::hidden('id_carrito', Auth::user()->carritos->id) }}
-                                                        {{ Form::hidden('cantidad', 1) }}
-                                                        {{ Form::submit('Añadir al carrito', ['class' => 'btn btn-danger']) }}
-
-                                                    </form>
-                                                @endif
-                                            @endguest
-
-                                        </div>
-                                    @elseif($producto->stock <= 0)
-                                        <div class="d-grid gap-2"><button type="button" class="btn btn-lg btn-dark"
-                                                disabled href="#!" role="button">Sin stock</button>
-
-                                        </div>
-                                    @endif
-
+                                            </form>
+                                        @endif
+                                    @endguest
 
                                 </div>
-                            @endforeach
-                            @for ($i = count($productos) % 4; $i < 4; $i++)
-                                <div class="col-sm-6 col-md-3 col-xl mb-5 h-100">
+                            @elseif($producto->stock <= 0)
+                                <div class="d-grid gap-2"><button type="button" class="btn btn-lg btn-dark"
+                                        disabled href="#!" role="button">Sin stock</button>
+
                                 </div>
-                            @endfor
+                            @endif
+                            </div>
                         </div>
+                        @endforeach
+                        @for ($i = count($productos) % 4; $i < 4; $i++)
+                        <div class="col-sm-6 col-md-3 col-xl mb-5 h-100">
+                        </div>
+                    @endfor
 
                     </div>
+
                 </div>
             </div>
             </div>
@@ -273,16 +283,45 @@
                             </div>
                         </div>
                     </div>
-                <hr class="border border-800" />
-                <div class="row flex-center pb-3">
-                    <div class="col-lg-4 col-md-6 order-0">
-                        <p class="text-200 text-center">All rights Reserved &copy; MiniatureCars, 2023</p>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <br>
+                        <h5 class="lh-lg fw-bold text-500">
+                            <p style="color: white;">Enlaces de interés</p>
+                        </h5>
+                        <p style="color: white;"><a href="" class="text-reset">Productos</a></p>
+                        <p style="color: white;"><a href="" class="text-reset">Categorias</a></p>
+                        <p style="color: white;"><a href="" class="text-reset">Politcas de privacidad</a>
+                        </p>
+                        <p style="color: white;"><a href="#!" class="text-reset"
+                                onclick="alert('Si necesita ayuda, por favor, pongase en contacto a traves de MiniatureCars@gmail.com');">Ayuda</a>
+                        </p>
                     </div>
-    
+                    <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 ">
+                        <br>
+                        <h5 class="lh-lg fw-bold text-500">
+                            <p style="color: white;">Contacto</p>
+                        </h5>
+                        <p style="color: white;"><i class="fas fa-home me-3 text-reset"></i> Sevilla, Sev 41005, SP
+                        </p>
+                        <p style="color: white;">
+                            <i class="fas fa-envelope me-3 text-reset"></i>
+                            MiniatureCars@gmail.com
+                        </p>
+                        <p style="color: white;"><i class="fas fa-phone me-3 text-reset"></i> + 34 123 456 789</p>
+                        <p style="color: white;"><i class="fas fa-print me-3 text-reset"></i> + 34 123 456 789</p>
+                    </div>
                 </div>
-                
-    
-            </section>
+            </div>
+            <hr class="border border-800" />
+            <div class="row flex-center pb-3">
+                <div class="col-lg-4 col-md-6 order-0">
+                    <p class="text-200 text-center">All rights Reserved &copy; MiniatureCars, 2023</p>
+                </div>
+
+            </div>
+
+
+        </section>
         <!-- <section> close ============================-->
         <!-- ============================================-->
 
