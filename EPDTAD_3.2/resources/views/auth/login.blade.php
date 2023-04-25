@@ -62,7 +62,7 @@
                                     </button>
                                 </div>
                                 <div class="text-center mt-3 small">
-                                    {{ __('Dont have an account? ') }}<a href="{{ route('register') }}">{{ __(' Sign Up') }}</a>
+                                    {{ __('Dont have an account? ') }}<a href="{{ route('register') }}"> {{ __('Sign Up') }}</a>
 
                                 </div>
                             </form>
