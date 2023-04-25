@@ -11,7 +11,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <h4 class="card-title">Create new account</h4>
+                        <h4 class="card-title"> {{ __('Create New Account') }}</h4>
 
                         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="form-group ">
-                                <label for="email">{{ __('E-Mail Address') }}</label>
+                                <label for="email">{{ __('E-Mail') }}</label>
 
                                 <input id="email" type="email"
                                     class="form-control @error('email') is-invalid @enderror" name="email"
@@ -57,7 +57,7 @@
                           {{-- <div class="form-group">
                                 <label for="avatar">Avatar:</label>
                                 <input type="file" class="form-control-file" name="avatar" id="avatar">
-                              </div> --}} 
+                              </div> --}}
 
                             <div class="form-group">
                                 <label for="password">{{ __('Password') }}</label>
@@ -85,7 +85,8 @@
                                     {{ __('Register') }}
                                 </button>
                                 <div class="text-center mt-3 small">
-                                    Already have an account? <a href="{{ route('login') }}">Sign In</a>
+                                    {{ __('Already have an account?') }}<a href="{{ route('login') }}"> {{ __('Sign In') }}</a>
+
                                 </div>
                             </div>
                         </form>

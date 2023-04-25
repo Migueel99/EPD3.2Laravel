@@ -13,7 +13,7 @@
                                 @csrf
 
                                 <div class="form-group mb-3">
-                                    <label for="email">{{ __('E-Mail Address') }}</label>
+                                    <label for="email">{{ __('E-Mail ') }}</label>
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -62,7 +62,8 @@
                                     </button>
                                 </div>
                                 <div class="text-center mt-3 small">
-                                    Don't have an account? <a href="{{ route('register') }}">Sign Up</a>
+                                    {{ __('Dont have an account? ') }}<a href="{{ route('register') }}">{{ __(' Sign Up') }}</a>
+
                                 </div>
                             </form>
                         </div>
