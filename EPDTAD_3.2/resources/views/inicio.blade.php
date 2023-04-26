@@ -52,7 +52,6 @@
                 <div class="collapse navbar-collapse border-top border-lg-0 my-2 mt-lg-0" id="navbarSupportedContent">
                     <div class="mx-auto pt-5 pt-lg-0 d-block d-lg-none d-xl-block">
                     </div>
-
                 </div>
                 @guest
                     <a class="btn btn-white shadow-warning text-warning" href="{{ route('login') }}"> <i
@@ -86,8 +85,8 @@
                             href="#!"><img class="img-fluid" src="{{ asset('img/hero-header-1.webp') }}"
                                 alt="hero-header" /></a></div>
                     <div class="col-md-7 col-lg-6 py-8 text-md-start text-center">
-                        <h1 class="display-1 fs-md-5 fs-lg-6 fs-xl-8 text-light">Colecciona tus sueños</h1>
-                        <h1 class="text-800 mb-5 fs-4">Vive la pasión por los coches en miniatura</h1>
+                        <h1 class="display-1 fs-md-5 fs-lg-6 fs-xl-8 text-light">{{ __('Colecciona tus sueños') }}</h1>
+                        <h1 class="text-800 mb-5 fs-4">{{ __('Vive la pasión por los coches en miniatura') }}</h1>
                     </div>
                 </div>
             </div>
@@ -119,7 +118,7 @@
             <div class="container">
                 <div class="row h-100">
                     <div class="col-lg-7 mx-auto text-center mt-7 mb-5">
-                        <h5 class="fw-bold fs-3 fs-lg-5 lh-sm">Miniaturas en venta</h5>
+                        <h5 class="fw-bold fs-3 fs-lg-5 lh-sm">{{ __('Miniaturas en venta') }}</h5>
                     </div>
                     <div class="row">
                         @foreach ($productos as $producto)
@@ -155,7 +154,7 @@
                                     @guest
                                         <div class="d-grid gap-2"><button type="button"
                                                 class="btn btn-lg btn-dark" disabled href="#!"
-                                                role="button">Inicia sesión</button></div>
+                                                role="button">{{ __('Inicia sesión') }}</button></div>
                                     @else
                                         @if (Auth::user()->carritos->productoCarritos->count() > 0)
                                             @if (Auth::user()->carritos->productoCarritos->contains('id_producto', $producto->id))
@@ -195,7 +194,7 @@
                                 </div>
                             @elseif($producto->stock <= 0)
                                 <div class="d-grid gap-2"><button type="button" class="btn btn-lg btn-dark"
-                                        disabled href="#!" role="button">Sin stock</button>
+                                        disabled href="#!" role="button">{{ __('Sin stock') }}</button>
 
                                 </div>
                             @endif
@@ -229,8 +228,8 @@
                         <div class="row mt-3 ">
                             <div class="col-sm-12 col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 text-center">
                                 <br>
-                                
-                            <h5 class="lh-lg fw-bold text-500"><p style="color: white;">Siguenos en RRSS</p></h5>
+
+                            <h5 class="lh-lg fw-bold text-500"><p style="color: white;">{{ __('Síguenos en RRSS') }}</p></h5>
                                 <a href="#!">
                                     <svg  class="svg-inline--fa fa-instagram fa-w-14 fs-2 me-2" aria-hidden="true"
                                         focusable="false" data-prefix="fab" data-icon="instagram" role="img"
@@ -261,18 +260,18 @@
                             </div>
                             <div class="col-sm-12 col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                                 <br>
-                                <h5 class="lh-lg fw-bold text-500"><p style="color: white;">Enlaces de interés</p></h5>
-                                <p style="color: white;"><a href="" class="text-reset">Productos</a></p>
-                                <p style="color: white;"><a href="" class="text-reset">Categorias</a></p>
-                                <p style="color: white;"><a href="img\descargas\CondicionesMiniatureCars.pdf" download="CondicionesMiniatureCars.pdf" class="text-reset">Términos y condiciones</a>
+                                <h5 class="lh-lg fw-bold text-500"><p style="color: white;">{{__('Enlaces de interés')}}</p></h5>
+                                <p style="color: white;"><a href="" class="text-reset">{{__('Productos')}}</a></p>
+                                <p style="color: white;"><a href="" class="text-reset">{{__('Categorías')}}</a></p>
+                                <p style="color: white;"><a href="img\descargas\CondicionesMiniatureCars.pdf" download="CondicionesMiniatureCars.pdf" class="text-reset">{{__('Términos y condiciones')}}</a>
                                 </p>
                                 <p style="color: white;"><a href="#!" class="text-reset"
-                                        onclick="alert('Si necesita ayuda, por favor, pongase en contacto a traves de MiniatureCars@gmail.com');">Ayuda</a>
+                                        onclick="alert('Si necesita ayuda, por favor, pongase en contacto a traves de MiniatureCars@gmail.com');">{{__('Ayuda')}}</a>
                                 </p>
                             </div>
                             <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 ">
                                 <br>
-                            <h5 class="lh-lg fw-bold text-500"><p style="color: white;">Contacto</p></h5>
+                            <h5 class="lh-lg fw-bold text-500"><p style="color: white;">{{ __('Contacto') }}</p></h5>
                                 <p style="color: white;"><i class="fas fa-home me-3 text-reset"></i> Sevilla, Sev 41005, SP</p>
                                 <p style="color: white;">
                                     <i class="fas fa-envelope me-3 text-reset"></i>
