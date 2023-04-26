@@ -14,8 +14,8 @@
                         class="text-1000 fs-3 fw-bold ms-2 text-gradient">MiniatureCars</span></a>
             </div>
         </nav>
-        
-        
+
+
         <div class="row justify-content-md-center ">
             <div class="card-wrapper col-12 col-sm-12 col-md-8 col-lg-4 ">
                 <div class="brand text-center mb-3">
@@ -53,6 +53,7 @@
 
                                         </form>
                                     </div>
+                                   
                                     <div>
                                         <a href="{{ route('logout') }} "
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -82,7 +83,7 @@
 
         }
     </script>
-    
+
     <br><br>
     <section class="py-0 bg-1000">
         <div class="container text-center text-md-start mt-5">
