@@ -3,10 +3,10 @@
 @section('content')
     <div class="container-fluid pb-5">
         <div class="row justify-content-md-center">
-            <div class="card-wrapper col-12 col-md-4 mt-5">
+            <div class="card-wrapper col-12 col-sm-12 col-md-8 col-lg-4 mt-5">
                 <div class="brand text-center mb-3">
                     <a class="navbar-brand d-inline-flex" href="{{route('inicio')}}"><h1
-                            class="text-1000  fw-bold  text-gradient">MiniatureCars</h1></a>
+                            class="text-1000  fw-bold  text-gradient">Login</h1></a>
                     <div class="card">
                         <div class="card-body">
                             <form method="POST" action="{{ route('login') }}">

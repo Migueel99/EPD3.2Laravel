@@ -2,15 +2,15 @@
 @section('content')
     <div class="container-fluid pb-5">
         <div class="row justify-content-md-center">
-            <div class="card-wrapper col-12 col-md-4 mt-5">
+            <div class="card-wrapper col-12 col-sm-12 col-md-8 col-lg-4 mt-5">
                 <div class="brand text-center mb-3">
                     <a class="navbar-brand d-inline-flex" href="{{route('register')}}">
-                        <h1 class="text-1000  fw-bold  text-gradient">MiniatureCars</h1>
+                        <h1 class="text-1000  fw-bold  text-gradient">Registro</h1>
                     </a>
                 </div>
                 <div class="card">
 
-                    <div class="card-body">
+                    <div class="card-body ">
                         <h4 class="card-title"> {{ __('Create New Account') }}</h4>
 
                         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">

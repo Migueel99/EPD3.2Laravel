@@ -8,11 +8,18 @@
 <body>
 
     <div class="container-fluid pb-5">
+        <br>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+            data-navbar-on-scroll="data-navbar-on-scroll">
+            <div class="container"><a class="navbar-brand d-inline-flex" href="{{ route('inicio') }}"><span
+                        class="text-1000 fs-3 fw-bold ms-2 text-gradient">MiniatureCars</span></a>
+            </div>
+        </nav>
         <div class="row justify-content-md-center">
             <div class="card-wrapper col-12 col-md-4 mt-5">
                 <div class="brand text-center mb-3">
                     <a class="navbar-brand d-inline-flex" href="{{route('inicio')}}">
-                        <h1 class="text-1000  fw-bold  text-gradient">MiniatureCars</h1>
+                        <h1 class="text-1000  fw-bold  text-gradient">Carrito de la compra</h1>
                     </a>
                     <div class="card">
                         <div class="card-body">
@@ -105,7 +112,7 @@
         </div>
     </div>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
+    
     <section class="py-0 bg-1000">
         <div class="container text-center text-md-start mt-5">
                     <div class="row mt-3 ">
