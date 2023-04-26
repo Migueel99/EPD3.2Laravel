@@ -68,7 +68,7 @@
                                             </form>
                                         </a>
                                         <a href="{{ route('inicio') }}"><button type="button"
-                                                class="btn btn-primary mx-2 px-auto">Volver</button></a>
+                                                class="btn btn-primary mx-2 px-auto">{{__('Volver')}}</button></a>
                                     </div>
                                 </div>
                             </div>

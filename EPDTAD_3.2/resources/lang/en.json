@@ -32,7 +32,24 @@
     "Términos y condiciones": "Terms and Conditions",
     "Ayuda":"Help",
     "Añadir al carrito": "Add to cart",
-    "Idioma": "Language"
+    "Idioma": "Language",
+    "Español": "Spanish",
+    "Inglés": "English",
+    "Francés": "French",
+    "Volver" : "Back",
+    "Precio" : "Price",
+    "Unidad": "Unit",
+    "Cantidad": "Quantity",
+    "Total": "Total",
+    "Eliminar": "Delete",
+    "Comprar": "Buy",
+    "Carrito": "Cart",
+    "Mi cuenta": "My account",
+    "Cerrar sesión": "Log out",
+    "Mis pedidos": "My orders",
+    "Mis datos": "My data",
+    "Mis direcciones": "My addresses"
+
 
 
 }
