@@ -146,18 +146,19 @@
                                         </a>
                                     </div>
                                     <div class="card-body">
-                                        <a href="" class="text-reset">
+                                        <a href="" class="text-reset text-center">
                                             <h5 class="card-title mb-3">{{ $producto->nombre }}</h5>
                                         </a>
-                                        <a href="" class="text-reset">
+                                        <a href="" class="text-reset text-justify">
                                             <p>{{ $producto->descripcion }}</p>
                                         </a>
-                                        <h4 class="mb-3">{{ $producto->precio }} €</h4>
+                                        <p style="color: #000; font-size: large"><strong>{{ __('Precio/Unidad') }}: </strong>{{ $producto->precio }} €</p>
+                                        <p style="color: #000; font-size: large"><strong>{{ __('Stock') }}: </strong>{{ $producto->stock }} {{ __('unidades') }}</p>
                                     </div>
                                     @if ($producto->stock > 0)
-                                        <div class="d-grid gap-2">
+                                        <div class="d-grid gap-2 align-self-center pb-3" >
                                             @guest
-                                                <div class="d-grid gap-2"><button type="button"
+                                                <div class="d-grid gap-2 "><button type="button"
                                                         class="btn btn-lg btn-dark" disabled href="#!"
                                                         role="button">{{ __('Inicia sesión') }}</button></div>
                                             @else
