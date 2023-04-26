@@ -6,13 +6,51 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+    data-navbar-on-scroll="data-navbar-on-scroll">
+    <div class="container"><a class="navbar-brand d-inline-flex" href="{{ route('inicio') }}"><span
+                class="text-1000 fs-3 fw-bold ms-2 text-gradient">MiniatureCars</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon">
+            </span></button>
+        <div class="collapse navbar-collapse border-top border-lg-0 my-2 mt-lg-0" id="navbarSupportedContent">
+            <div class="mx-auto pt-5 pt-lg-0 d-block d-lg-none d-xl-block">
+            </div>
+
+        </div>
+        @guest
+            <a class="btn btn-white shadow-warning text-warning" href="{{ route('login') }}"> <i
+                    class="fas fa-user me-2"></i>{{ __('Login') }}</a>
+        @else
+            <a href=""
+                onclick="event.preventDefault(); document.getElementById('cart-form').submit();"><button
+                    class="shadow-warning text-warning" type="submit" style="border-radius:50%;border:0"> <i
+                        class="fas fa-shopping-cart"></i></button>
+
+                <form id="cart-form" action="{{ route('cart') }}" method="GET" class="d-none">
+                </form>
+            </a>
+            <a href=""
+                onclick="event.preventDefault(); document.getElementById('profile-form').submit();"><button
+                    class="shadow-warning text-warning" type="submit" style="border-radius:50%;border:0"> <i
+                        class="fas fa-user"></i></button>
+
+                <form id="profile-form" action="{{ route('perfil') }}" method="GET" class="d-none">
+                @endguest
+            </form>
+
+
+    </div>
+    </div>
+</nav>
 
     <div class="container-fluid pb-5">
         <div class="row justify-content-md-center">
             <div class="card-wrapper col-12 col-md-4 mt-5">
                 <div class="brand text-center mb-3">
                     <a class="navbar-brand d-inline-flex" href="">
-                        <h1 class="text-1000  fw-bold  text-gradient">MiniatureCars</h1>
+                        <h1 class="text-1000  fw-bold  text-gradient">Perfil de usuario</h1>
                     </a>
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-4">
@@ -74,7 +112,7 @@
                     <div class="col-sm-12 col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 text-center">
                         <br>
                         
-                    <h5 class="lh-lg fw-bold text-500"><p style="color: white;">Siguenos en RRSS</p></h5>
+                    <h5 class="lh-lg fw-bold text-500"><p style="color: white;">{{ __('Síguenos en RRSS') }}</p></h5>
                         <a href="#!">
                             <svg  class="svg-inline--fa fa-instagram fa-w-14 fs-2 me-2" aria-hidden="true"
                                 focusable="false" data-prefix="fab" data-icon="instagram" role="img"
@@ -105,18 +143,18 @@
                     </div>
                     <div class="col-sm-12 col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <br>
-                        <h5 class="lh-lg fw-bold text-500"><p style="color: white;">Enlaces de interés</p></h5>
-                        <p style="color: white;"><a href="" class="text-reset">Productos</a></p>
-                        <p style="color: white;"><a href="" class="text-reset">Categorias</a></p>
-                        <p style="color: white;"><a href="img\descargas\CondicionesMiniatureCars.pdf" download="CondicionesMiniatureCars.pdf" class="text-reset">Términos y condiciones</a>
+                        <h5 class="lh-lg fw-bold text-500"><p style="color: white;">{{ __('Enlaces de interés') }}</p></h5>
+                        <p style="color: white;"><a href="" class="text-reset">{{ __('Productos') }}</a></p>
+                        <p style="color: white;"><a href="" class="text-reset">{{ __('Categorías') }}</a></p>
+                        <p style="color: white;"><a href="img\descargas\CondicionesMiniatureCars.pdf" download="CondicionesMiniatureCars.pdf" class="text-reset">{{ __('Términos y condiciones') }}</a>
                         </p>
                         <p style="color: white;"><a href="#!" class="text-reset"
-                                onclick="alert('Si necesita ayuda, por favor, pongase en contacto a traves de MiniatureCars@gmail.com');">Ayuda</a>
+                                onclick="alert('Si necesita ayuda, por favor, pongase en contacto a traves de MiniatureCars@gmail.com');">{{ __('Ayuda') }}</a>
                         </p>
                     </div>
                     <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 ">
                         <br>
-                    <h5 class="lh-lg fw-bold text-500"><p style="color: white;">Contacto</p></h5>
+                    <h5 class="lh-lg fw-bold text-500"><p style="color: white;">{{ __('Contacto') }}</p></h5>
                         <p style="color: white;"><i class="fas fa-home me-3 text-reset"></i> Sevilla, Sev 41005, SP</p>
                         <p style="color: white;">
                             <i class="fas fa-envelope me-3 text-reset"></i>

@@ -107,13 +107,12 @@
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br>
     <section class="py-0 bg-1000">
-
         <div class="container text-center text-md-start mt-5">
                     <div class="row mt-3 ">
                         <div class="col-sm-12 col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 text-center">
                             <br>
                             
-                        <h5 class="lh-lg fw-bold text-500"><p style="color: white;">Siguenos en RRSS</p></h5>
+                        <h5 class="lh-lg fw-bold text-500"><p style="color: white;">{{ __('Síguenos en RRSS') }}</p></h5>
                             <a href="#!">
                                 <svg  class="svg-inline--fa fa-instagram fa-w-14 fs-2 me-2" aria-hidden="true"
                                     focusable="false" data-prefix="fab" data-icon="instagram" role="img"
@@ -144,18 +143,18 @@
                         </div>
                         <div class="col-sm-12 col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                             <br>
-                            <h5 class="lh-lg fw-bold text-500"><p style="color: white;">Enlaces de interés</p></h5>
-                            <p style="color: white;"><a href="" class="text-reset">Productos</a></p>
-                            <p style="color: white;"><a href="" class="text-reset">Categorias</a></p>
-                            <p style="color: white;"><a href="img\descargas\CondicionesMiniatureCars.pdf" download="CondicionesMiniatureCars.pdf" class="text-reset">Términos y condiciones</a>
+                            <h5 class="lh-lg fw-bold text-500"><p style="color: white;">{{ __('Enlaces de interés') }}</p></h5>
+                            <p style="color: white;"><a href="" class="text-reset">{{ __('Productos') }}</a></p>
+                            <p style="color: white;"><a href="" class="text-reset">{{ __('Categorías') }}</a></p>
+                            <p style="color: white;"><a href="img\descargas\CondicionesMiniatureCars.pdf" download="CondicionesMiniatureCars.pdf" class="text-reset">{{ __('Términos y condiciones') }}</a>
                             </p>
                             <p style="color: white;"><a href="#!" class="text-reset"
-                                    onclick="alert('Si necesita ayuda, por favor, pongase en contacto a traves de MiniatureCars@gmail.com');">Ayuda</a>
+                                    onclick="alert('Si necesita ayuda, por favor, pongase en contacto a traves de MiniatureCars@gmail.com');">{{ __('Ayuda') }}</a>
                             </p>
                         </div>
                         <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 ">
                             <br>
-                        <h5 class="lh-lg fw-bold text-500"><p style="color: white;">Contacto</p></h5>
+                        <h5 class="lh-lg fw-bold text-500"><p style="color: white;">{{ __('Contacto') }}</p></h5>
                             <p style="color: white;"><i class="fas fa-home me-3 text-reset"></i> Sevilla, Sev 41005, SP</p>
                             <p style="color: white;">
                                 <i class="fas fa-envelope me-3 text-reset"></i>
@@ -173,10 +172,10 @@
             <div class="col-lg-4 col-md-6 order-0">
                 <p class="text-200 text-center">All rights Reserved &copy; MiniatureCars, 2023</p>
             </div>
-
+    
         </div>
-
-
+    
+    
     </section>
 </body>
 
