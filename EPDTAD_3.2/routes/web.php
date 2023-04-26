@@ -53,6 +53,7 @@ Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
 
+
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', App\Http\Controllers\UserController::class);
     Route::resource('rols', App\Http\Controllers\RolController::class);
