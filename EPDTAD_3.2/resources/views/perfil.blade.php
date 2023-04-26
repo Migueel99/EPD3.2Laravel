@@ -53,7 +53,11 @@
 
                                         </form>
                                     </div>
-                                   
+
+                                        <span>{{__('Idioma')}}:</span>
+
+                                    <a  href="{{route('set_language', ['es'])}}">{{ __("Spanish") }}</a>
+                                    <a class="mb-3" href="{{route('set_language', ['en'])}}">{{ __("English") }}</a>
                                     <div>
                                         <a href="{{ route('logout') }} "
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

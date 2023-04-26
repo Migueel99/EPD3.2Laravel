@@ -52,6 +52,7 @@ Route::get('/users', function () {
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
+Route::get('/set_language/{lang}', [App\Http\Controllers\Controller::class, 'set_language'])->name('set_language');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', App\Http\Controllers\UserController::class);
