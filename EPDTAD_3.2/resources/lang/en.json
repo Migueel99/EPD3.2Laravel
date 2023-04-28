@@ -50,7 +50,11 @@
     "Mis datos": "My data",
     "Mis direcciones": "My addresses",
     "Precio/Unidad" :"Price/Unit",
-    "unidades" : "units"
+    "unidades" : "units",
+    "No hay productos en el carrito": "There are no products in the cart",
+    "No hay productos en la lista de deseos": "There are no products in the wish list",
+    "Selecciona una dirección de envío": "Select a shipping address"
+
 
 
 
