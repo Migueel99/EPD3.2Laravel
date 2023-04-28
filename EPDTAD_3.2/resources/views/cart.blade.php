@@ -33,29 +33,6 @@
                                         <div class="col-3">
                                             <h6 class="text-700">{{ $producto->producto->nombre }}</h6>
                                         </div>
-                                        @if ($producto->cantidad >= $producto->producto->stock)
-                                            <div class="col-1">
-                                                <button disabled style="border:none; border-radius:50%">+</button>
-                                            </div>
-                                        @else
-                                            <div class="col-1">
-                                                <a href=""
-                                                    onclick="event.preventDefault(); document.getElementById('{{'sumar-form-'.$producto->id}}').submit();">
-                                                    <button style="border:none; border-radius:50%">+</button>
-                                                </a>
-                                            </div>
-                                            <form id="{{'sumar-form-'.$producto->id}}" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form"
-                                                enctype="multipart/form-data">
-                                                {{ method_field('PATCH') }}
-                                                @csrf
-    
-                                                    {{ Form::hidden('cantidad', $producto->cantidad + 1) }}
-                                                </form>
-                                        @endif
-                                        <div class="col-1">
-                                            <p class="text-500">{{ $producto->cantidad }}</p>
-                                        </div>
-
                                         <div class="col-1">
 
                                             <a href=""
@@ -82,6 +59,29 @@
                                                 @method('DELETE')
                                             </form>
                                         @endif
+                                        <div class="col-1">
+                                            <p class="text-500">{{ $producto->cantidad }}</p>
+                                        </div>
+                                        @if ($producto->cantidad >= $producto->producto->stock)
+                                        <div class="col-1">
+                                            <button disabled style="border:none; border-radius:50%">+</button>
+                                        </div>
+                                    @else
+                                        <div class="col-1">
+                                            <a href=""
+                                                onclick="event.preventDefault(); document.getElementById('{{'sumar-form-'.$producto->id}}').submit();">
+                                                <button style="border:none; border-radius:50%">+</button>
+                                            </a>
+                                        </div>
+                                        <form id="{{'sumar-form-'.$producto->id}}" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form"
+                                            enctype="multipart/form-data">
+                                            {{ method_field('PATCH') }}
+                                            @csrf
+
+                                                {{ Form::hidden('cantidad', $producto->cantidad + 1) }}
+                                            </form>
+                                    @endif
+
 
                                         <div class="col-2">
                                             <p class="text-500">{{ $producto->producto->precio * $producto->cantidad }}
@@ -100,7 +100,7 @@
 
                         <hr>
                         <div>
-                            <a href="{{ route('checkout') }}" class="btn btn-primary">Realizar pedido</a>
+                            <a href="{{ route('checkout') }}" class="btn btn-primary text-primary mb-2">Realizar pedido</a>
                         </div>
                     @else
                         <h2>No hay productos en el carrito</h2>
@@ -112,13 +112,13 @@
         </div>
     </div>
     </div>
-    
+
     <section class="py-0 bg-1000">
         <div class="container text-center text-md-start mt-5">
                     <div class="row mt-3 ">
                         <div class="col-sm-12 col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 text-center">
                             <br>
-                            
+
                         <h5 class="lh-lg fw-bold text-500"><p style="color: white;">{{ __('Síguenos en RRSS') }}</p></h5>
                             <a href="#!">
                                 <svg  class="svg-inline--fa fa-instagram fa-w-14 fs-2 me-2" aria-hidden="true"
@@ -179,10 +179,10 @@
             <div class="col-lg-4 col-md-6 order-0">
                 <p class="text-200 text-center">All rights Reserved &copy; MiniatureCars, 2023</p>
             </div>
-    
+
         </div>
-    
-    
+
+
     </section>
 </body>
 
