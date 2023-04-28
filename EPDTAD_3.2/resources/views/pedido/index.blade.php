@@ -46,12 +46,12 @@
                                 <thead>
                                     <tr
                                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                        <th class="px-4 py-3">ID</th>
+                                        <th class="px-4 py-3 text-center">ID</th>
 
-                                        <th class="px-4 py-3">ID carrito</th>
+                                        <th class="px-4 py-3 text-center">ID carrito</th>
                                         <th class="px-4 py-3">Estado</th>
-                                        <th class="px-4 py-3">Total</th>
-                                        <th class="px-4 py-3">Acciones</th>
+                                        <th class="px-4 py-3 text-center">Total</th>
+                                        <th class="px-4 py-3 text-center">Acciones</th>
 
                                         <th></th>
                                     </tr>
@@ -59,10 +59,11 @@
                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                                     @foreach ($pedidos as $pedido)
                                         <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">{{ $pedido->id }}</td>
+                                            <td class="px-4 py-3 text-center">{{ $pedido->id }}</td>
+                                            <td class="px-4 py-3 text-center">{{ $pedido->carrito_id }}</td>
                                             <td class="px-4 py-3">{{ $pedido->estado }}</td>
-                                            <td class="px-4 py-3">{{ $pedido->total }}</td>
-                                            <td class="px-4 py-3">
+                                            <td class="px-4 py-3 text-center">{{ $pedido->total }}</td>
+                                            <td class="px-4 py-3 text-center">
                                                 <form action="{{ route('pedidos.destroy', $pedido->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary "
                                                         href="{{ route('pedidos.show', $pedido->id) }}"><i

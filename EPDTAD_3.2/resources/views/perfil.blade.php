@@ -67,8 +67,14 @@
                                                 @csrf
                                             </form>
                                         </a>
+                                        @role('admin')
+                                        <a href="{{ route('test') }}"><button type="button"
+                                                class="btn btn-primary mx-2 px-auto">{{__('DashBoard')}}</button>
+                                        </a>
+                                        @endrole
                                         <a href="{{ route('inicio') }}"><button type="button"
-                                                class="btn btn-primary mx-2 px-auto">{{__('Volver')}}</button></a>
+                                            class="btn btn-primary mx-2 px-auto">{{__('Volver')}}</button>
+                                    </a>
                                     </div>
                                 </div>
                             </div>

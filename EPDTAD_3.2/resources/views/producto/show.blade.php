@@ -7,15 +7,17 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Mostrar Coche</span>
+                            <h2 class="card-title">Datos del coche</h2>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('productos.index') }}"> {{ __('Back') }}</a>
+                            <button>
+                            <a class="btn btn-primary" href="{{ route('productos.index') }}"> {{ __('Volver') }}</a>
+                            </button>
                         </div>
                     </div>
 
                     <div class="card-body">
-
+                    
                         <div class="form-group">
                             <strong>Nombre:</strong>
                             {{ $producto->nombre }}
