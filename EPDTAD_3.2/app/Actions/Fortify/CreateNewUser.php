@@ -31,7 +31,7 @@ class CreateNewUser implements CreatesNewUsers
             ],
             'password' => $this->passwordRules(),
             //añadir telefono
-            'telefono' => ['required', 'string', 'max:255'],
+            'telefono' => ['required', 'string', 'regex:/^[0-9]{10}$/'],
             ])->validate();
 
 
@@ -41,7 +41,7 @@ class CreateNewUser implements CreatesNewUsers
             'telefono' => $input['telefono'],
             'password' => Hash::make($input['password']),
         ]);
-        
+
 
         // Asignar el rol de cliente al usuario
         $user->assignRole('cliente');
