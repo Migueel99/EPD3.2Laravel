@@ -57,9 +57,12 @@
                     </div>
                 </div>
                 @guest
-                    <a class="btn btn-white shadow-warning text-warning" href="{{ route('login') }}"> <i
+                    <a class="btn btn-warning shadow-warning text-warning" href="{{ route('login') }}"> <i
                             class="fas fa-user me-2"></i>{{ __('Login') }}
                     </a>
+                    <a class="btn btn-warning shadow-warning ms-2 text-warning" href="{{ route('register') }}"> <i
+                        class="fas fa-user me-2"></i>{{ __('Register') }}
+                </a>
                 @else
                     <a href="" onclick="event.preventDefault(); document.getElementById('cart-form').submit();">
                         <button class="shadow-warning text-warning" type="submit" style="border-radius:50%; border:0">
