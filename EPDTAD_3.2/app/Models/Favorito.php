@@ -1,43 +1,49 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Direccione
+ * Class Favorito
  *
  * @property $id
- * @property $direccion
  * @property $user_id
+ * @property $productos_id
  * @property $created_at
  * @property $updated_at
  *
  * @property User $user
+ * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Direccione extends Model
+class Favorito extends Model
 {
-
+    
     static $rules = [
-		'direccion' => 'required',
-    'codigo_postal' => 'required',
-    'ciudad' => 'required',
-    'provincia' => 'required',
 		'user_id' => 'required',
-    'pais' => 'required',
-    'telefono' => 'required',
+		'productos_id' => 'required',
     ];
 
     protected $perPage = 20;
 
-    protected $fillable = ['direccion','user_id','codigo_postal','ciudad','provincia'];
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['user_id','productos_id'];
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function user()
     {
         return $this->hasOne('App\User', 'id', 'user_id');
     }
-
+    
+    
 
 }

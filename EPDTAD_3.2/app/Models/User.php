@@ -61,4 +61,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Models\Pedido', 'user_id', 'id');
     }
+
+    public function favoritos()
+    {
+        return $this->hasMany('App\Models\Favorito', 'user_id', 'id');
+    }
 }

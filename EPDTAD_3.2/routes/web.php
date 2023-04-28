@@ -64,6 +64,10 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::resource('producto-pedido', App\Http\Controllers\ProductoPedidoController::class);
     Route::resource('pedidos', App\Http\Controllers\PedidoController::class);
     Route::resource('direcciones', App\Http\Controllers\DireccioneController::class);
+    Route::resource('favoritos', App\Http\Controllers\FavoritoController::class);
+    Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
+    Route::resource('categoria-productos', App\Http\Controllers\CategoriaProductoController::class);
+    
 
 }
 );

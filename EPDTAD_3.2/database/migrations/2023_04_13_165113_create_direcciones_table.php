@@ -18,6 +18,16 @@ return new class extends Migration
             $table->string('direccion');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('ciudad');
+            $table->int('codigo_postal');
+            $table->string('provincia');
+            $table->string('pais');
+            $table->string('telefono');
+            
+
+            'codigo_postal','ciudad','provincia'
+
+
             $table->timestamps();
         });
     }
