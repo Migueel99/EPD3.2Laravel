@@ -6,8 +6,8 @@
             <div class="card-wrapper col-12 col-sm-12 col-md-8 col-lg-4 mt-5">
                 <div class="brand text-center mb-3">
                     <a class="navbar-brand d-inline-flex" href="{{route('inicio')}}"><h1
-                            class="text-1000  fw-bold  text-gradient">Login</h1></a>
-                    <div class="card">
+                            class="text-1000  fw-bold  text-gradient">{{__('Login')}}</h1></a>
+                    <div class="card mt-2 ">
                         <div class="card-body">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf

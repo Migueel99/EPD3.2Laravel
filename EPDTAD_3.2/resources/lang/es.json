@@ -71,5 +71,7 @@
     "English": "Inglés",
     "Language": "Idioma",
     "All rights Reserved": "Todos los Derechos Reservados",
-    "Checkout":"Pagar"
+    "Checkout":"Pagar",
+    "Oops! Something is wrong.": "Uups! Algo ha fallado.",
+    "Go Back":"Volver"
 }
