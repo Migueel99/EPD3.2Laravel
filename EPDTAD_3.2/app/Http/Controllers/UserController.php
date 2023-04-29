@@ -144,6 +144,10 @@ class UserController extends Controller
         foreach ($productos as $producto) {
             $pp = new ProductoPedido();
             $p = $producto->producto;
+            if($p->stock < $producto->cantidad){
+                return redirect()->route('inicio')
+                    ->with('error', 'No hay suficiente stock de '.$p->nombre);
+            }
             $p->stock = $p->stock - $producto->cantidad;
             $pp->id_producto = $producto->id;
             $pp->id_pedido = $pedido->id;

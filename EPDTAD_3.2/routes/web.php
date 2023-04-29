@@ -52,8 +52,14 @@ Route::get('/users', function () {
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
+Route::view('/404', 'errors.404');
 
 Route::get('/set_language/{lang}', [App\Http\Controllers\Controller::class, 'set_language'])->name('set_language');
+
+Route::get('/pedidosrealizados',function(){
+    return view('pedidos');
+})->name('pedidosrealizados')->middleware(['auth']);
+})
 
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::resource('users', App\Http\Controllers\UserController::class);
@@ -67,7 +73,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::resource('favoritos', App\Http\Controllers\FavoritoController::class);
     Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
     Route::resource('categoria-productos', App\Http\Controllers\CategoriaProductoController::class);
-    
+
 
 }
 );

@@ -6,124 +6,68 @@
 </head>
 
 <body>
-
-    <div class="container-fluid pb-5">
-        <br>
+    <section>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
             <div class="container"><a class="navbar-brand d-inline-flex" href="{{ route('inicio') }}"><span class="text-1000 fs-3 fw-bold ms-2 text-gradient">MiniatureCars</span></a>
             </div>
         </nav>
-        <div class="row justify-content-md-center">
-            <div class="card-wrapper col-12 col-md-4 mt-5">
-                <div class="brand text-center mb-3">
-                    <a class="navbar-brand d-inline-flex" href="{{route('inicio')}}">
-                        <h1 class="text-1000  fw-bold  text-gradient">Carrito de la compra</h1>
-                    </a>
-                    <div class="card">
-                        <div class="card-body">
-                            {{$error = false}}
-                            {{$menerror =""}}
-                            @if (Auth::user()->carritos->productoCarritos->count() > 0)
-                            @foreach (Auth::user()->carritos->productoCarritos as $producto)
-                            <div class="row">
-                                <div class="col-3">
-                                    <img src="{{ asset('img/productos/' . $producto->producto->imagen) }}" alt="imagen" class="img-fluid">
-                                </div>
-                                <div class="col-3">
-                                    <h6 class="text-700">{{ $producto->producto->nombre }}</h6>
-                                </div>
-                                <div class="col-1">
+        <div class="card-wrapper">
+            <div class="brand text-center mb-3">
+                <h1 class="text-1000  fw-bold  text-gradient ">Pedidos realizados</h1>
 
-                                    <a href="" onclick="event.preventDefault(); document.getElementById('{{'restar-form-'.$producto->id}}').submit();">
-                                        <button style="border:none; border-radius:50%">-</button>
-                                    </a>
-                                </div>
+                <div class="card">
+                    <div class="card-body p-4">
+                        <div class="d-flex text-black" style="border-radius: 15px;">
 
-                                @if ($producto->cantidad > 1)
-                                <form id="{{'restar-form-'.$producto->id}}" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form" enctype="multipart/form-data">
-                                    {{ method_field('PATCH') }}
-                                    @csrf
 
-                                    {{ Form::hidden('cantidad', $producto->cantidad - 1) }}
-                                </form>
-                                @else
-                                <form id="{{'restar-form-'.$producto->id}}" style="display:none" action="{{ route('producto-carrito.destroy', $producto->id) }}" method="POST">
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1">Pedidos de {{ Auth::user()->name }}</h5>
 
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                                @endif
-                                <div class="col-1">
-                                    <p class="text-500">{{ $producto->cantidad }}</p>
-                                </div>
-                                @if ($producto->cantidad >= $producto->producto->stock)
-                                <div class="col-1">
-                                    <button disabled style="border:none; border-radius:50%">+</button>
-                                </div>
-                                @else
-                                <div class="col-1">
-                                    <a href="" onclick="event.preventDefault(); document.getElementById('{{'sumar-form-'.$producto->id}}').submit();">
-                                        <button style="border:none; border-radius:50%">+</button>
-                                    </a>
+                                @foreach(Auth::user()->pedidos as $pedido)
+
+
+
+                                <h4>Pedido nº {{ $pedido->id}}</h4>
+                                @foreach($pedido->productoPedidos as $producto)
+
+                                <div class=" w-full overflow-hidden rounded-lg shadow-xs">
+                                    <div class="w-full overflow-x-auto text-center">
+                                        <table class="w-full whitespace-no-wrap mx-auto mb-5">
+                                            <thead>
+                                                <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 ">
+                                                    <th class="px-4 py-3 text-center">Nombre</th>
+                                                    <th class="px-4 py-3">Descripcion</th>
+                                                    <th class="px-4 py-3 text-center">Precio</th>
+                                                    <th class="px-4 py-3 text-center">Cantidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                                <tr class="text-gray-700 dark:text-gray-400">
+                                                    <td class="px-4 py-3  text-center">{{$producto->producto->nombre}}</td>
+                                                    <td class="px-4 py-3">{{$producto->producto->descripcion}}</td>
+                                                    <td class="px-4 py-3  text-center">{{$producto->producto->precio}}</td>
+                                                    <td class="px-4 py-3">{{$producto->cantidad}}</td>
+
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
 
-                                <form id="{{'sumar-form-'.$producto->id}}" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form" enctype="multipart/form-data">
+                                @endforeach
 
-                                    {{ method_field('PATCH') }}
-                                    @csrf
+<hr>
+                                @endforeach
 
-                                    {{ Form::hidden('cantidad', $producto->cantidad + 1) }}
-                                </form>
-                                @endif
-
-
-
-                                <div class="col-2">
-                                    <p class="text-500">{{ $producto->producto->precio * $producto->cantidad }}
-                                    </p>
-                                </div>
-
-                                @if($producto->cantidad > $producto->producto->stock)
-                                @php
-                                $error = true;
-                                $menerror="No hay suficiente stock";
-                                @endphp
-                                @endif
-
-                                @if ($error)
-                                <p style="color:red;">{{$menerror}}</p>
-                                @endif
                             </div>
-                            <hr>
-                            @endforeach
                         </div>
-
-                        <hr>
-                        <h2>Total: {{ Auth::user()->carritos->obtenerPrecio() }} €</h2>
-
-                        <hr>
-                        <div>
-                            <a href="{{ route('inicio') }}" class="btn btn-primary text-primary mb-2">Seguir
-                                comprando</a>
-                            @if($error == true)
-                            <a href="#" class="btn btn-primary text-primary mb-2">{{$menerror}}</a>
-
-                            @else
-                            <a href="{{ route('checkout') }}" class="btn btn-primary text-primary mb-2">Realizar pedido</a>
-
-                            @endif
-                        </div>
-                        @else
-                        <h2>No hay productos en el carrito</h2>
-                        @endif
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-
+    </section>
+    <br><br>
     <section class="py-0 bg-1000">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3 ">
@@ -184,7 +128,7 @@
         <hr class="border border-800" />
         <div class="row flex-center pb-3">
             <div class="col-lg-4 col-md-6 order-0">
-                <p class="text-200 text-center">All rights Reserved &copy; MiniatureCars, 2023</p>
+                <p class="text-200 text-center">{{__('All rights Reserved')}} &copy; MiniatureCars, 2023</p>
             </div>
 
         </div>

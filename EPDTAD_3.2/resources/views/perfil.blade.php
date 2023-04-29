@@ -34,8 +34,12 @@
                                     <div>
                                         <span>Direcciones de envío:</span>
                                         @foreach (Auth::user()->direcciones as $direcciones)
-                                            <p class="mb-2 pb-1" style="color: #2b2a2a;">{{ $direcciones->direccion }}
-                                            </p>
+                                            <p class="mb-2 pb-1" style="color: #2b2a2a;">Dirección: {{ $direcciones->direccion }}
+                                                - {{ $direcciones->ciudad }} - {{ $direcciones->codigo_postal }} -
+                                                {{ $direcciones->provincia }}</p>
+                                            <p class="mb-2 pb-1">Telefono: {{$direcciones->telefono}}</p>
+                                            
+                                            <hr>
                                         @endforeach
 
                                         <button onclick="mostrarFormulario()" class="mb-2">Añadir dirección</button>
@@ -46,6 +50,10 @@
                                             @csrf
                                             {{ Form::hidden('user_id', Auth::user()->id) }}
                                             {{ Form::text('direccion', $direccione->direccion, ['class' => 'form-control' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'Direccion']) }}
+                                            {{Form::text('ciudad', $direccione->ciudad, ['class' => 'form-control' . ($errors->has('ciudad') ? ' is-invalid' : ''), 'placeholder' => 'Ciudad'])}}
+                                            {{Form::text('codigo_postal', $direccione->codigo_postal, ['class' => 'form-control' . ($errors->has('codigo_postal') ? ' is-invalid' : ''), 'placeholder' => 'Codigo Postal'])}}
+                                            {{Form::text('provincia', $direccione->provincia, ['class' => 'form-control' . ($errors->has('provincia') ? ' is-invalid' : ''), 'placeholder' => 'Provincia'])}}
+                                            {{Form::text('pais', $direccione->pais, ['class' => 'form-control' . ($errors->has('pais') ? ' is-invalid' : ''), 'placeholder' => 'Pais' ])}}
                                             <div class="box-footer mt20 mt-2">
                                                 <button type="submit"
                                                     class="btn btn-primary">{{ __('Enviar') }}</button>
@@ -61,7 +69,7 @@
                                     <div>
                                         <a href="{{ route('logout') }} "
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <button class="btn btn-primary mx-2 px-auto">Logout</button>
+                                            <button class="btn btn-primary mx-2 px-auto mb-2">Logout</button>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                                 class="d-none">
                                                 @csrf
@@ -69,7 +77,7 @@
                                         </a>
                                         @role('admin')
                                         <a href="{{ route('test') }}"><button type="button"
-                                                class="btn btn-primary mx-2 px-auto">{{__('DashBoard')}}</button>
+                                                class="btn btn-primary mx-2 px-auto mb-2">{{__('DashBoard')}}</button>
                                         </a>
                                         @endrole
                                         <a href="{{ route('inicio') }}"><button type="button"
