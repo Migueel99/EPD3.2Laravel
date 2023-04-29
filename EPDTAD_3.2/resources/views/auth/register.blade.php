@@ -5,7 +5,7 @@
             <div class="card-wrapper col-12 col-sm-12 col-md-8 col-lg-4 mt-5">
                 <div class="brand text-center mb-3">
                     <a class="navbar-brand d-inline-flex" href="{{route('register')}}">
-                        <h1 class="text-1000  fw-bold  text-gradient">Registro</h1>
+                        <h1 class="text-1000  fw-bold  text-gradient">{{__('Registro')}}</h1>
                     </a>
                 </div>
                 <div class="card">
@@ -43,7 +43,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="telefono">{{ __('Telefono') }}</label>
+                                <label for="telefono">{{ __('Teléfono') }}</label>
                                 <input id="telefono" type="tel"
                                     class="form-control @error('telefono') is-invalid @enderror" name="telefono"
                                     value="{{ old('telefono') }}" required autocomplete="telefono">
