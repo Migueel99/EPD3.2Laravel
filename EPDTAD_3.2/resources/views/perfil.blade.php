@@ -38,7 +38,7 @@
                                                 - {{ $direcciones->ciudad }} - {{ $direcciones->codigo_postal }} -
                                                 {{ $direcciones->provincia }}</p>
                                             <p class="mb-2 pb-1">Telefono: {{$direcciones->telefono}}</p>
-                                            
+
                                             <hr>
                                         @endforeach
 
@@ -77,7 +77,7 @@
                                         </a>
                                         @role('admin')
                                         <a href="{{ route('test') }}"><button type="button"
-                                                class="btn btn-primary mx-2 px-auto mb-2">{{__('DashBoard')}}</button>
+                                                class="btn btn-primary mx-2 px-auto mb-2">{{__('Dashboard')}}</button>
                                         </a>
                                         @endrole
                                         <a href="{{ route('inicio') }}"><button type="button"

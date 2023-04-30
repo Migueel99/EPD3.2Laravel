@@ -53,9 +53,7 @@ class DireccioneController extends Controller
         try{
             DB::beginTransaction();
             $direccione = Direccione::create($request->all());
-            DB::afterCommit(function() use ($direccione){
-                $direccione->save();
-            });
+            $direccione->save();
             DB::commit();
             return redirect()->route('perfil')
                 ->with('success', 'Direccione created successfully.');

@@ -31,7 +31,7 @@ class CreateNewUser implements CreatesNewUsers
             ],
             'password' => $this->passwordRules(),
             //añadir telefono
-            'telefono' => ['required', 'string', 'regex:/^[0-9]{10}$/'],
+            'telefono' => ['required', 'string', 'regex:/^[0-9]{9}$/'],
             ])->validate();
 
 
