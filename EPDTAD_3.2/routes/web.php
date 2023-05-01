@@ -71,9 +71,8 @@ Route::resource('favoritos', App\Http\Controllers\FavoritoController::class)->mi
 Route::resource('producto-carrito', App\Http\Controllers\ProductoCarritoController::class)->middleware(['auth']);
 Route::resource('producto-pedido', App\Http\Controllers\ProductoPedidoController::class)->middleware(['auth']);
 Route::resource('pedidos', App\Http\Controllers\PedidoController::class)->middleware(['auth']);
-Route::resource('direcciones', App\Http\Controllers\DireccioneController::class)->middleware(['auth']);
+Route::resource('direcciones', App\Http\Controllers\DireccioneController::class)->middleware(['auth', 'role:admin']);
 Route::resource('categoria-productos', App\Http\Controllers\CategoriaProductoController::class)->middleware(['auth']);
-
 
 Route::resource('users', App\Http\Controllers\UserController::class)->middleware(['auth', 'role:admin']);
 Route::resource('rols', App\Http\Controllers\RolController::class)->middleware(['auth', 'role:admin']);

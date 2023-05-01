@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\DB;
  */
 class RolController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show', 'create', 'store', 'edit', 'update', 'destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
