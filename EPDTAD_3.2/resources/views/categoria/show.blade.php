@@ -11,11 +11,11 @@
 
                     <label class="block text-sm">
                         <strong class="text-gray-700 dark:text-gray-400">Nombre:</strong>
-                        <strong class="text-gray-700 dark:text-gray-400">{{ $categoria->name }}</strong>
+                        <strong class="text-gray-700 dark:text-gray-400">{{ $categoria->nombre }}</strong>
                     </label>
                     <label class="block text-sm">
                         <strong class="text-gray-700 dark:text-gray-400">Descripcion:</strong>
-                        <strong class="text-gray-700 dark:text-gray-400">{{ $categoria->email }}</strong>
+                        <strong class="text-gray-700 dark:text-gray-400">{{ $categoria->descripcion }}</strong>
                     </label>
 
                 </div>

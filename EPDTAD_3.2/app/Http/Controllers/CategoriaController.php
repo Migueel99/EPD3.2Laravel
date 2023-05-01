@@ -45,12 +45,21 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Categoria::$rules);
-
-        $categoria = Categoria::create($request->all());
-
-        return redirect()->route('categorias.index')
-            ->with('success', 'Categoria created successfully.');
+        try{
+            DB::beginTransaction();
+            $categoria = Categoria::create($request->all());
+            DB::afterCommit(function() use ($categoria){
+                $categoria->save();
+            });
+            DB::commit();
+            return redirect()->route('categorias.index')
+                ->with('success', 'Categoria created successfully.');
+        }
+        catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->route('categorias.index')
+                ->with('error', 'Categoria created unsuccessfully.');
+        }
     }
 
     /**
