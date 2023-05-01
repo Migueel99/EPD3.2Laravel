@@ -19,7 +19,7 @@
                 <div class="card-wrapper col-12 col-sm-12 col-md-8 col-lg-4 ">
                     <div class="brand text-center mb-3">
                         <a class="navbar-brand d-inline-flex" href="">
-                            <h1 class="text-1000  fw-bold  text-gradient ">Perfil de usuario</h1>
+                            <h1 class="text-1000  fw-bold  text-gradient ">{{ __('Perfil de usuario') }}</h1>
                         </a>
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-4">
@@ -27,13 +27,15 @@
 
 
                                     <div class="flex-grow-1 ms-3 ">
-                                        <h5 class="mb-1">Perfil de {{ Auth::user()->name }}</h5>
-                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>Email:</strong> {{ Auth::user()->email }}
+                                        <h5 class="mb-1"> {{ Auth::user()->name }}</h5>
+                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>{{ __('Email') }}
+                                                :</strong> {{ Auth::user()->email }}
                                         </p>
-                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>Teléfono:</strong>{{ Auth::user()->telefono }}
+                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>{{ __('Teléfono') }}:
+                                            </strong>{{ Auth::user()->telefono }}
                                         </p>
                                         <div>
-                                            <span><strong>Direcciones de envío:</strong></span>
+                                            <span><strong>{{ __('Direcciones de envío') }}:</strong></span>
                                             @foreach (Auth::user()->direcciones as $direcciones)
                                             <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>Dirección:</strong>
                                                 {{ $direcciones->direccion }}
