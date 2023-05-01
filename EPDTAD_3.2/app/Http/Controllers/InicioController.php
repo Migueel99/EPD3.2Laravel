@@ -19,7 +19,7 @@ class InicioController
      */
     public function index()
     {
-        $productos = Producto::paginate();
+        $productos = Producto::paginate(9);
 
         return view('inicio', compact('productos'));
     }

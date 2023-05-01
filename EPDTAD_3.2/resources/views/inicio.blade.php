@@ -61,8 +61,8 @@
                             class="fas fa-user me-2"></i>{{ __('Login') }}
                     </a>
                     <a class="btn btn-warning shadow-warning ms-2 text-warning" href="{{ route('register') }}"> <i
-                        class="fas fa-user me-2"></i>{{ __('Register') }}
-                </a>
+                            class="fas fa-user me-2"></i>{{ __('Register') }}
+                    </a>
                 @else
                     <a href="" onclick="event.preventDefault(); document.getElementById('cart-form').submit();">
                         <button class="shadow-warning text-warning" type="submit" style="border-radius:50%; border:0">
@@ -138,7 +138,9 @@
                                         <a href="#!">
                                             <div class="mask">
                                                 <div class="d-flex justify-content-start align-items-end h-100">
-                                                    <h5><span class="badge bg-primary ms-2">New</span></h5>
+                                                    <button id="swapHeart" class="btn btn-default swap">
+                                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                                    </button>
                                                 </div>
                                             </div>
                                             <div class="hover-overlay">
@@ -155,11 +157,13 @@
                                         <a href="" class="text-reset text-justify">
                                             <p>{{ $producto->descripcion }}</p>
                                         </a>
-                                        <p style="color: #000; font-size: large"><strong>{{ __('Precio/Unidad') }}: </strong>{{ $producto->precio }} €</p>
-                                        <p style="color: #000; font-size: large"><strong>{{ __('Stock') }}: </strong>{{ $producto->stock }} {{ __('unidades') }}</p>
+                                        <p style="color: #000; font-size: large"><strong>{{ __('Precio/Unidad') }}:
+                                            </strong>{{ $producto->precio }} €</p>
+                                        <p style="color: #000; font-size: large"><strong>{{ __('Stock') }}:
+                                            </strong>{{ $producto->stock }} {{ __('unidades') }}</p>
                                     </div>
                                     @if ($producto->stock > 0)
-                                        <div class="d-grid gap-2 align-self-center pb-3" >
+                                        <div class="d-grid gap-2 align-self-center pb-3">
                                             @guest
                                                 <div class="d-grid gap-2 "><button type="button"
                                                         class="btn btn-lg btn-dark" disabled href="#!"
@@ -216,9 +220,10 @@
                             </div>
                         @endfor
 
-                        {!! $productos->links() !!}
-
                     </div>
+                    <div class="">
+                    {!! $productos->links() !!}
+                </div>
 
                 </div>
             </div>
@@ -307,7 +312,7 @@
             <hr class="border border-800" />
             <div class="row flex-center pb-3">
                 <div class="col-lg-4 col-md-6 order-0">
-                    <p class="text-200 text-center">{{__('All rights Reserved')}}&copy; MiniatureCars, 2023</p>
+                    <p class="text-200 text-center">{{ __('All rights Reserved') }}&copy; MiniatureCars, 2023</p>
                 </div>
 
             </div>
@@ -355,6 +360,7 @@
                 document.body.removeChild(popup);
             });
         }
+
     </script>
 
 </body>
