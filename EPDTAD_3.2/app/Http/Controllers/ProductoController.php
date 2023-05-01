@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Producto;
+use App\Models\CategoriaProducto;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 /**
  * Class ProductoController
  * @package App\Http\Controllers
@@ -12,13 +16,11 @@ use Illuminate\Support\Facades\DB;
 class ProductoController extends Controller
 {
 
-   
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
 
     public function index()
     {
@@ -28,7 +30,8 @@ class ProductoController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
 
-    public function mostrarProducto(){
+    public function mostrarProducto()
+    {
 
         $productos = Producto::paginate(9);
 
@@ -43,8 +46,9 @@ class ProductoController extends Controller
      */
     public function create()
     {
+        $categorias = Categoria::all();
         $producto = new Producto();
-        return view('producto.create', compact('producto'));
+        return view('producto.create', compact('producto', 'categorias'));
     }
 
     /**
@@ -55,47 +59,31 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-        $producto =  new Producto();
-        $producto->nombre = $request->input('nombre');
-        $producto->descripcion = $request->input('descripcion');
-        $producto->precio = $request->input('precio');
-        if($request->hasFile("imagen")){
-            $file = $request->file("imagen");
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path()."/img/productos",$name);
-            $producto->imagen = $name;
-
-        }
-        $producto->stock = $request->input('stock');
-        $producto->save();
-
-        return redirect()->route('productos.index')
-            ->with('success', 'Producto created successfully.');
-        */
-        try{
+        try {
             DB::beginTransaction();
-            $producto =  new Producto();
+            $producto = new Producto();
             $producto->nombre = $request->input('nombre');
             $producto->descripcion = $request->input('descripcion');
             $producto->precio = $request->input('precio');
-            if($request->hasFile("imagen")){
+
+            if ($request->hasFile("imagen")) {
                 $file = $request->file("imagen");
-                $name = time().$file->getClientOriginalName();
-                $file->move(public_path()."/img/productos",$name);
+                $name = time() . $file->getClientOriginalName();
+                $file->move(public_path() . "/img/productos", $name);
                 $producto->imagen = $name;
 
             }
             $producto->stock = $request->input('stock');
-            //$producto->save();
-            DB::afterCommit(function() use ($producto){
-                $producto->save();
-            });
+            $producto->save();
+
+            $categoria = new CategoriaProducto();
+            $categoria->categoria_id = $request->input('categoria_id');
+            $categoria->productos_id = $producto->id;
+            $categoria->save();
             DB::commit();
             return redirect()->route('productos.index')
                 ->with('success', 'Producto creado correctamente.');
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
             return redirect()->route('productos.index')
                 ->with('error', 'Error al crear el producto');
@@ -123,9 +111,11 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
+        $categorias = Categoria::all();
+
         $producto = Producto::find($id);
 
-        return view('producto.edit', compact('producto'));
+        return view('producto.edit', compact('producto', 'categorias'));
     }
 
     /**
@@ -140,10 +130,10 @@ class ProductoController extends Controller
         $producto->nombre = $request->input('nombre');
         $producto->descripcion = $request->input('descripcion');
         $producto->precio = $request->input('precio');
-        if($request->hasFile("imagen")){
+        if ($request->hasFile("imagen")) {
             $file = $request->file("imagen");
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path()."/img/productos",$name);
+            $name = time() . $file->getClientOriginalName();
+            $file->move(public_path() . "/img/productos", $name);
             $producto->imagen = $name;
 
         }

@@ -25,14 +25,14 @@
             {{ Form::text('stock', $producto->stock, ['class' => 'block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input' . ($errors->has('stock') ? ' is-invalid' : ''), 'placeholder' => 'Stock']) }}
             {!! $errors->first('stock', '<div class="invalid-feedback">:message</div>') !!}
         </label>
-        <label class="block text-sm dark:text-gray-200">
-            Elegir Categoría
-        <select class="mb-3" name="direccion_id" id="direccion_id">
-            @foreach (categorias as $categoria)
-                <option value="{{ $categoria->id }}">{{ $categoria->direccion }}</option>
-            @endforeach
-        </select>
-    </label>
+        <div class="form-group">
+            <label for="categorias">Categorías:</label>
+            <select name="categorias[]" id="categorias" class="form-control" multiple>
+                @foreach($categorias as $categoria)
+                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
     </div>
     <br>
     <table>
