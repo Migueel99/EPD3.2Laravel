@@ -87,7 +87,7 @@
             <p>El usuario no está verificado si no encuentra en enlace puedes volver a generarlo <a onclick="event.preventDefault(); document.getElementById('form-verify').submit();">aquí</a></p>
             <form method="POST" action="{{ route('verification.send') }}" id="form-verify">
                 @csrf
-        
+
             </form>
             <button onclick="cerrarPopup()">Cerrar</button>
         </div>
@@ -138,19 +138,58 @@
                             <div class="card">
                                 <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
                                     <img src="{{ asset('img/productos/' . $producto->imagen) }}" class="w-100" height="200" onclick="mostrarPopup(this);" />
-                                    <a href="#!">
-                                        <div class="mask">
-                                            <div class="d-flex justify-content-start align-items-end h-100 me-2 mt-2 ms-3">
+                                    <div class="mask">
+                                        <div class="d-flex justify-content-start align-items-end h-100 me-2 mt-2 ms-3">
+                                            @if(Auth::user())
+                                            @if(Auth::user()->favoritos->where('productos_id', $producto->id)->first())
+
+
+                                            <a onclick="event.preventDefault(); document.getElementById('favoritod-{{ $producto->id }}').submit();">
+
+                        
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+</svg>
+                                            </a>
+
+
+
+                                            <form method="POST" action="{{ route('favoritos.destroy',Auth::user()->favoritos->where('productos_id', $producto->id)->first()) }}" id="{{'favoritod-'.$producto->id}}" role="form" enctype="multipart/form-data">
+
+                                                @csrf
+                                                @method('DELETE')
+
+                                            </form>
+
+                                            @else
+
+
+
+
+
+
+                                            <a onclick="event.preventDefault(); document.getElementById('favorito-{{ $producto->id }}').submit();">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="orange" class="bi bi-heart" viewBox="0 0 16 16">
                                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                                                 </svg>
-                                            </div>
+                                            </a>
+
+                                            <form method="POST" action="{{ route('favoritos.store') }}" id="{{'favorito-'.$producto->id}}" role="form" enctype="multipart/form-data">
+                                                @csrf
+                                                {{ Form::hidden('productos_id', $producto->id) }}
+                                                {{ Form::hidden('user_id', Auth::user()->id) }}
+
+                                            </form>
+
+                                            @endif
+
+                                            @endif
                                         </div>
-                                        <div class="hover-overlay">
-                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                                            </div>
+                                    </div>
+                                    <div class="hover-overlay">
+                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <a href="" class="text-reset text-center">
@@ -290,7 +329,7 @@
             </div>
             </div>
             <hr class="border border-800" />
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center pb-3">
                 <div class="col-lg-4 col-md-6 order-0">
                     <p class="text-200 text-center">{{ __('All rights Reserved') }}&copy; MiniatureCars, 2023</p>
                 </div>

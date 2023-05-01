@@ -31,6 +31,7 @@ class Producto extends Model
 		'precio' => 'required',
 		'imagen' => 'required',
 		'stock' => 'required',
+        'favoritos' => 'required',
     ];
 
     protected $perPage = 20;
@@ -40,7 +41,7 @@ class Producto extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','descripcion','precio','imagen','stock'];
+    protected $fillable = ['nombre','descripcion','precio','imagen','stock','favoritos'];
 
 
     /**

@@ -6,12 +6,16 @@ namespace App\Http\Controllers;
 use App\Models\CategoriaProducto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+
 /**
  * Class CategoriaProductoController
  * @package App\Http\Controllers
  */
 class CategoriaProductoController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      *

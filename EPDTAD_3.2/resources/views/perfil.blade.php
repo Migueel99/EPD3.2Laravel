@@ -54,6 +54,7 @@
                                             {{Form::text('codigo_postal', $direccione->codigo_postal, ['class' => 'form-control' . ($errors->has('codigo_postal') ? ' is-invalid' : ''), 'placeholder' => 'Codigo Postal'])}}
                                             {{Form::text('provincia', $direccione->provincia, ['class' => 'form-control' . ($errors->has('provincia') ? ' is-invalid' : ''), 'placeholder' => 'Provincia'])}}
                                             {{Form::text('pais', $direccione->pais, ['class' => 'form-control' . ($errors->has('pais') ? ' is-invalid' : ''), 'placeholder' => 'Pais' ])}}
+                                            {{Form::text('telefono', $direccione->telefono, ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Telefono' ])}}
                                             <div class="box-footer mt20 mt-2">
                                                 <button type="submit"
                                                     class="btn btn-primary">{{ __('Enviar') }}</button>
@@ -173,7 +174,7 @@
         </div>
         </div>
         <hr class="border border-800" />
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center pb-3">
             <div class="col-lg-4 col-md-6 order-0">
                 <p class="text-200 text-center">{{__('All rights Reserved')}} &copy; MiniatureCars, 2023</p>
             </div>

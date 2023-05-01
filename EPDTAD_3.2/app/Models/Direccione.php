@@ -32,7 +32,7 @@ class Direccione extends Model
 
     protected $perPage = 20;
 
-    protected $fillable = ['direccion','user_id','codigo_postal','ciudad','provincia'];
+    protected $fillable = ['direccion','user_id','codigo_postal','ciudad','provincia','pais','telefono'];
 
     public function user()
     {
