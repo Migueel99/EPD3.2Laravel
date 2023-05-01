@@ -1,10 +1,11 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
-use App\CategoriaProducto;
+use App\Models\CategoriaProducto;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 /**
  * Class CategoriaProductoController
  * @package App\Http\Controllers

@@ -59,7 +59,6 @@ Route::get('/set_language/{lang}', [App\Http\Controllers\Controller::class, 'set
 Route::get('/pedidosrealizados',function(){
     return view('pedidos');
 })->name('pedidosrealizados')->middleware(['auth']);
-})
 
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::resource('users', App\Http\Controllers\UserController::class);

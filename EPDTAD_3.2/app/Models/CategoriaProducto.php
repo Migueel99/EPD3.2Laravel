@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CategoriaProducto extends Model
 {
-    
+
     static $rules = [
 		'categoria_id' => 'required',
 		'productos_id' => 'required',
@@ -35,7 +35,7 @@ class CategoriaProducto extends Model
      */
     protected $fillable = ['categoria_id','productos_id'];
 
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -51,7 +51,7 @@ class CategoriaProducto extends Model
     {
         return $this->hasOne('App\Productos', 'id', 'productos_id');
     }
-    
+
 
 
 

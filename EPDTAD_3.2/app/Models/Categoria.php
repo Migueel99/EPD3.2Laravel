@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Categoria extends Model
 {
-    
+
     static $rules = [
 		'nombre' => 'required',
 		'descripcion' => 'required',
@@ -36,6 +36,6 @@ class Categoria extends Model
 
 
 
-    
+
 
 }
