@@ -21,6 +21,12 @@ use Illuminate\Support\Facades\Mail;
  */
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show', 'create', 'store');
+    }
+
     /**
      * Display a listing of the resource.
      *
