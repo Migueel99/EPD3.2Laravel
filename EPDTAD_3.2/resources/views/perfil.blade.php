@@ -21,7 +21,7 @@
                 <div class="card-wrapper col-12 col-sm-12 col-md-8 col-lg-4 ">
                     <div class="brand text-center mb-3">
                         <a class="navbar-brand d-inline-flex" href="">
-                            <h1 class="text-1000  fw-bold  text-gradient ">Perfil de usuario</h1>
+                            <h1 class="text-1000  fw-bold  text-gradient ">{{ __('Perfil de usuario') }}</h1>
                         </a>
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-4">
@@ -29,40 +29,44 @@
 
 
                                     <div class="flex-grow-1 ms-3 ">
-                                        <h5 class="mb-1">Perfil de {{ Auth::user()->name }}</h5>
-                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>Email:</strong> {{ Auth::user()->email }}
+                                        <h5 class="mb-1"> {{ Auth::user()->name }}</h5>
+                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>{{ __('Email') }}
+                                                :</strong> {{ Auth::user()->email }}
                                         </p>
-                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>Teléfono:</strong>{{ Auth::user()->telefono }}
+                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>{{ __('Teléfono') }}:
+                                            </strong>{{ Auth::user()->telefono }}
                                         </p>
                                         <div>
-                                            <span><strong>Direcciones de envío:</strong></span>
+                                            <span><strong>{{ __('Direcciones de envío') }}:</strong></span>
                                             @foreach (Auth::user()->direcciones as $direcciones)
-                                                <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>Dirección:</strong>
+                                                <p class="mb-2 pb-1" style="color: #2b2a2a;">
+                                                    <strong>{{ __('Dirección') }}:</strong>
                                                     {{ $direcciones->direccion }}
-                                                    - {{ $direcciones->ciudad }} - {{ $direcciones->codigo_postal }} -
-                                                    {{ $direcciones->provincia }}</p>
-                                                <p class="mb-2 pb-1"><strong>Teléfono:</strong> {{ $direcciones->telefono }}</p>
+                                                    - {{ $direcciones->codigo_postal }} -
+                                                    {{ $direcciones->ciudad }} - {{ $direcciones->provincia }}</p>
+                                                <p class="mb-2 pb-1"><strong>{{ __('País') }}:</strong>
+                                                    {{ $direcciones->pais }}</p>
 
                                                 <hr>
                                             @endforeach
 
-                                        <button onclick="mostrarFormulario()" class="mb-2">Añadir dirección</button>
-                                        <form id="formulario" style="display:none;" class="mt-2" method="POST"
-                                            action="{{ route('direcciones.store') }}" role="form"
-                                            enctype="multipart/form-data">
-                                            {{ method_field('POST') }}
-                                            @csrf
-                                            {{ Form::hidden('user_id', Auth::user()->id) }}
-                                            {{ Form::text('direccion', $direccione->direccion, ['class' => 'form-control' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'Direccion']) }}
-                                            {{Form::text('ciudad', $direccione->ciudad, ['class' => 'form-control' . ($errors->has('ciudad') ? ' is-invalid' : ''), 'placeholder' => 'Ciudad'])}}
-                                            {{Form::text('codigo_postal', $direccione->codigo_postal, ['class' => 'form-control' . ($errors->has('codigo_postal') ? ' is-invalid' : ''), 'placeholder' => 'Codigo Postal'])}}
-                                            {{Form::text('provincia', $direccione->provincia, ['class' => 'form-control' . ($errors->has('provincia') ? ' is-invalid' : ''), 'placeholder' => 'Provincia'])}}
-                                            {{Form::text('pais', $direccione->pais, ['class' => 'form-control' . ($errors->has('pais') ? ' is-invalid' : ''), 'placeholder' => 'Pais' ])}}
-                                            {{Form::text('telefono', $direccione->telefono, ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Telefono' ])}}
-                                            <div class="box-footer mt20 mt-2">
-                                                <button type="submit"
-                                                    class="btn btn-primary">{{ __('Enviar') }}</button>
-                                            </div>
+                                            <button onclick="mostrarFormulario()" class="mb-2">{{ __('Añadir dirección') }}</button>
+                                            <form id="formulario" style="display:none;" class="mt-2" method="POST"
+                                                action="{{ route('direcciones.store') }}" role="form"
+                                                enctype="multipart/form-data">
+                                                {{ method_field('POST') }}
+                                                @csrf
+                                                {{ Form::hidden('user_id', Auth::user()->id) }}
+                                                {{ Form::text('direccion', $direccione->direccion, ['class' => 'form-control' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'Direccion']) }}
+                                                {{ Form::text('ciudad', $direccione->ciudad, ['class' => 'form-control' . ($errors->has('ciudad') ? ' is-invalid' : ''), 'placeholder' => 'Ciudad']) }}
+                                                {{ Form::text('codigo_postal', $direccione->codigo_postal, ['class' => 'form-control' . ($errors->has('codigo_postal') ? ' is-invalid' : ''), 'placeholder' => 'Codigo Postal']) }}
+                                                {{ Form::text('provincia', $direccione->provincia, ['class' => 'form-control' . ($errors->has('provincia') ? ' is-invalid' : ''), 'placeholder' => 'Provincia']) }}
+                                                {{ Form::text('pais', $direccione->pais, ['class' => 'form-control' . ($errors->has('pais') ? ' is-invalid' : ''), 'placeholder' => 'Pais']) }}
+                                                {{ Form::text('telefono', $direccione->telefono, ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Telefono']) }}
+                                                <div class="box-footer mt20 mt-2">
+                                                    <button type="submit"
+                                                        class="btn btn-primary">{{ __('Enviar') }}</button>
+                                                </div>
 
                                             </form>
                                         </div>
