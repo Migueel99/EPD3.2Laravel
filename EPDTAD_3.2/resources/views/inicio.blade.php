@@ -87,7 +87,7 @@
             <p>El usuario no está verificado si no encuentra en enlace puedes volver a generarlo <a onclick="event.preventDefault(); document.getElementById('form-verify').submit();">aquí</a></p>
             <form method="POST" action="{{ route('verification.send') }}" id="form-verify">
                 @csrf
-        
+
             </form>
             <button onclick="cerrarPopup()">Cerrar</button>
         </div>
