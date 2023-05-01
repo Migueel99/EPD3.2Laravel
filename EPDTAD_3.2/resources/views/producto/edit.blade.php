@@ -30,7 +30,7 @@
                     @includeif('partials.errors')
 
                     <div class="card card-default">
-
+                        
                         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                             <form method="POST" action="{{ route('productos.update', $producto->id) }}" role="form"
                                 enctype="multipart/form-data">
@@ -40,8 +40,7 @@
                                 @include('producto.form')
 
                             </form>
-                            <a href="{{ route('productos.index') }}"><button class="btn btn-danger btn-sm mt-4">Volver</button></a>
-
+                            
                         </div>
                     </div>
                 </div>
