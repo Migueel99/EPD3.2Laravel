@@ -57,11 +57,16 @@
 
                                 @endforeach
 
-<hr>
+                                <hr>
                                 @endforeach
 
                             </div>
+                            
                         </div>
+                        <a href="{{ route('inicio') }}">
+                                <button type="button" class="btn btn-primary mx-2  mb-2 ">{{ __('Volver') }}
+                                </button>
+                            </a>
                     </div>
                 </div>
             </div>

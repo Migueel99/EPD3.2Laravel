@@ -46,7 +46,6 @@
                                     <option value="{{ $direccione->id }}">{{ $direccione->direccion }}</option>
                                 @endforeach
                             </select>
-                            {{--    <p>{{Auth::user()->direcciones->first()->direccion}}</p> --}}
 
                         </div>
                         <div class="card-footer">

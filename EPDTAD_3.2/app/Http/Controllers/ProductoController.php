@@ -120,6 +120,7 @@ class ProductoController extends Controller
         $categorias = Categoria::all();
 
         $producto = Producto::find($id);
+        $categorias = Categoria::all();
 
         return view('producto.edit', compact('producto', 'categorias'));
     }

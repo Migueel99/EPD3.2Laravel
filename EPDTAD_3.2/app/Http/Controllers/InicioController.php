@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pedido;
 use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 /**
@@ -20,6 +21,7 @@ class InicioController
     public function index()
     {
         $productos = Producto::paginate(9);
+        $categorias = Categoria::paginate(9);
 
         return view('inicio', compact('productos'));
     }

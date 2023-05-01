@@ -42,7 +42,10 @@
                         <h2>No hay productos en la lista de favoritos</h2>
                         @endif
                     </div>
-
+                    <a href="{{ route('inicio') }}">
+                                                    <button type="button" class="btn btn-primary mx-2  mb-2 ">{{ __('Volver') }}
+                                                    </button>
+                                                </a>
                 </div>
             </div>
         </div>
