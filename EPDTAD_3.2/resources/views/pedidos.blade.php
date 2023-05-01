@@ -126,7 +126,7 @@
         </div>
         </div>
         <hr class="border border-800" />
-        <div class="row flex-center pb-3">
+        <div class="d-flex justify-content-center">
             <div class="col-lg-4 col-md-6 order-0">
                 <p class="text-200 text-center">{{__('All rights Reserved')}} &copy; MiniatureCars, 2023</p>
             </div>
