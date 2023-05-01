@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Favorito;
+use App\Models\Favorito;
+use App\Models\Producto;
+
 use Illuminate\Http\Request;
 
 /**
@@ -11,6 +13,8 @@ use Illuminate\Http\Request;
  */
 class FavoritoController extends Controller
 {
+
+   
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +22,8 @@ class FavoritoController extends Controller
      */
     public function index()
     {
+
+
         $favoritos = Favorito::paginate();
 
         return view('favorito.index', compact('favoritos'))
@@ -43,11 +49,19 @@ class FavoritoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Favorito::$rules);
 
-        $favorito = Favorito::create($request->all());
+        $favorito = new Favorito();
 
-        return redirect()->route('favoritos.index')
+        $favorito->user_id = $request->user_id;
+        $favorito->productos_id = $request->productos_id;
+
+
+        $producto = Producto::find($request->productos_id);
+        $producto->favoritos = $producto->favoritos + 1;
+        $producto->update();
+        $favorito->save();
+
+        return redirect()->route('inicio')
             ->with('success', 'Favorito created successfully.');
     }
 
@@ -101,9 +115,14 @@ class FavoritoController extends Controller
      */
     public function destroy($id)
     {
+        $favorito = Favorito::find($id);
+        $producto = Producto::find($favorito->productos_id);
+        $producto->favoritos = $producto->favoritos - 1;
+        $producto->update();
+
         $favorito = Favorito::find($id)->delete();
 
-        return redirect()->route('favoritos.index')
+        return redirect()->route('inicio')
             ->with('success', 'Favorito deleted successfully');
     }
 }

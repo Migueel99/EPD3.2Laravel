@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
  */
 class DireccioneController extends Controller
 {
+
+   
     /**
      * Display a listing of the resource.
      *
@@ -43,22 +45,19 @@ class DireccioneController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Direccione::$rules);
-        /*
-        $direccione = Direccione::create($request->all());
-
-        return redirect()->route('direcciones.index')
-            ->with('success', 'Direccione created successfully.');
-        */
+       
         try{
             DB::beginTransaction();
             $direccione = Direccione::create($request->all());
             $direccione->save();
+
             DB::commit();
             return redirect()->route('perfil')
                 ->with('success', 'Direccione created successfully.');
         }catch(\Exception $e){
             DB::rollBack();
+            dd($e);
+
             return redirect()->route('direcciones.index')
                 ->with('success', 'Direccione created unsuccessfully.');
         }

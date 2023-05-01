@@ -39,6 +39,8 @@ class UsersTableSeeder extends Seeder
 
         foreach ($users as $user) {
             $createdUser = User::create($user);
+            $createdUser->assignRole('cliente');
+
             Carrito::create([
                 'user_id' => $createdUser->id,
             ]);

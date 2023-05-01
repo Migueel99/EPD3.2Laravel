@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
  */
 class ProductoCarritoController extends Controller
 {
+
+   
     /**
      * Display a listing of the resource.
      *

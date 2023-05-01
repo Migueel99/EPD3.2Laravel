@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,6 +42,14 @@ class Favorito extends Model
     public function user()
     {
         return $this->hasOne('App\User', 'id', 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function productos()
+    {
+        return $this->hasOne('App\Models\Producto', 'id', 'productos_id');
     }
     
     

@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Role;
 
 return new class extends Migration
 {
-    /**
+    /*
      * Run the migrations.
      *
      * @return void
@@ -19,7 +19,7 @@ return new class extends Migration
         $role2 = Role::create(['name' => 'cliente']);
     }
 
-    /**
+    /*
      * Reverse the migrations.
      *
      * @return void

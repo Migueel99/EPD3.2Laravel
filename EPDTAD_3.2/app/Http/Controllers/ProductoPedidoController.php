@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
  */
 class ProductoPedidoController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      *

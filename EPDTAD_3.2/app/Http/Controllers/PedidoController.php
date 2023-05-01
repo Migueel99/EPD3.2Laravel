@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 /**
  * Class PedidoController
  * @package App\Http\Controllers
  */
 class PedidoController extends Controller
 {
+
+  
     /**
      * Display a listing of the resource.
      *
@@ -50,17 +53,14 @@ class PedidoController extends Controller
         return redirect()->route('pedidos.index')
             ->with('success', 'Pedido created successfully.');
         */
-        try{
+        try {
             DB::beginTransaction();
             $pedido = Pedido::create($request->all());
-            DB::afterCommit(function() use ($pedido){
-                $pedido->save();
-            });
+            $pedido->save();
             DB::commit();
             return redirect()->route('pedidos.index')
                 ->with('success', 'Pedido creato correctamente.');
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
             return redirect()->route('pedidos.index')
                 ->with('error', 'Error al crear el pedido.');
