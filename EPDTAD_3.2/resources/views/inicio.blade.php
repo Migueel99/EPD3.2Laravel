@@ -234,7 +234,7 @@
                                         @csrf
 
                                         {{ Form::hidden('cantidad',Auth::user()->carritos->productoCarritos->where('id_producto', $producto->id)->first()->cantidad + 1) }}
-                                        {{ Form::submit('Añadir al carrito', ['class' => 'btn btn-danger']) }}
+                                        {{ Form::submit(trans('Añadir al carrito'), ['class' => 'btn btn-danger']) }}
 
                                     </form>
                                     @else
@@ -242,7 +242,7 @@
                                         @csrf {{ Form::hidden('id_producto', $producto->id) }}
                                         {{ Form::hidden('id_carrito', Auth::user()->carritos->id) }}
                                         {{ Form::hidden('cantidad', 1) }}
-                                        {{ Form::submit('Añadir al carrito', ['class' => 'btn btn-danger']) }}
+                                        {{ Form::submit(trans('Añadir al carrito'), ['class' => 'btn btn-danger']) }}
 
                                     </form>
                                     @endif
@@ -251,7 +251,7 @@
                                         @csrf {{ Form::hidden('id_producto', $producto->id) }}
                                         {{ Form::hidden('id_carrito', Auth::user()->carritos->id) }}
                                         {{ Form::hidden('cantidad', 1) }}
-                                        {{ Form::submit('Añadir al carrito', ['class' => 'btn btn-danger']) }}
+                                        {{ Form::submit(trans('Añadir al carrito'), ['class' => 'btn btn-danger']) }}
 
                                     </form>
                                     @endif

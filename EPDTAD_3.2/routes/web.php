@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
+use Laravel\Fortify\Http\Controllers\NewPasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,6 +69,9 @@ Route::get('/pcategoria/{idCategoria}', [App\Http\Controllers\ProductoController
     return view('pcategoria');
 })->name('pcategoria')->middleware(['auth']);
 
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+    ->middleware(['auth'])
+    ->name('password.request');
 
 
 
