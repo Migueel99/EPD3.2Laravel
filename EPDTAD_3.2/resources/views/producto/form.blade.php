@@ -28,10 +28,30 @@
 
     </div>
     <br>
-    <div class="box-footer mt20">
-        <button type="submit"
-            class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">{{ __('Enviar') }}</button>
-    </div>
+    <table>
+        <tr>
+            <td>
+                <div class="mx-auto" style="max-width: 800px;">
+                    <a href="{{ route('productos.index') }}" class="btn btn-primary ">
+                        <button
+                            class="flex items-center justify-between  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                            {{ __('Volver') }}
+                            <span class="ml-2" aria-hidden="true"></span>
+                        </button>
+                    </a>
+                </div>
+            </td>
+            <td>&nbsp;&nbsp;</td>
+            <td>
+                <div class="box-footer mt20">
+                    <button type="submit"
+                        class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">{{ __('Enviar') }}
+                        <span class="ml-2" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </table>
 
 
 </div>

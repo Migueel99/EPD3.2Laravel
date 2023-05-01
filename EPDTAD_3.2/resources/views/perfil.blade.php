@@ -2,45 +2,49 @@
 
 <head>
     @vite(['resources/css/theme.css', 'resources/js/bootstrap.js'])
-
+    <title>Perfil</title>
+    <link rel="shortcut icon" href="{{ asset('favicon1.ico') }}" type="image/x-icon">
 </head>
 
 <body>
     <div class="container-fluid ">
         <section>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
-            data-navbar-on-scroll="data-navbar-on-scroll">
-            <div class="container"><a class="navbar-brand d-inline-flex" href="{{ route('inicio') }}"><span
-                        class="text-1000 fs-3 fw-bold ms-2 text-gradient">MiniatureCars</span></a>
-            </div>
-        </nav>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+                data-navbar-on-scroll="data-navbar-on-scroll">
+                <div class="container"><a class="navbar-brand d-inline-flex" href="{{ route('inicio') }}"><span
+                            class="text-1000 fs-3 fw-bold ms-2 text-gradient">MiniatureCars</span></a>
+                </div>
+            </nav>
 
 
-        <div class="row justify-content-md-center ">
-            <div class="card-wrapper col-12 col-sm-12 col-md-8 col-lg-4 ">
-                <div class="brand text-center mb-3">
-                    <a class="navbar-brand d-inline-flex" href="">
-                        <h1 class="text-1000  fw-bold  text-gradient ">Perfil de usuario</h1>
-                    </a>
-                    <div class="card" style="border-radius: 15px;">
-                        <div class="card-body p-4">
-                            <div class="d-flex text-black">
+            <div class="row justify-content-md-center ">
+                <div class="card-wrapper col-12 col-sm-12 col-md-8 col-lg-4 ">
+                    <div class="brand text-center mb-3">
+                        <a class="navbar-brand d-inline-flex" href="">
+                            <h1 class="text-1000  fw-bold  text-gradient ">Perfil de usuario</h1>
+                        </a>
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-4">
+                                <div class="d-flex text-black">
 
 
-                                <div class="flex-grow-1 ms-3">
-                                    <h5 class="mb-1">Perfil de {{ Auth::user()->name }}</h5>
-                                    <p class="mb-2 pb-1" style="color: #2b2a2a;">Email: {{ Auth::user()->email }}</p>
-                                    <p class="mb-2 pb-1" style="color: #2b2a2a;">Telf:{{ Auth::user()->telefono }}</p>
-                                    <div>
-                                        <span>Direcciones de envío:</span>
-                                        @foreach (Auth::user()->direcciones as $direcciones)
-                                            <p class="mb-2 pb-1" style="color: #2b2a2a;">Dirección: {{ $direcciones->direccion }}
-                                                - {{ $direcciones->ciudad }} - {{ $direcciones->codigo_postal }} -
-                                                {{ $direcciones->provincia }}</p>
-                                            <p class="mb-2 pb-1">Telefono: {{$direcciones->telefono}}</p>
+                                    <div class="flex-grow-1 ms-3 ">
+                                        <h5 class="mb-1">Perfil de {{ Auth::user()->name }}</h5>
+                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>Email:</strong> {{ Auth::user()->email }}
+                                        </p>
+                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>Teléfono:</strong>{{ Auth::user()->telefono }}
+                                        </p>
+                                        <div>
+                                            <span><strong>Direcciones de envío:</strong></span>
+                                            @foreach (Auth::user()->direcciones as $direcciones)
+                                                <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>Dirección:</strong>
+                                                    {{ $direcciones->direccion }}
+                                                    - {{ $direcciones->ciudad }} - {{ $direcciones->codigo_postal }} -
+                                                    {{ $direcciones->provincia }}</p>
+                                                <p class="mb-2 pb-1"><strong>Teléfono:</strong> {{ $direcciones->telefono }}</p>
 
-                                            <hr>
-                                        @endforeach
+                                                <hr>
+                                            @endforeach
 
                                         <button onclick="mostrarFormulario()" class="mb-2">Añadir dirección</button>
                                         <form id="formulario" style="display:none;" class="mt-2" method="POST"
@@ -60,40 +64,69 @@
                                                     class="btn btn-primary">{{ __('Enviar') }}</button>
                                             </div>
 
-                                        </form>
-                                    </div>
-
-                                        <span>{{__('Idioma')}}:</span>
-
-                                    <a  href="{{route('set_language', ['es'])}}">{{ __("Spanish") }}</a>
-                                    <a class="mb-3" href="{{route('set_language', ['en'])}}">{{ __("English") }}</a>
-                                    <div>
-                                        <a href="{{ route('logout') }} "
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <button class="btn btn-primary mx-2 px-auto mb-2">Logout</button>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                class="d-none">
-                                                @csrf
                                             </form>
-                                        </a>
-                                        @role('admin')
-                                        <a href="{{ route('test') }}"><button type="button"
-                                                class="btn btn-primary mx-2 px-auto mb-2">{{__('Dashboard')}}</button>
-                                        </a>
-                                        @endrole
-                                        <a href="{{ route('inicio') }}"><button type="button"
-                                            class="btn btn-primary mx-2 px-auto">{{__('Volver')}}</button>
-                                    </a>
+                                        </div>
+
+                                        <span><strong>{{ __('Idioma') }}:</strong></span>
+                                        &nbsp;
+                                        <a href="{{ route('set_language', ['es']) }}">{{ __('Spanish') }}</a>
+                                        &nbsp;
+                                        <a href="{{ route('set_language', ['en']) }}">{{ __('English') }}</a>
+
+                                        <br><br>
+
+
+
                                     </div>
+
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <a href="{{ route('logout') }} "
+                                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                    <button class="btn btn-primary mx-2  mb-2">Logout</button>
+                                                    <form id="logout-form" action="{{ route('logout') }}"
+                                                        method="POST" class="d-none">
+                                                        @csrf
+                                                    </form>
+                                                </a>
+                                            </td>
+                                            <td> &nbsp;&nbsp; </td>
+                                            <td>
+                                                @role('admin')
+                                                    <a href="{{ route('test') }}">
+                                                        <button type="button"
+                                                            class="btn btn-primary mx-2  mb-2">{{ __('Dashboard') }}
+                                                        </button>
+                                                    </a>
+                                                @endrole
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>
+                                                <a href="{{ route('inicio') }}">
+                                                    <button type="button"
+                                                        class="btn btn-primary mx-2  mb-2 ">{{ __('Volver') }}
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+
+
+                                    </table>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
     </div>
+    </div>
+
     <script>
         function mostrarFormulario() {
             var formulario = document.getElementById("formulario");
@@ -176,7 +209,7 @@
         <hr class="border border-800" />
         <div class="d-flex justify-content-center pb-3">
             <div class="col-lg-4 col-md-6 order-0">
-                <p class="text-200 text-center">{{__('All rights Reserved')}} &copy; MiniatureCars, 2023</p>
+                <p class="text-200 text-center">{{ __('All rights Reserved') }} &copy; MiniatureCars, 2023</p>
             </div>
 
         </div>
