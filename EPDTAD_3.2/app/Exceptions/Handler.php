@@ -52,6 +52,11 @@ class Handler extends ExceptionHandler
         if ($this->isHttpException($exception) && $exception->getStatusCode() == 404) {
             return response()->view('errors.404', [], 404);
         }
+
+        if ($exception instanceof AuthorizationException) {
+            return redirect('/')->with('error', 'No tiene permisos para acceder a esta página');
+        }
+
         return parent::render($request, $exception);
     }
 }

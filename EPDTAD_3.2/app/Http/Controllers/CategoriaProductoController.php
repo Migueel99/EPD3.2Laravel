@@ -53,13 +53,26 @@ class CategoriaProductoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(CategoriaProducto::$rules);
+        try{
+            DB::beginTransaction();
+            $categoriaProducto = new categoriaProducto();
+            $categoriaProducto->categoria_id = $request->categoria_id;
+            $categoriaProducto->productos_id = $request->productos_id;
 
-        $categoriaProducto = CategoriaProducto::create($request->all());
-
-        return redirect()->route('categoria-productos.index')
-            ->with('success', 'CategoriaProducto created successfully.');
+            DB::afterCommit(function() use ($categoriaProducto){
+                $categoriaProducto->save();
+            });
+            DB::commit();
+            return redirect()->route('inicio')
+                ->with('success', 'categoriaProducto created successfully.');
+        }
+        catch(\Exception $e){
+            DB::rollback();
+            return redirect()->route('inicio')
+                ->with('error', 'Error al crear el categoriaProducto.');
+        }
     }
+    
 
     /**
      * Display the specified resource.
