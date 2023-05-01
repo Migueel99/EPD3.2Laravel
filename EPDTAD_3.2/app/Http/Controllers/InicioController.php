@@ -23,7 +23,7 @@ class InicioController
         $productos = Producto::paginate(9);
         $categorias = Categoria::paginate(9);
 
-        return view('inicio', compact('productos'));
+        return view('inicio', compact('productos','categorias'));
     }
 
     /**
