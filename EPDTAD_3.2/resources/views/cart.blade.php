@@ -14,7 +14,7 @@
             </div>
         </nav>
         <div class="row h-100">
-            <div class="card-wrapper col-lg-7 mx-auto text-center mt-7 mb-5">
+            <div class="card-wrapper col-lg-7 col-sm-12 mx-auto text-center mt-7 mb-5">
                 
                 <div class="brand text-center">
                     <a class="navbar-brand d-inline-flex" href="{{route('inicio')}}">
@@ -27,10 +27,10 @@
                             @if (Auth::user()->carritos->productoCarritos->count() > 0)
                             @foreach (Auth::user()->carritos->productoCarritos as $producto)
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 mb-2">
+                                <div class="col-lg-3 col-md-12 mb-2">
                                     <img src="{{ asset('img/productos/' . $producto->producto->imagen) }}" alt="imagen" class="img-fluid">
                                 </div>
-                                <div class="col-lg-2 col-md-4 mb-2 d-flex align-items-center">
+                                <div class="col-lg-2 col-md-12 mb-2 d-flex align-items-center">
                                     <h6 class="text-700">{{ $producto->producto->nombre }}</h6>
                                 </div>
                                 <div class="col-lg-1 col-md-4 mb-2 d-flex align-items-center">
