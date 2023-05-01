@@ -20,16 +20,18 @@ class ProductoController extends Controller
 
     public function index()
     {
-        $productos = Producto::paginate();
+        $productos = Producto::paginate(9);
 
         return view('producto.index', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
 
     public function mostrarProducto(){
-        $productos = Producto::all();
 
-        return view('inicio')->compact('productos');
+        $productos = Producto::paginate(9);
+
+        return view('inicio', compact('productos'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
 
     }
     /**

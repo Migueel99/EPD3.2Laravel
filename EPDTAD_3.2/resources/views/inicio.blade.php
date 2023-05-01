@@ -76,7 +76,7 @@
                         <button class="shadow-warning text-warning" type="submit" style="border-radius:50%;border:0"> <i
                                 class="fas fa-user"></i>
                         </button>
-                        
+
                         <form id="profile-form" action="{{ route('perfil') }}" method="GET" class="d-none">
                         @endguest
                     </form>
@@ -210,10 +210,13 @@
                                 </div>
                             </div>
                         @endforeach
+
                         @for ($i = count($productos) % 4; $i < 4; $i++)
                             <div class="col-sm-6 col-md-3 col-xl mb-5 h-100">
                             </div>
                         @endfor
+
+                        {!! $productos->links() !!}
 
                     </div>
 
@@ -229,7 +232,6 @@
 
         <!-- <section> close ============================-->
         <!-- ============================================-->
-
 
         <section class="py-0 bg-1000">
 
@@ -354,6 +356,7 @@
             });
         }
     </script>
+
 </body>
 
 </html>

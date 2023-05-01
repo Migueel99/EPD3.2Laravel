@@ -48,7 +48,7 @@
                                         <th class="px-4 py-3">Descripcion</th>
                                         <th class="px-4 py-3 text-center">Precio</th>
                                         <th class="px-4 py-3">Imagen</th>
-                                        <th class="px-4 py-3 text-center">Stock</th>                                        
+                                        <th class="px-4 py-3 text-center">Stock</th>
                                         <th class="px-4 py-3 text-center">Acciones</th>
                                     </tr>
                                 </thead>
@@ -57,12 +57,12 @@
                                         <tr class="text-gray-700 dark:text-gray-400">
                                             <td class="px-4 py-3  text-center">{{ $producto->id }}</td>
                                             <td class="px-4 py-3">{{ $producto->nombre }}</td>
-                                            <td class="px-4 py-3" 
+                                            <td class="px-4 py-3"
                                             style=" max-width: 200px; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">{{ $producto->descripcion }}</td>
                                             <td class="px-4 py-3  text-center">{{ $producto->precio }}</td>
                                             <td class="px-4 py-3">{{ $producto->imagen }}</td>
                                             <td class="px-4 py-3  text-center">{{ $producto->stock }}</td>
-                                            
+
                                             <td class="px-4 py-3">
                                                 <form action="{{ route('productos.destroy', $producto->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary "
@@ -81,10 +81,13 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
+                    {{ $productos->links() }}
+
                 </div>
-                {!! $productos->links() !!}
+
             </div>
         </div>
     </div>
