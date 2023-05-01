@@ -127,6 +127,25 @@
         <!-- <section> begin ============================-->
         <section class="py-4 overflow-hidden">
 
+            <div class="container ">
+                <h5>Categorias</h5>
+                <div class="d-flex flex-wrap">
+                    @foreach ($categorias as $categoria)
+                    <div class="d-inline-block">
+                        <a href="{{route('pcategoria',$categoria->id)}}">
+                            <div class="mask">
+                                <div class="d-flex justify-content-start align-items-end h-100">
+
+                                    <h3><span class="badge bg-primary ms-2">{{$categoria->nombre}}</span></h3>
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+
+                    @endforeach
+                </div>
+            </div>
             <div class="container">
                 <div class="row h-100">
                     <div class="col-lg-7 mx-auto text-center mt-7 mb-5">
@@ -146,10 +165,10 @@
 
                                             <a onclick="event.preventDefault(); document.getElementById('favoritod-{{ $producto->id }}').submit();">
 
-                        
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-</svg>
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                </svg>
                                             </a>
 
 
