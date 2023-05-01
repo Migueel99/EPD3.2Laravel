@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\CategoriaProducto;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +45,6 @@ class ProductoController extends Controller
 
         return view('inicio', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-
     }
     /**
      * Show the form for creating a new resource.
@@ -77,19 +78,26 @@ class ProductoController extends Controller
                 $name = time() . $file->getClientOriginalName();
                 $file->move(public_path() . "/img/productos", $name);
                 $producto->imagen = $name;
-
             }
             $producto->stock = $request->input('stock');
+            $producto->favoritos = 0;
             $producto->save();
-
             $categoria = new CategoriaProducto();
-            $categoria->categoria_id = $request->input('categoria_id');
-            $categoria->productos_id = $producto->id;
-            $categoria->save();
+            for ($i = 0; $i < count($request->input('categorias')); $i++) {
+                if (CategoriaProducto::where('categoria_id', $request->input('categorias')[$i])->where('productos_id', $producto->id)->first() == null) {
+                    $categoria = new CategoriaProducto();
+                    $categoria->categoria_id = $request->input('categorias')[$i];
+                    $categoria->productos_id = $producto->id;
+                    $categoria->save();
+                }
+            }
+
             DB::commit();
             return redirect()->route('productos.index')
                 ->with('success', 'Producto creado correctamente.');
         } catch (\Exception $e) {
+
+            dd($e);
             DB::rollback();
             return redirect()->route('productos.index')
                 ->with('error', 'Error al crear el producto');
@@ -142,7 +150,6 @@ class ProductoController extends Controller
             $name = time() . $file->getClientOriginalName();
             $file->move(public_path() . "/img/productos", $name);
             $producto->imagen = $name;
-
         }
         $producto->stock = $request->input('stock');
         $producto->update();
@@ -162,5 +169,26 @@ class ProductoController extends Controller
 
         return redirect()->route('productos.index')
             ->with('success', 'Producto deleted successfully');
+    }
+
+    public function productosPorCategoria($idCategoria)
+    {
+        // Busca la categoría por su ID
+        $categoria = CategoriaProducto::where('categoria_id', $idCategoria)->get();
+
+        // Obtener la colección de productos y paginarlos
+        $productos = Producto::whereIn('id', $categoria->pluck('productos_id'))
+                        ->paginate(10);
+    
+        $categoria = Categoria::find($idCategoria);
+
+        $categorias = Categoria::all();
+
+        
+        return view('pcategoria', compact('productos', 'categoria', 'categorias'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+
+
+            
     }
 }

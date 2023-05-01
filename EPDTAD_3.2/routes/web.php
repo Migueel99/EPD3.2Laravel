@@ -64,6 +64,10 @@ Route::get('/favoritosusuario', function () {
     return view('favoritos');
 })->name('favoritosusuario')->middleware(['auth']);
 
+Route::get('/pcategoria/{idCategoria}', [App\Http\Controllers\ProductoController::class, 'productosPorCategoria'],function(){
+    return view('pcategoria');
+})->name('pcategoria')->middleware(['auth']);
+
 
 
 
