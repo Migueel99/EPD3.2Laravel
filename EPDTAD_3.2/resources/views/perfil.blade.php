@@ -78,45 +78,42 @@
                                     </div>
 
                                 </div>
-                                <div class="d-flex justify-content-center">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <a href="{{ route('logout') }} " onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                    <button class="btn btn-primary mx-2  mb-2">Logout</button>
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                        @csrf
-                                                    </form>
-                                                </a>
-                                            </td>
-                                            <td> &nbsp;&nbsp; </td>
-                                            <td>
-                                                @role('admin')
-                                                <a href="{{ route('test') }}">
-                                                    <button type="button" class="btn btn-primary mx-2  mb-2">{{ __('Dashboard') }}
-                                                    </button>
-                                                </a>
-                                                @endrole
-                                            </td>
-                                            <td>&nbsp;&nbsp;</td>
-                                            <td>
-                                                <a href="{{ route('inicio') }}">
-                                                    <button type="button" class="btn btn-primary mx-2  mb-2 ">{{ __('Volver') }}
-                                                    </button>
-                                                </a>
-                                            </td>
+                                    <div class="row">
+                                        <div class="col-md-4 px-2 pb-2">
+                                            <a href="{{ route('logout') }} " onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <button class="btn btn-primary">Logout</button>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </a>
+                                        </div>
+                                        @role('admin')
 
-                                            <td>
-                                                <a href="{{ route('pedidosrealizados') }}">
-                                                    <button type="button" class="btn btn-primary mx-2  mb-2 ">{{ __('Pedidos realizados') }}
-                                                    </button>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        <div class="col-md-4 px-2 pb-2">
+                                            <a href="{{ route('test') }}">
+                                                <button type="button" class="btn btn-primary">{{ __('Dashboard') }}
+                                                </button>
+                                            </a>
+                                        </div>
+                                        @endrole
 
+                                        <div class="col-md-4 px-2 pb-2">
+
+                                            <a href="{{ route('inicio') }}">
+                                                <button type="button" class="btn btn-primary">{{ __('Volver') }}
+                                                </button>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-md-4 px-2">
+
+                                            <a href="{{ route('pedidosrealizados') }}">
+                                                <button type="button" class="btn btn-primary">{{ __('Pedidos') }}
+                                                </button>
+                                            </a>
+                                        </div>
 
 
-                                    </table>
                                 </div>
                             </div>
 
