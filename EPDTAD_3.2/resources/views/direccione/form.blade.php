@@ -1,19 +1,17 @@
 <div class="box box-info padding-1">
     <div class="box-body">
 
-        <div class="form-group">
-            {{ Form::label('direccion') }}
-            {{ Form::text('direccion', $direccione->direccion, ['class' => 'form-control' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'Direccion']) }}
-            {!! $errors->first('direccion', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        <div class="form-group " style="display: none">
-            {{ Form::label('user_id') }}
-            {{ Form::text('user_id', Auth::user()->id, ['class' => 'form-control' . ($errors->has('user_id') ? ' is-invalid' : ''), 'placeholder' => 'User Id'])}}
-            {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
+        <label class="block text-sm">
+            <span class="text-gray-700 dark:text-gray-400">{{ Form::label('id_direccion') }}</span>
+            {{ Form::text('id_direccion', $direccione->id, ['class' => 'block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input' . ($errors->has('id_direccion') ? ' is-invalid' : ''), 'placeholder' => 'id_direccion']) }}
+            {!! $errors->first('id_direccion', '<div class="invalid-feedback">:message</div>') !!}
+        </label>
 
-    </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
+        <label class="block text-sm">
+            <span class="text-gray-700 dark:text-gray-400">{{ Form::label('direccion') }}</span>
+            {{ Form::text('direccion', $direccione->direccion, ['class' => 'block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'direccion']) }}
+            {!! $errors->first('direccion', '<div class="invalid-feedback">:message</div>') !!}
+        </label>
+        <br>
     </div>
 </div>
