@@ -65,5 +65,9 @@
     "Dirección": "Address",
     "España": "Spain",
     "Crear Favorito": "Create Favorite",
-    "Cambiar contraseña": "Change password"
+    "Cambiar contraseña": "Change password",
+    "Pedidos": "Orders",
+    "Editar": "Edit",
+    "Editar Perfil": "Edit Profile"
+
 }

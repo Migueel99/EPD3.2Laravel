@@ -52,7 +52,7 @@
                                                 - {{ $direcciones->ciudad }} - {{ $direcciones->codigo_postal }} -
                                                 {{ $direcciones->provincia }}
                                             </p>
-                                            <p class="mb-2 pb-1"><strong>Teléfono:</strong> {{ $direcciones->telefono }}</p>
+                                            <p class="mb-2 pb-1"><strong>{{__('Teléfono')}}:</strong> {{ $direcciones->telefono }}</p>
 
                                             <hr>
                                             @endforeach
@@ -208,8 +208,6 @@
                     <p style="color: white;"><i class="fas fa-print me-3 text-reset"></i> + 34 123 456 789</p>
                 </div>
             </div>
-        </div>
-        </div>
         </div>
         <hr class="border border-800" />
         <div class="d-flex justify-content-center pb-3">
