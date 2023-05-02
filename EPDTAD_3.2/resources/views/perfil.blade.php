@@ -52,12 +52,12 @@
                                                 - {{ $direcciones->ciudad }} - {{ $direcciones->codigo_postal }} -
                                                 {{ $direcciones->provincia }}
                                             </p>
-                                            <p class="mb-2 pb-1"><strong>Teléfono:</strong> {{ $direcciones->telefono }}</p>
+                                            <p class="mb-2 pb-1"><strong>{{__('Teléfono')}}:</strong> {{ $direcciones->telefono }}</p>
 
                                             <hr>
                                             @endforeach
 
-                                            <button onclick="mostrarFormulario()" class="mb-2">Añadir dirección</button>
+                                            <button onclick="mostrarFormulario()" class="mb-2">{{ __('Añadir dirección') }}</button>
                                             <form id="formulario" style="display:none;" class="mt-2" method="POST" action="{{ route('direcciones.store') }}" role="form" enctype="multipart/form-data">
                                                 {{ method_field('POST') }}
                                                 @csrf
@@ -92,7 +92,7 @@
                                 <div class="row">
                                     <div class="col-md-4 px-2 pb-2">
                                         <a href="{{ route('logout') }} " onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <button class="btn btn-primary">Logout</button>
+                                            <button class="btn btn-danger">Logout</button>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                                 @csrf
                                             </form>
@@ -102,7 +102,7 @@
 
                                     <div class="col-md-4 px-2 pb-2">
                                         <a href="{{ route('test') }}">
-                                            <button type="button" class="btn btn-primary">{{ __('Dashboard') }}
+                                            <button type="button" class="btn btn-danger">{{ __('Dashboard') }}
                                             </button>
                                         </a>
                                     </div>
@@ -111,7 +111,7 @@
                                     <div class="col-md-4 px-2 pb-2">
 
                                         <a href="{{ route('inicio') }}">
-                                            <button type="button" class="btn btn-primary">{{ __('Volver') }}
+                                            <button type="button" class="btn btn-danger">{{ __('Volver') }}
                                             </button>
                                         </a>
                                     </div>
@@ -119,7 +119,7 @@
                                     <div class="col-md-4 px-2">
 
                                         <a href="{{ route('pedidosrealizados') }}">
-                                            <button type="button" class="btn btn-primary">{{ __('Pedidos') }}
+                                            <button type="button" class="btn btn-danger">{{ __('Pedidos') }}
                                             </button>
                                         </a>
                                     </div>
@@ -127,7 +127,7 @@
                                     <div class="col-md-4 px-2">
 
                                         <a href="{{ route('editarperfil') }}">
-                                            <button type="button" class="btn btn-primary">{{ __('Editar') }}
+                                            <button type="button" class="btn btn-danger">{{ __('Editar') }}
                                             </button>
                                         </a>
                                     </div>
@@ -208,8 +208,6 @@
                     <p style="color: white;"><i class="fas fa-print me-3 text-reset"></i> + 34 123 456 789</p>
                 </div>
             </div>
-        </div>
-        </div>
         </div>
         <hr class="border border-800" />
         <div class="d-flex justify-content-center pb-3">
