@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class PedidoController
@@ -22,8 +24,11 @@ class InicioController
     {
         $productos = Producto::paginate(9);
         $categorias = Categoria::paginate(9);
+        if(Auth::user()){
+            session()->put('applocale', Auth::user()->idioma);
+        }
 
-        return view('inicio', compact('productos','categorias'));
+        return view('inicio', compact('productos', 'categorias'))->with('applocale', session('applocale'));
     }
 
     /**
@@ -31,5 +36,4 @@ class InicioController
      *
      * @return \Illuminate\Http\Response
      */
-
 }
