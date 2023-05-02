@@ -112,10 +112,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
+        if(!Auth::user()->hasRole('admin')){
+            if(Auth::user()==$user){
+                $user->update($request->all());
+                session()->put('applocale', $user->idioma);
+                return redirect()->route('inicio')
+                    ->with('success', 'User updated successfully');
+            }
+        }else{
+        
         $user->update($request->all());
         session()->put('applocale', $user->idioma);
         return redirect()->route('inicio')
             ->with('success', 'User updated successfully');
+        }
     }
 
     /**
