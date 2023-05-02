@@ -40,10 +40,13 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'telefono' => $input['telefono'],
             'password' => Hash::make($input['password']),
+            'idioma'=> 'en',
         ]);
 
 
+
         // Asignar el rol de cliente al usuario
+        app()->setLocale($user->idioma);
         $user->assignRole('cliente');
         $carrito = new Carrito();
         $carrito->user_id = $user->id;

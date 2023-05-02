@@ -126,7 +126,7 @@
         <!-- ============================================-->
         <!-- <section> begin ============================-->
         <section class="py-4 overflow-hidden">
-
+            @if($categorias->count()>0)
             <div class="container ">
                 <h5>Categorias</h5>
                 <div class="d-flex flex-wrap">
@@ -146,6 +146,7 @@
                     @endforeach
                 </div>
             </div>
+            @endif
             <div class="container">
                 <div class="row h-100">
                     <div class="col-lg-7 mx-auto text-center mt-7 mb-5">

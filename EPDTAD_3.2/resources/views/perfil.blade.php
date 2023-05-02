@@ -75,12 +75,12 @@
                                             </form>
                                         </div>
 
-                                        <span><strong>{{ __('Idioma') }}:</strong></span>
+                                        <!-- <span><strong>{{ __('Idioma') }}:</strong></span>
                                         &nbsp;
                                         <a href="{{ route('set_language', ['es']) }}">{{ __('Spanish') }}</a>
                                         &nbsp;
                                         <a href="{{ route('set_language', ['en']) }}">{{ __('English') }}</a>
-
+-->
                                         <br><br>
 
 
@@ -88,40 +88,48 @@
                                     </div>
 
                                 </div>
-                                    <div class="row">
-                                        <div class="col-md-4 px-2 pb-2">
-                                            <a href="{{ route('logout') }} " onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                <button class="btn btn-primary">Logout</button>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                    @csrf
-                                                </form>
-                                            </a>
-                                        </div>
-                                        @role('admin')
+                                <div class="row">
+                                    <div class="col-md-4 px-2 pb-2">
+                                        <a href="{{ route('logout') }} " onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <button class="btn btn-primary">Logout</button>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </a>
+                                    </div>
+                                    @role('admin')
 
-                                        <div class="col-md-4 px-2 pb-2">
-                                            <a href="{{ route('test') }}">
-                                                <button type="button" class="btn btn-primary">{{ __('Dashboard') }}
-                                                </button>
-                                            </a>
-                                        </div>
-                                        @endrole
+                                    <div class="col-md-4 px-2 pb-2">
+                                        <a href="{{ route('test') }}">
+                                            <button type="button" class="btn btn-primary">{{ __('Dashboard') }}
+                                            </button>
+                                        </a>
+                                    </div>
+                                    @endrole
 
-                                        <div class="col-md-4 px-2 pb-2">
+                                    <div class="col-md-4 px-2 pb-2">
 
-                                            <a href="{{ route('inicio') }}">
-                                                <button type="button" class="btn btn-primary">{{ __('Volver') }}
-                                                </button>
-                                            </a>
-                                        </div>
+                                        <a href="{{ route('inicio') }}">
+                                            <button type="button" class="btn btn-primary">{{ __('Volver') }}
+                                            </button>
+                                        </a>
+                                    </div>
 
-                                        <div class="col-md-4 px-2">
+                                    <div class="col-md-4 px-2">
 
-                                            <a href="{{ route('pedidosrealizados') }}">
-                                                <button type="button" class="btn btn-primary">{{ __('Pedidos') }}
-                                                </button>
-                                            </a>
-                                        </div>
+                                        <a href="{{ route('pedidosrealizados') }}">
+                                            <button type="button" class="btn btn-primary">{{ __('Pedidos') }}
+                                            </button>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-md-4 px-2">
+
+                                        <a href="{{ route('editarperfil') }}">
+                                            <button type="button" class="btn btn-primary">{{ __('Editar') }}
+                                            </button>
+                                        </a>
+                                    </div>
 
 
                                 </div>
