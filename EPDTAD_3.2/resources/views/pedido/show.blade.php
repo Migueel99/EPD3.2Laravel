@@ -12,10 +12,13 @@
             <form class="mx-auto" style="max-width: 800px;">
                 <div class="d-flex flex-column">
                     <div class="col-12 mb-3">
-                        <label style="font-size: 1.5em;"><strong>Nombre:</strong>  {{ $pedido->id_carrito }}</label>
+                        <label style="font-size: 1.5em;"><strong>Carrito asociado:</strong>  {{ $pedido->id_carrito }}</label>
                     </div>
                     <div class="col-12 mb-3">
                         <label style="font-size: 1.5em;"><strong>Descripción:</strong>   {{ $pedido->estado }}</label>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label style="font-size: 1.5em;"><strong>Dirección:</strong>   {{ $pedido->direccion }}</label>
                     </div>
                     <div class="col-12 mb-3">
                         <label style="font-size: 1.5em;"><strong>Precio/Unidad:</strong>  {{ $pedido->total }} €</label>
