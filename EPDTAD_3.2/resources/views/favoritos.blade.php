@@ -45,8 +45,8 @@
                                     </div>
                                     <hr>
                                 @endforeach
-                                <a href="{{ route('inicio') }}">
-                                    <button type="button" class="btn btn-primary mx-2  mb-2 ">{{ __('Volver') }}
+                                <a href="{{ route('perfil') }}">
+                                    <button type="button" class="btn btn-danger mx-2  mb-2 ">{{ __('Volver') }}
                                     </button>
                                 </a>
                         </div>
