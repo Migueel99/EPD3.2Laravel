@@ -75,12 +75,7 @@
                                             </form>
                                         </div>
 
-                                        <!-- <span><strong>{{ __('Idioma') }}:</strong></span>
-                                        &nbsp;
-                                        <a href="{{ route('set_language', ['es']) }}">{{ __('Spanish') }}</a>
-                                        &nbsp;
-                                        <a href="{{ route('set_language', ['en']) }}">{{ __('English') }}</a>
--->
+                                     
                                         <br><br>
 
 

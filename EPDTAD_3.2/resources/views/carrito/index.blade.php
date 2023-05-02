@@ -54,12 +54,12 @@
 											<td class="px-4 py-3 text-center">{{ $carrito->user_id }}</td>
 
                                             <td class="px-4 py-3 text-center">
-                                                <form action="{{ route('productos.destroy', $carrito->id) }}" method="POST">
+                                                <form action="{{ route('carritos.destroy', $carrito->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary "
-                                                        href="{{ route('productos.show', $carrito->id) }}"><i
+                                                        href="{{ route('carritos.show', $carrito->id) }}"><i
                                                             class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success"
-                                                        href="{{ route('productos.edit', $carrito->id) }}"><i
+                                                        href="{{ route('carritos.edit', $carrito->id) }}"><i
                                                             class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
