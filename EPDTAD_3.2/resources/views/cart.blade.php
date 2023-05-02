@@ -18,18 +18,17 @@
 <body>
 
     <div class="container-fluid pb-5">
-        <br>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top overflow-hidden" data-navbar-on-scroll="data-navbar-on-scroll">
             <div class="container"><a class="navbar-brand d-inline-flex" href="{{ route('inicio') }}"><span class="text-1000 fs-3 fw-bold ms-2 text-gradient">MiniatureCars</span></a>
             </div>
         </nav>
-        <div class="row h-100">
-            <div class="card-wrapper col-lg-7 col-sm-12 mx-auto text-center mt-7 mb-5">
-                
-                <div class="brand text-center">
-                    <a class="navbar-brand d-inline-flex" href="{{route('inicio')}}">
-                        <h1 class="text-1000 fw-bold text-gradient">Carrito de la compra</h1>
-                    </a>
+    </div>
+
+    <div class="container-fluid pb-5">
+        <div class="row justify-content-md-center">
+            <div class="card-wrapper col-12 col-md-8  mt-5">
+                <div class="brand text-center mb-3">
+                    <h1 class="text-1000 fw-bold text-gradient">Carrito de la compra</h1>
                     <div class="card">
                         <div class="card-body">
                             {{$error = false}}
@@ -37,14 +36,14 @@
                             @if (Auth::user()->carritos->productoCarritos->count() > 0)
                             @foreach (Auth::user()->carritos->productoCarritos as $producto)
                             <div class="row">
-                                <div class="col-lg-3 col-md-12 mb-2">
+                                <div class="col-lg-3 col-md-6 col-sm-5 mb-2">
                                     <img src="{{ asset('img/productos/' . $producto->producto->imagen) }}" alt="imagen" class="img-fluid">
                                 </div>
-                                
-                                <div class="col-lg-2 col-md-12 mb-2 d-flex align-items-center">
+
+                                <div class="col-12 col-lg-3 col-md-12 mb-2">
                                     <h6 class="text-700" style="font-size: 1.5em; ">{{ $producto->producto->nombre }}</h6>
                                 </div>
-                                <div class="col-lg-1 col-md-4 mb-2 d-flex align-items-center">
+                                <div class="col-4 col-lg-1 col-md-1 mb-2 ">
 
                                     <a href="" onclick="event.preventDefault(); document.getElementById('{{'restar-form-'.$producto->id}}').submit();">
                                         <button style="border:none; background: white; font-size:2em;">-</button>
@@ -65,20 +64,20 @@
                                     @method('DELETE')
                                 </form>
                                 @endif
-                                <div class="col-lg-1 col-md-2 mb-2 d-flex align-items-center">
+                                <div class="col-4 col-lg-1 col-md-1 mb-2 ">
                                     <p class="text-500" style="font-size: 1.5em; ">{{ $producto->cantidad }}</p>
                                 </div>
                                 @if ($producto->cantidad >= $producto->producto->stock)
-                                <div class="col-lg-2 col-sm-2 mb-2 d-flex align-items-center">
+                                <div class="col-4 col-lg-1 col-md-1 mb-2 ">
                                     <button disabled style="border:none; border-radius:50%">+</button>
                                 </div>
                                 @else
-                                <div class="col-lg-1 col-md-2 mb-2 d-flex align-items-center">
+                                <div class="col-4 col-lg-1 col-md-1 mb-2 ">
                                     <a href="" onclick="event.preventDefault(); document.getElementById('{{'sumar-form-'.$producto->id}}').submit();">
                                         <button style="border:none; background: white; font-size:1.5em;">+</button>
                                     </a>
                                 </div>
-                                
+
                                 <form id="{{'sumar-form-'.$producto->id}}" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form" enctype="multipart/form-data">
 
                                     {{ method_field('PATCH') }}
@@ -90,8 +89,8 @@
 
 
 
-                                <div class="col-lg-1 col-md-4 mb-2 d-flex align-items-center">
-                                    <p class="text-500">{{ $producto->producto->precio * $producto->cantidad }}
+                                <div class="col-12 col-lg-3 col-md-12 mb-2 ">
+                                    <p class="text-1000">{{ $producto->producto->precio * $producto->cantidad }}
                                     </p>
                                 </div>
 
