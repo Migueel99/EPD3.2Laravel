@@ -68,9 +68,9 @@ Route::get('/pcategoria/{idCategoria}', [App\Http\Controllers\ProductoController
     return view('pcategoria');
 })->name('pcategoria')->middleware(['auth']);
 
-Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
-    ->middleware(['auth'])
-    ->name('password.request');
+Route::get('/cambiarpassword', function () {
+    return view('cambiarcontrasena');
+})->name('cambiarpassword')->middleware(['auth']);
 
 Route::get('editarperfil',function(){
     return view('editarperfil');

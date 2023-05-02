@@ -28,109 +28,53 @@
             <div class="row justify-content-md-center ">
                 <div class="card-wrapper col-12 col-sm-12 col-md-8 col-lg-4 ">
                     <div class="brand text-center mb-3">
-                        <a class="navbar-brand d-inline-flex" href="">
-                            <h1 class="text-1000  fw-bold  text-gradient ">{{ __('Perfil de usuario') }}</h1>
-                        </a>
+                            <h1 class="text-1000  fw-bold  text-gradient ">{{ __('Cambiar contraseña') }}</h1>
+                    
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-4">
                                 <div class="d-flex text-black">
+                                <form method="POST" action="{{ route('user-password.update') }}" id="editPasswordForm">
+                @method('PUT')
+                @csrf
+                <div class="row mb-lg-12  mb-3">
+                    <label class="col-lg-6 col-form-label" for="current_password">Contraseña actual</label>
+                    <div class="col-lg-6">
+                        <input type="password" class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" name="current_password" id="current_password" value="{{ old('current_password') }}">
+                        @error('current_password', 'updatePassword')
+                        <div class="invalid-feedback d-block" role="alert">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mb-lg-12  mb-3">
+                    <label class="col-lg-6 col-form-label" for="password">Contraseña</label>
+                    <div class="col-lg-6">
+                        <input type="password" class="form-control @error('password', 'updatePassword') is-invalid @enderror" name="password" id="password" value="{{ old('password') }}">
+                        @error('password', 'updatePassword')
+                        <div class="invalid-feedback d-block" role="alert">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-lg-12 mb-3">
+                    <label class="col-lg-6 col-form-label" for="password_confirmation">Confirmar contraseña</label>
+                    <div class="col-lg-6">
+                        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" value="{{ old('password_confirmation') }}">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-dark mt-3">
+                    Cambiar contraseña
+                </button>
+
+            </form>
 
 
-                                    <div class="flex-grow-1 ms-3 ">
-                                        <h5 class="mb-1"> {{ Auth::user()->name }}</h5>
-                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>{{ __('Email') }}
-                                                :</strong> {{ Auth::user()->email }}
-                                        </p>
-                                        <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>{{ __('Teléfono') }}:
-                                            </strong>{{ Auth::user()->telefono }}
-                                        </p>
-                                        <div>
-                                            <span><strong>{{ __('Direcciones de envío') }}:</strong></span>
-                                            @foreach (Auth::user()->direcciones as $direcciones)
-                                            <p class="mb-2 pb-1" style="color: #2b2a2a;"><strong>Dirección:</strong>
-                                                {{ $direcciones->direccion }}
-                                                - {{ $direcciones->ciudad }} - {{ $direcciones->codigo_postal }} -
-                                                {{ $direcciones->provincia }}
-                                            </p>
-                                            <p class="mb-2 pb-1"><strong>Teléfono:</strong> {{ $direcciones->telefono }}</p>
-
-                                            <hr>
-                                            @endforeach
-
-                                            <button onclick="mostrarFormulario()" class="mb-2">Añadir dirección</button>
-                                            <form id="formulario" style="display:none;" class="mt-2" method="POST" action="{{ route('direcciones.store') }}" role="form" enctype="multipart/form-data">
-                                                {{ method_field('POST') }}
-                                                @csrf
-                                                {{ Form::hidden('user_id', Auth::user()->id) }}
-                                                {{ Form::text('direccion', $direccione->direccion, ['class' => 'form-control' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'Direccion']) }}
-                                                {{Form::text('ciudad', $direccione->ciudad, ['class' => 'form-control' . ($errors->has('ciudad') ? ' is-invalid' : ''), 'placeholder' => 'Ciudad'])}}
-                                                {{Form::text('codigo_postal', $direccione->codigo_postal, ['class' => 'form-control' . ($errors->has('codigo_postal') ? ' is-invalid' : ''), 'placeholder' => 'Codigo Postal'])}}
-                                                {{Form::text('provincia', $direccione->provincia, ['class' => 'form-control' . ($errors->has('provincia') ? ' is-invalid' : ''), 'placeholder' => 'Provincia'])}}
-                                                {{Form::text('pais', $direccione->pais, ['class' => 'form-control' . ($errors->has('pais') ? ' is-invalid' : ''), 'placeholder' => 'Pais' ])}}
-                                                {{Form::text('telefono', $direccione->telefono, ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Telefono' ])}}
-                                                <div class="box-footer mt20 mt-2">
-                                                    <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
-                                                </div>
-
-                                            </form>
-                                        </div>
 
 
-                                        <br><br>
-
-                                        <div class="text-right mb-3">
-                                            
-                                        <a class="btn btn-link" href="{{ route('cambiarpassword') }}">
-                                                    {{ __('Cambiar contraseña') }}
-                                                </a>
-                                          
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4 px-2 pb-2">
-                                        <a href="{{ route('logout') }} " onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <button class="btn btn-primary">Logout</button>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                                        </a>
-                                    </div>
-                                    @role('admin')
-
-                                    <div class="col-md-4 px-2 pb-2">
-                                        <a href="{{ route('test') }}">
-                                            <button type="button" class="btn btn-primary">{{ __('Dashboard') }}
-                                            </button>
-                                        </a>
-                                    </div>
-                                    @endrole
-
-                                    <div class="col-md-4 px-2 pb-2">
-
-                                        <a href="{{ route('inicio') }}">
-                                            <button type="button" class="btn btn-primary">{{ __('Volver') }}
-                                            </button>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-md-4 px-2">
-
-                                        <a href="{{ route('pedidosrealizados') }}">
-                                            <button type="button" class="btn btn-primary">{{ __('Pedidos') }}
-                                            </button>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-md-4 px-2">
-
-                                        <a href="{{ route('editarperfil') }}">
-                                            <button type="button" class="btn btn-primary">{{ __('Editar') }}
-                                            </button>
-                                        </a>
-                                    </div>
 
 
                                 </div>
