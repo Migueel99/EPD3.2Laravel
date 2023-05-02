@@ -68,6 +68,12 @@
     "Cambiar contraseña": "Change password",
     "Pedidos": "Orders",
     "Editar": "Edit",
-    "Editar Perfil": "Edit Profile"
+    "Editar Perfil": "Edit Profile",
+    "Productos favoritos": "Favorite products",
+    "No hay productos en la lista de favoritos": "There are no products in the wish list",
+    "Carrito de la compra": "Shopping cart",
+    "Favoritos": "Favorites",
+    "Realizar pedido": "Place order",
+    "Seguir comprando": "Continue shopping"
 
 }

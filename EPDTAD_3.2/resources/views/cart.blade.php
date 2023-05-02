@@ -28,7 +28,7 @@
         <div class="row justify-content-md-center">
             <div class="card-wrapper col-12 col-md-8  mt-5">
                 <div class="brand text-center mb-3">
-                    <h1 class="text-1000 fw-bold text-gradient">Carrito de la compra</h1>
+                    <h1 class="text-1000 fw-bold text-gradient">{{ __('Carrito de la compra') }}</h1>
                     <div class="card">
                         <div class="card-body">
                             {{$error = false}}
@@ -110,22 +110,21 @@
                         </div>
 
                         <hr>
-                        <h2>Total: {{ Auth::user()->carritos->obtenerPrecio() }} €</h2>
+                        <h2>{{ __('Total') }}: {{ Auth::user()->carritos->obtenerPrecio() }} €</h2>
 
                         <hr>
                         <div>
-                            <a href="{{ route('inicio') }}" class="btn btn-primary text-primary mb-2">Seguir
-                                comprando</a>
+                            <a href="{{ route('inicio') }}" class="btn btn-primary text-primary mb-2">{{ __('Seguir comprando') }}</a>
                             @if($error == true)
                             <a href="#" class="btn btn-primary text-primary mb-2">{{$menerror}}</a>
 
                             @else
-                            <a href="{{ route('checkout') }}" class="btn btn-primary text-primary mb-2">Realizar pedido</a>
+                            <a href="{{ route('checkout') }}" class="btn btn-primary text-primary mb-2">{{ __('Realizar pedido') }}</a>
 
                             @endif
                         </div>
                         @else
-                        <h2>No hay productos en el carrito</h2>
+                        <h2>{{ __('No hay productos en el carrito') }}</h2>
                         @endif
                     </div>
 
