@@ -55,7 +55,6 @@ Route::get('/cart', function () {
 })->name('cart')->middleware(['auth', 'verified']);;
 Route::view('/404', 'errors.404');
 
-Route::get('/set_language/{lang}', [App\Http\Controllers\Controller::class, 'set_language'])->name('set_language');
 
 Route::get('/pedidosrealizados', function () {
     return view('pedidos');
@@ -73,17 +72,20 @@ Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
     ->middleware(['auth'])
     ->name('password.request');
 
+Route::get('editarperfil',function(){
+    return view('editarperfil');
+})->name('editarperfil')->middleware(['auth']);
 
 
 Route::resource('favoritos', App\Http\Controllers\FavoritoController::class)->middleware(['auth']);
 Route::resource('producto-carrito', App\Http\Controllers\ProductoCarritoController::class)->middleware(['auth']);
 Route::resource('producto-pedido', App\Http\Controllers\ProductoPedidoController::class)->middleware(['auth']);
 Route::resource('pedidos', App\Http\Controllers\PedidoController::class)->middleware(['auth']);
-Route::resource('direcciones', App\Http\Controllers\DireccioneController::class)->middleware(['auth', 'role:admin']);
+Route::resource('direcciones', App\Http\Controllers\DireccioneController::class)->middleware(['auth']);
 Route::resource('categoria-productos', App\Http\Controllers\CategoriaProductoController::class)->middleware(['auth']);
 
-Route::resource('users', App\Http\Controllers\UserController::class)->middleware(['auth', 'role:admin']);
-Route::resource('rols', App\Http\Controllers\RolController::class)->middleware(['auth', 'role:admin']);
-Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware(['auth', 'role:admin']);
-Route::resource('carritos', App\Http\Controllers\CarritoController::class)->middleware(['auth', 'role:admin']);
-Route::resource('categorias', App\Http\Controllers\CategoriaController::class)->middleware(['auth', 'role:admin']);
+Route::resource('users', App\Http\Controllers\UserController::class)->middleware(['auth']);
+Route::resource('rols', App\Http\Controllers\RolController::class)->middleware(['auth']);
+Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware(['auth']);
+Route::resource('carritos', App\Http\Controllers\CarritoController::class)->middleware(['auth']);
+Route::resource('categorias', App\Http\Controllers\CategoriaController::class)->middleware(['auth']);

@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except('index', 'show', 'create', 'store');
+        $this->middleware('auth')->only('edit', 'update', 'destroy');
     }
 
     /**
@@ -59,12 +59,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-        $user = User::create($request->all());
-
-        return redirect()->route('users.index')
-            ->with('success', 'User created successfully.');
-        */
+    
         try {
             DB::beginTransaction();
             $user = User::create($request->all());
@@ -118,8 +113,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
-
-        return redirect()->route('users.index')
+        session()->put('applocale', $user->idioma);
+        return redirect()->route('inicio')
             ->with('success', 'User updated successfully');
     }
 
