@@ -44,6 +44,10 @@
                                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 ">
                                         <th class="px-4 py-3">Dirección</th>
                                         <th class="px-4 py-3">Nombre Usuario</th>
+                                        <th class="px-4 py-3 text-center">Código Posital</th>
+                                        <th class="px-4 py-3 text-center">Ciudad</th>
+                                        <th class="px-4 py-3 text-center">Provincia</th>
+                                        <th class="px-4 py-3 text-center">País</th>
                                         <th class="px-4 py-3 text-center">Acciones</th>
                                     </tr>
                                 </thead>
@@ -53,7 +57,10 @@
 
                                             <td class="px-4 py-3">{{ $direccione->direccion }}</td>
                                             <td class="px-4 py-3">{{ Auth::user()->name }}</td>
-
+                                            <td class="px-4 py-3 text-center">{{ $direccione->codigo_postal }}</td>
+                                            <td class="px-4 py-3 text-center">{{ $direccione->ciudad }}</td>
+                                            <td class="px-4 py-3 text-center">{{ $direccione->provincia }}</td>
+                                            <td class="px-4 py-3 text-center">{{ $direccione->pais }}</td>
                                             <td class="px-4 py-3 text-center">
                                                 <form action="{{ route('direcciones.destroy', $direccione->id) }}"
                                                     method="POST">

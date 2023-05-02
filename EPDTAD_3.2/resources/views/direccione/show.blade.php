@@ -3,7 +3,7 @@
 @section('content')
     <div class="container d-flex">
 
-        <div class="row align-items-center pt-10">
+        <div class="row align-items-center pt-10 ">
             <form class="col-12">
                 <h2 style="font-weight: bold; font-size: 2em; margin-top: 30px; text-align:center "
                     class="text-1000 fs-3 fw-bold ms-2 text-gradient">Información dirección {{$direccione->id}}</h2>
@@ -16,6 +16,18 @@
                     </div>
                     <div class="col-12 mb-3">
                         <label style="font-size: 1.5em;"><strong>ID usuario:</strong> {{$direccione->user_id}} </label>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label style="font-size: 1.5em;"><strong>Código Postal:</strong> {{$direccione->codigo_postal }} </label>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label style="font-size: 1.5em;"><strong>Ciudad:</strong> {{$direccione->ciudad }} </label>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label style="font-size: 1.5em;"><strong>Provincia:</strong> {{$direccione->provincia}} </label>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label style="font-size: 1.5em;"><strong>País:</strong> {{$direccione->pais }} </label>
                     </div>
                 </div>
                 <br>
