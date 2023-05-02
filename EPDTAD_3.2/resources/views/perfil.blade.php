@@ -75,10 +75,16 @@
                                             </form>
                                         </div>
 
-                                     
+
                                         <br><br>
 
-
+                                        <div class="text-right">
+                                            @if (Route::has('password.request'))
+                                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                    {{ __('Cambiar contraseña') }}
+                                                </a>
+                                            @endif
+                                        </div>
 
                                     </div>
 
