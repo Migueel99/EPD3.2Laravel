@@ -1,9 +1,19 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     @vite(['resources/css/theme.css', 'resources/js/bootstrap.js'])
     <title>Perfil</title>
     <link rel="shortcut icon" href="{{ asset('favicon1.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>
 
 <body>
@@ -135,8 +145,8 @@
     </script>
 
     <br><br>
-    <section class="py-0 bg-1000">
-        <div class="container text-center text-md-start mt-5">
+    <section class="py-0 bg-1000 ">
+        <div class="container text-center text-md-start mt-5 ">
             <div class="row mt-3 ">
                 <div class="col-sm-12 col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 text-center">
                     <br>

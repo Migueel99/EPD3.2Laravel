@@ -1,15 +1,25 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     @vite(['resources/css/theme.css', 'resources/js/bootstrap.js'])
-
+    <title>Carrito de la compra</title>
+    <link rel="shortcut icon" href="{{ asset('favicon1.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>
 
 <body>
 
     <div class="container-fluid pb-5">
         <br>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top overflow-hidden" data-navbar-on-scroll="data-navbar-on-scroll">
             <div class="container"><a class="navbar-brand d-inline-flex" href="{{ route('inicio') }}"><span class="text-1000 fs-3 fw-bold ms-2 text-gradient">MiniatureCars</span></a>
             </div>
         </nav>
@@ -30,13 +40,14 @@
                                 <div class="col-lg-3 col-md-12 mb-2">
                                     <img src="{{ asset('img/productos/' . $producto->producto->imagen) }}" alt="imagen" class="img-fluid">
                                 </div>
+                                
                                 <div class="col-lg-2 col-md-12 mb-2 d-flex align-items-center">
-                                    <h6 class="text-700">{{ $producto->producto->nombre }}</h6>
+                                    <h6 class="text-700" style="font-size: 1.5em; ">{{ $producto->producto->nombre }}</h6>
                                 </div>
                                 <div class="col-lg-1 col-md-4 mb-2 d-flex align-items-center">
 
                                     <a href="" onclick="event.preventDefault(); document.getElementById('{{'restar-form-'.$producto->id}}').submit();">
-                                        <button style="border:none; border-radius:50%">-</button>
+                                        <button style="border:none; background: white; font-size:2em;">-</button>
                                     </a>
                                 </div>
 
@@ -54,20 +65,20 @@
                                     @method('DELETE')
                                 </form>
                                 @endif
-                                <div class="col-lg-1 col-md-4 mb-2 d-flex align-items-center">
-                                    <p class="text-500">{{ $producto->cantidad }}</p>
+                                <div class="col-lg-1 col-md-2 mb-2 d-flex align-items-center">
+                                    <p class="text-500" style="font-size: 1.5em; ">{{ $producto->cantidad }}</p>
                                 </div>
                                 @if ($producto->cantidad >= $producto->producto->stock)
-                                <div class="col-lg-2 col-md-4 mb-2 d-flex align-items-center">
+                                <div class="col-lg-2 col-sm-2 mb-2 d-flex align-items-center">
                                     <button disabled style="border:none; border-radius:50%">+</button>
                                 </div>
                                 @else
-                                <div class="col-lg-1 col-md-4 mb-2 d-flex align-items-center">
+                                <div class="col-lg-1 col-md-2 mb-2 d-flex align-items-center">
                                     <a href="" onclick="event.preventDefault(); document.getElementById('{{'sumar-form-'.$producto->id}}').submit();">
-                                        <button style="border:none; border-radius:50%">+</button>
+                                        <button style="border:none; background: white; font-size:1.5em;">+</button>
                                     </a>
                                 </div>
-
+                                
                                 <form id="{{'sumar-form-'.$producto->id}}" style="display:none" method="POST" action="{{ route('producto-carrito.update', $producto->id) }}" role="form" enctype="multipart/form-data">
 
                                     {{ method_field('PATCH') }}
