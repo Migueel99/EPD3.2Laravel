@@ -131,6 +131,13 @@
                                             </button>
                                         </a>
                                     </div>
+                                    <div class="col-md-4 px-2">
+
+                                        <a href="{{ route('favoritosusuario') }}">
+                                            <button type="button" class="btn btn-danger">{{ __('Favoritos') }}
+                                            </button>
+                                        </a>
+                                    </div>
 
 
                                 </div>
