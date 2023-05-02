@@ -76,7 +76,7 @@
                                     <td>&nbsp;</td>
                                     <td>
                                         <div class="col-md-4 ">
-                                            <a href="{{ route('inicio') }}">
+                                            <a href="{{ route('perfil') }}">
                                                 <button type="button" class="btn btn-danger">{{ __('Volver') }}
                                                 </button>
                                             </a>
