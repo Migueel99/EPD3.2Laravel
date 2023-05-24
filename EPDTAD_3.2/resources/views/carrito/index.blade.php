@@ -63,7 +63,7 @@
                                                             class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i>
                                                         {{ __('Delete') }}</button>
                                                 </form>
                                             </td>

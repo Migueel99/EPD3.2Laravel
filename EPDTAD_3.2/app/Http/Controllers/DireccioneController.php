@@ -60,7 +60,7 @@ class DireccioneController extends Controller
                 ->with('success', 'Direccione created successfully.');
         }catch(\Exception $e){
             DB::rollBack();
-            dd($e);
+           
 
             return redirect()->route('direcciones.index')
                 ->with('success', 'Direccione created unsuccessfully.');

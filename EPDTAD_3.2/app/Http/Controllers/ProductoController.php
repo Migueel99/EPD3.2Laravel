@@ -97,7 +97,7 @@ class ProductoController extends Controller
                 ->with('success', 'Producto creado correctamente.');
         } catch (\Exception $e) {
 
-            dd($e);
+          
             DB::rollback();
             return redirect()->route('productos.index')
                 ->with('error', 'Error al crear el producto');
@@ -166,7 +166,6 @@ class ProductoController extends Controller
     public function destroy($id)
     {
         $producto = Producto::find($id)->delete();
-
         return redirect()->route('productos.index')
             ->with('success', 'Producto deleted successfully');
     }
