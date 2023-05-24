@@ -83,7 +83,7 @@ class ProductoController extends Controller
             $producto->favoritos = 0;
             $producto->save();
             $categoria = new CategoriaProducto();
-            for ($i = 0; $i < count($request->input('categorias')); $i++) {
+          for ($i = 0; $i < count($request->input('categorias')); $i++) {
                 if (CategoriaProducto::where('categoria_id', $request->input('categorias')[$i])->where('productos_id', $producto->id)->first() == null) {
                     $categoria = new CategoriaProducto();
                     $categoria->categoria_id = $request->input('categorias')[$i];

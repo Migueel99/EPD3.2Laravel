@@ -58,11 +58,9 @@ class CategoriaProductoController extends Controller
             $categoriaProducto = new categoriaProducto();
             $categoriaProducto->categoria_id = $request->categoria_id;
             $categoriaProducto->productos_id = $request->productos_id;
-
-            DB::afterCommit(function() use ($categoriaProducto){
-                $categoriaProducto->save();
-            });
+            $categoriaProducto->save();
             DB::commit();
+            
             return redirect()->route('inicio')
                 ->with('success', 'categoriaProducto created successfully.');
         }
