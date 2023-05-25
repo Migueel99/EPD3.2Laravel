@@ -55,9 +55,7 @@ class CategoriaProductoController extends Controller
     {
         try{
             DB::beginTransaction();
-            $categoriaProducto = new categoriaProducto();
-            $categoriaProducto->categoria_id = $request->categoria_id;
-            $categoriaProducto->productos_id = $request->productos_id;
+            $categoriaProducto= CategoriaProducto::create($request->all());
             $categoriaProducto->save();
             DB::commit();
             

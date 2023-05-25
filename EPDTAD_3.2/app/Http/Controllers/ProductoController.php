@@ -82,22 +82,22 @@ class ProductoController extends Controller
             $producto->stock = $request->input('stock');
             $producto->favoritos = 0;
             $producto->save();
+            DB::commit();
+            DB::beginTransaction();
             $categoria = new CategoriaProducto();
-          for ($i = 0; $i < count($request->input('categorias')); $i++) {
-                if (CategoriaProducto::where('categoria_id', $request->input('categorias')[$i])->where('productos_id', $producto->id)->first() == null) {
-                    $categoria = new CategoriaProducto();
-                    $categoria->categoria_id = $request->input('categorias')[$i];
+            for ($i = 0; $i < count($request->input('categorias')); $i++) {
+               
+                    $categoria->categoria_id = intval($request->input('categorias')[$i]);
                     $categoria->productos_id = $producto->id;
                     $categoria->save();
-                }
+                
             }
-
+                
             DB::commit();
             return redirect()->route('productos.index')
                 ->with('success', 'Producto creado correctamente.');
         } catch (\Exception $e) {
 
-          
             DB::rollback();
             return redirect()->route('productos.index')
                 ->with('error', 'Error al crear el producto');
@@ -177,17 +177,14 @@ class ProductoController extends Controller
 
         // Obtener la colección de productos y paginarlos
         $productos = Producto::whereIn('id', $categoria->pluck('productos_id'))
-                        ->paginate(10);
-    
+            ->paginate(10);
+
         $categoria = Categoria::find($idCategoria);
 
         $categorias = Categoria::all();
 
-        
+
         return view('pcategoria', compact('productos', 'categoria', 'categorias'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-
-
-            
     }
 }

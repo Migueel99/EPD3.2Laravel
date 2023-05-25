@@ -150,9 +150,9 @@ class UserController extends Controller
         $pedido->user_id = Auth::user()->id;
         $pedido->total = 0;
         $pedido->save();
-        $carrito = Auth::user()->carritos->first();
+        $carrito = Auth::user()->carritos;
         $productos = $carrito->productoCarritos;
-        $total = 0;
+                $total = 0;
         foreach ($productos as $producto) {
             $pp = new ProductoPedido();
             $p = $producto->producto;
